@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="content-section-a">
+    <div class="container">
+        <div class="table-header">
+            Menu Items
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                </thead>
+                <tbody>
+                {% for item in object_list %}
+                <tr>
+                    <td>{{item.name}}</td>
+                    <td>{{item.unit_price}}</td>
+                    <td>{{item.description}}</td>
+                    <td><a href="" class="btn">Add to Cart</a> </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

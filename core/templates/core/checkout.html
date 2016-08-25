@@ -1,0 +1,391 @@
+{% include 'core/components/page_head_tags.html' %}
+<body>
+
+    <!-- Checkout are start-->
+    <div class="cart-area pt60 pb60 ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-sm-8 col-xs-12">
+                    <div class="coupne-customer-area mb50">
+                      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                      <div class="panel">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                          <h4 class="panel-title">
+                          <img src="/static/lavie/img/icon/acc.jpg" alt="">
+                           Returning customer?
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                               Click here to login
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                          <div class="panel-body">
+                            <div class="sm-des pb20">
+                    If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.
+                            </div>
+                            <div class="first-last-name">
+                                <div class="input-box name1">
+                                    <label>User Name Or Email</label>
+                                    <input type="email" placeholder="Your Email" class="info" name="email">
+                                </div>
+                                <div class="input-box name2">
+                                    <label>Password</label>
+                                    <input type="password" placeholder="Password" class="info" name="padd">
+                                </div>
+                                <div class="frm-action cc-area">
+                                    <div class="input-box tci-box">
+                                        <input type="submit" class="in-btn" name="processed-checkout" value="Login">
+                                    </div>
+                                    <span>
+                                <input type="checkbox" class="remr"> Remember me
+                                </span>
+                                    <a class="forgotten forg" href="#">Forgotten Password</a>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                          <h4 class="panel-title">
+                          <img src="/static/lavie/img/icon/acc.jpg" alt="">
+                           Have A Coupon?
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                               Click here to enter your code
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                          <div class="panel-body coupon-body">
+                            <div class="first-last-name">
+                                <div class="input-box name1">
+                                    <input type="text" placeholder="Coupne Code" class="info" name="coupne">
+                                </div>
+                                <div class="input-box name2">
+                                    <input type="submit" value="Apply Coupon" name="processed-checkout" class="in-btn">
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="billing-details">
+                                <div class="contact-text right-side">
+                                      <h2>Billing Details</h2>
+                            <form action="#">
+                               <div class="first-last-name">
+                                    <div class="input-box name1">
+                                        <label>First Name</label>
+                                        <input type="text" name="namm" class="info" placeholder="First Name">
+                                    </div>
+                                    <div class="input-box name2">
+                                        <label>Last Name</label>
+                                        <input type="text" name="namm" class="info" placeholder="Last Name">
+                                    </div>
+                               </div>
+                                <div class="input-box">
+                                    <label>Company Name</label>
+                                    <input type="text" name="cpany" class="info" placeholder="Company Name">
+                                </div>
+                               <div class="first-last-name">
+                                    <div class="input-box name1">
+                                        <label>Email Address</label>
+                                        <input type="email" name="email" class="info" placeholder="Your Email">
+                                    </div>
+                                    <div class="input-box name2">
+                                        <label>Phone Number</label>
+                                        <input type="text" name="phone" class="info" placeholder="Phone Number">
+                                    </div>
+                               </div>
+
+                                <div class="input-box">
+                            </div>
+
+                                <div class="input-box">
+                                    <label>Address <em>*</em></label>
+                                    <input type="text" name="add1" class="info" placeholder="Street Address">
+                                    <input type="text" name="add2" class="info mt10" placeholder="Apartment, suite, unit etc. (optional)">
+                                </div>
+
+                                <div class="input-box">
+                                    <label>Town/City <em>*</em></label>
+                                    <input type="text" name="add1" class="info" placeholder="Town/City">
+                                </div>
+
+                                <div class="first-last-name clearfix">
+                                    <div class="input-box name1">
+                                        <label>State/Division <em>*</em></label>
+                                        <input type="email" name="email" class="info" placeholder="Your Email">
+                                    </div>
+                                    <div class="input-box name2">
+                                        <label>Post Code/Zip Code<em>*</em></label>
+                                        <input type="text" name="phone" class="info" placeholder="Phone Number">
+                                    </div>
+                                </div>
+
+                                <div class="create-acc clearfix">
+                                    <div class="acc-toggle">
+                                        <input type="checkbox" id="acc-toggle">
+                                        <label for="acc-toggle">Create an Account</label>
+                                    </div>
+                                    <div class="create-acc-body">
+                                       <div class="sm-des">
+                                           Create an account by entering the information below. If you are a returning customer please login at the top of the page.
+                                       </div>
+                                        <div class="input-box">
+                                            <label>Account password <em>*</em></label>
+                                            <input type="password" name="pass" class="info" placeholder="Password">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="billing-details">
+                                <div class="right-side">
+
+
+                                    <div class="ship-acc clearfix">
+                                    <div class="ship-toggle pb20">
+                                        <input type="checkbox" id="ship-toggle">
+                                        <label for="ship-toggle">Ship to a different address?</label>
+                                    </div>
+                                    <div class="ship-acc-body">
+                                        <form action="#">
+                                            <div class="first-last-name">
+                                                <div class="input-box name1">
+                                                    <label>First Name</label>
+                                                    <input type="text" name="namm" class="info" placeholder="First Name">
+                                                </div>
+                                                <div class="input-box name2">
+                                                    <label>Last Name</label>
+                                                    <input type="text" name="namm" class="info" placeholder="Last Name">
+                                                </div>
+                                            </div>
+                                            <div class="input-box">
+                                                <label>Company Name</label>
+                                                <input type="text" name="cpany" class="info" placeholder="Company Name">
+                                            </div>
+
+                                            <div class="input-box">
+                                                <label>Address <em>*</em></label>
+                                                <input type="text" name="add1" class="info" placeholder="Street Address">
+                                                <input type="text" name="add2" class="info mt10" placeholder="Apartment, suite, unit etc. (optional)">
+                                            </div>
+
+                                            <div class="input-box">
+                                                <label>Town/City <em>*</em></label>
+                                                <input type="text" name="add1" class="info" placeholder="Town/City">
+                                            </div>
+
+                                            <div class="first-last-name clearfix">
+                                                <div class="input-box name1">
+                                                    <label>State/Division <em>*</em></label>
+                                                    <input type="email" name="email" class="info" placeholder="Your Email">
+                                                </div>
+                                                <div class="input-box name2">
+                                                    <label>Post Code/Zip Code<em>*</em></label>
+                                                    <input type="text" name="phone" class="info" placeholder="Phone Number">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    </div>
+                            <div class="form">
+                                <div class="input-box">
+                                    <label>Order Notes</label>
+                                    <textarea placeholder="Notes about your order, e.g. special notes for delivery." class="area-tex"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                   <div class="checkout-total mt20">
+                       <h3>Your order</h3>
+                   <form action="#" method="post">
+                   <div class="table-responsive">
+                        <table class="checkout-area table">
+                       <thead>
+                        <tr class="cart_item check-heading">
+                            <td class="ctg-type"> Product</td>
+                            <td class="cgt-des"> Total</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="cart_item check-item">
+                                <td class="ctg-type"> Fusce Laoreet Volutpat  × <span>2</span></td>
+                                <td class="cgt-des"> $26.00</td>
+                            </tr>
+                            <tr class="cart_item check-item">
+                                <td class="ctg-type"> Duis Odio Nulla  × <span>2</span></td>
+                                <td class="cgt-des">$1000.00</td>
+                            </tr>
+                            <tr class="cart_item">
+                                <td class="ctg-type"> Subtotal</td>
+                                <td class="cgt-des">$1.026.00</td>
+                            </tr>
+                            <tr class="cart_item">
+                                <td class="ctg-type">Shipping</td>
+                                <td class="cgt-des">Free Shiping</td>
+                            </tr>
+                            <tr class="cart_item">
+                                <td class="ctg-type"> Total</td>
+                                <td class="cgt-des"> $ 1.026.00 </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                   </div>
+                </form>
+                </div>
+
+                    <div class="payment-section mt20 clearfix">
+                        <div class="pay-toggle">
+                            <form action="#">
+                               <div class="pay-type-total">
+                                <div class="pay-type">
+                                    <input type="radio" id="pay-toggle" name="pay">
+                                    <label for="pay-toggle">Direct Bank Transfer</label>
+                                </div>
+                                <div class="pay-type">
+                                    <input type="radio" id="pay-toggle2" name="pay">
+                                    <label for="pay-toggle2">Cheque Payment</label>
+                                </div>
+                                <div class="pay-type">
+                                    <input type="radio" id="pay-toggle3" name="pay">
+                                    <label for="pay-toggle3">Cash on Delivery</label>
+                                </div>
+                                </div>
+                                <div class="input-box pt20 mt20">
+                                    <input type="submit" class="in-btn" name="processed-checkout" value="Place order">
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-12">
+                    <aside>
+                        <div class="single-widget">
+                            <div class="whdget-title">
+                                <h2>Categories</h2>
+                            </div>
+                            <ul>
+                                <li><a href="#">Cake</a></li>
+                                <li><a href="#">Chef</a></li>
+                                <li><a href="#">Cup Cake</a></li>
+                                <li><a href="#">Fruit</a></li>
+                                <li><a href="#">Lemon</a></li>
+                                <li><a href="#">Mango</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                    <aside>
+                        <div class="single-widget tag-cloud">
+                            <div class="whdget-title">
+                                <h2>Tag</h2>
+                            </div>
+                            <ul>
+                                <li><a href="#">Foods</a></li>
+                                <li><a href="#">Lemo</a></li>
+                                <li><a href="#">Lemon</a></li>
+                                <li><a href="#">Fruiti</a></li>
+                                <li><a href="#">Lemon</a></li>
+                                <li><a href="#">Desse</a></li>
+                                <li><a href="#">Cupp Cake</a></li>
+                                <li><a href="#">Chocolates</a></li>
+                                <li><a href="#">Mangoes</a></li>
+                                <li><a href="#">Watermelon</a></li>
+                                <li><a href="#">Wordpress</a></li>
+                                <li><a href="#">Joomla</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+
+                </div>
+        </div>
+    </div>
+    </div>
+    <!-- Checkout are end-->
+
+    <!--footer area are start-->
+     <div class="footer-area pt60 pb60">
+         <div class="container">
+             <div class="row">
+                 <div class="col-md-4 col-sm-4 col-xs-12">
+                     <div class="single-footer text-center">
+                        <div class="sosa-icon">
+                            <img src="/static/lavie/img/icon/icon-service.png" alt="">
+                        </div>
+                         <h1>Delivery Service</h1>
+                         <div class="address">
+                            <span>
+                                249 street Ung Van Khiem ,<br>
+                                ward 25 Binh Thanh district ,HCM Vietnam <br>
+                                <span class="email">giao.trinh@emthemes.com</span>
+                            </span>
+                            <div class="phone-no">
+                                <span>+84 866 725 048</span>
+                            </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-md-4 col-sm-4 col-xs-12">
+                     <div class="single-footer footer-middle text-center">
+                        <div class="sosa-icon">
+                            <img src="/static/lavie/img/icon/icon-time.png" alt="">
+                        </div>
+                         <h1>Opening Time</h1>
+                        <div class="service-time">
+                            <h2>LUNCH SERVICE</h2>
+                            <span>Firday - Sunday :12pm -1.30pm</span>
+                        </div>
+                        <div class="service-time">
+                            <h2>DINNER SERVICE</h2>
+                            <span>Daily Booking available from 6pm - 9.30pm</span>
+                        </div>
+                     </div>
+                 </div>
+
+             </div>
+         </div>
+     </div>
+    <!--footer area are end-->
+
+    <!--Copyright area are start-->
+      <div class="copyright-info pt60 pb60">
+        <div class="container">
+            <div class="row">
+                <a href="index.html"><img src="/static/lavie/img/logoft.png" alt=""></a>
+			<p>Copyright © 2016-All rights reserved. <a href="http://bootexperts.com/">bootexperts.com</a> </p>
+            </div>
+        </div>
+    </div>
+    <!--Copyright area are end-->
+</div>
+		<!-- all js here -->
+		<!-- jquery latest version -->
+        <script src="/static/lavie/js/vendor/jquery-1.12.0.min.js"></script>
+		<!-- bootstrap js -->
+        <script src="/static/lavie/js/bootstrap.min.js"></script>
+		<!-- jquery-ui js -->
+        <script src="/static/lavie/js/jquery-ui.min.js"></script>
+		<!-- wow js -->
+        <script src="/static/lavie/js/wow.min.js"></script>
+		<!-- Sticky JS -->
+        <script src="/static/lavie/js/jquery.sticky.js"></script>
+		<!-- venobox js -->
+        <script src="/static/lavie/lib/venobox/venobox.js"></script>
+		<!-- plugins js -->
+        <script src="/static/lavie/js/plugins.js"></script>
+		<!-- main js -->
+        <script src="/static/lavie/js/main.js"></script>
+    </body>
+</html>

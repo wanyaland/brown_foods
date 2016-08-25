@@ -1,0 +1,86 @@
+{% include 'core/components/page_head_tags.html' %}
+ <!-- cart are start-->
+    <div class="cart-area pt60 pb60 ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post" action="#">
+                   <div class="table-responsive">
+                    <table class="shop_table cart table">
+                        <thead>
+                            <tr>
+                                <th class="product-remove"></th>
+                                <th class="product-thumbnail">Image</th>
+                                <th class="product-name">Product</th>
+                                <th class="product-price">Price</th>
+                                <th class="product-quantity">Quantity</th>
+                                <th class="product-subtotal">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in cart.order_set %}
+                            <tr class="cart_item">
+                                <td class="remove"><a href="#">X</a></td>
+                                <td class="item-img">
+                                    <a href="#"><img src="/static/lavie/img/menu/01.JPG" alt=""> </a>
+                                </td>
+                                <td class="item-title"> <a href="#">{{order.menu_item.name}} </a></td>
+                                <td class="item-price"> {{order.menu_item.price}} </td>
+                                <td class="item-qty">
+                                    <input type="number" value="1" min="1">
+                                </td>
+                                <td class="total-price"> </td>
+                            </tr>
+                            {% endfor %}
+                            <tr class="cart_item">
+                                <td class="cart-action" colspan="6">
+                                    <div class="coupne-area">
+                                        <div class="input-box coupon-box">
+                                            <input type="text" name="name" placeholder="Coupon Code" class="apply-coupne">
+                                        </div>
+                                        <div class="input-box">
+                                            <input type="submit" class="in-btn" name="apply" value="Apply Coupon">
+                                        </div>
+                                    </div>
+                                    <div class="update-cart">
+
+                                        <div class="input-box">
+                                            <input type="submit" class="in-btn" name="update-cart" value="Update Cart">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </form>
+                <div class="total-cart-wrap">
+                    <div class="section-title text-center pt40">
+                        <h3>Cart Totals</h3>
+                    </div>
+                    <form method="post" action="#">
+                    <div class="table-responsive">
+                    <table class="cart-total-area table">
+                        <tbody>
+                            <tr class="cart_item">
+                                <td class="ctg-type"> Sub-Total</td>
+                                <td class="cgt-des"> $ 1.026.00 </td>
+                            </tr>
+                            <tr class="cart_item">
+                                <td class="ctg-type"> Total</td>
+                                <td class="cgt-des"> $ 1.026.00 </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="input-box tci-box text-center">
+                        <input type="submit" class="in-btn " name="processed-checkout" value="Processed Checkout">
+                    </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- cart are end-->
+{% include 'core/components/page_foot_tags.html' %}
