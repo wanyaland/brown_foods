@@ -18,18 +18,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for order in cart.order_set %}
+                            {% for item in cart %}
                             <tr class="cart_item">
                                 <td class="remove"><a href="#">X</a></td>
                                 <td class="item-img">
                                     <a href="#"><img src="/static/lavie/img/menu/01.JPG" alt=""> </a>
                                 </td>
-                                <td class="item-title"> <a href="#">{{order.menu_item.name}} </a></td>
-                                <td class="item-price"> {{order.menu_item.price}} </td>
+                                <td class="item-title"> <a href="#">{{item.menu_item.name}} </a></td>
+                                <td class="item-price"> {{item.unit_price}} </td>
                                 <td class="item-qty">
-                                    <input type="number" value="1" min="1">
+                                    <input type="number" value={{item.quantity}} min="1">
                                 </td>
-                                <td class="total-price"> </td>
+                                <td class="total-price">{{item.total_price}}</td>
                             </tr>
                             {% endfor %}
                             <tr class="cart_item">
@@ -42,12 +42,12 @@
                                             <input type="submit" class="in-btn" name="apply" value="Apply Coupon">
                                         </div>
                                     </div>
+                                    <form action="{% url 'core:update_cart' %}" method="post"> {% csrf_token %}
                                     <div class="update-cart">
-
                                         <div class="input-box">
                                             <input type="submit" class="in-btn" name="update-cart" value="Update Cart">
                                         </div>
-                                    </div>
+                                    </div> </form>
                                 </td>
                             </tr>
                         </tbody>
@@ -58,17 +58,18 @@
                     <div class="section-title text-center pt40">
                         <h3>Cart Totals</h3>
                     </div>
-                    <form method="post" action="#">
+                    <form method="post" action="{% url 'core:checkout' %}"> {% csrf_token %}
                     <div class="table-responsive">
                     <table class="cart-total-area table">
                         <tbody>
                             <tr class="cart_item">
-                                <td class="ctg-type"> Sub-Total</td>
-                                <td class="cgt-des"> $ 1.026.00 </td>
+                                <td class="ctg-type">Sub-Total</td>
+                                <td class="cgt-des"> UGX {{cart.summary}} </td>
                             </tr>
+
                             <tr class="cart_item">
                                 <td class="ctg-type"> Total</td>
-                                <td class="cgt-des"> $ 1.026.00 </td>
+                                <td class="cgt-des"> UGX {{cart.summary}} </td>
                             </tr>
                         </tbody>
                     </table>

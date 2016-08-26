@@ -75,20 +75,20 @@
                             <div class="billing-details">
                                 <div class="contact-text right-side">
                                       <h2>Billing Details</h2>
-                            <form action="#">
+                            <form action="{% url 'core:signup' %}">
                                <div class="first-last-name">
                                     <div class="input-box name1">
                                         <label>First Name</label>
-                                        <input type="text" name="namm" class="info" placeholder="First Name">
+                                        <input type="text" name="first_name" class="info" placeholder="First Name">
                                     </div>
                                     <div class="input-box name2">
                                         <label>Last Name</label>
-                                        <input type="text" name="namm" class="info" placeholder="Last Name">
+                                        <input type="text" name="last_name" class="info" placeholder="Last Name">
                                     </div>
                                </div>
                                 <div class="input-box">
                                     <label>Company Name</label>
-                                    <input type="text" name="cpany" class="info" placeholder="Company Name">
+                                    <input type="text" name="company" class="info" placeholder="Company Name">
                                 </div>
                                <div class="first-last-name">
                                     <div class="input-box name1">
@@ -115,16 +115,6 @@
                                     <input type="text" name="add1" class="info" placeholder="Town/City">
                                 </div>
 
-                                <div class="first-last-name clearfix">
-                                    <div class="input-box name1">
-                                        <label>State/Division <em>*</em></label>
-                                        <input type="email" name="email" class="info" placeholder="Your Email">
-                                    </div>
-                                    <div class="input-box name2">
-                                        <label>Post Code/Zip Code<em>*</em></label>
-                                        <input type="text" name="phone" class="info" placeholder="Phone Number">
-                                    </div>
-                                </div>
 
                                 <div class="create-acc clearfix">
                                     <div class="acc-toggle">
@@ -152,25 +142,26 @@
 
 
                                     <div class="ship-acc clearfix">
+                                        <!--
                                     <div class="ship-toggle pb20">
                                         <input type="checkbox" id="ship-toggle">
                                         <label for="ship-toggle">Ship to a different address?</label>
-                                    </div>
+                                    </div> -->
                                     <div class="ship-acc-body">
                                         <form action="#">
                                             <div class="first-last-name">
                                                 <div class="input-box name1">
                                                     <label>First Name</label>
-                                                    <input type="text" name="namm" class="info" placeholder="First Name">
+                                                    <input type="text" name="first_name" class="info" placeholder="First Name">
                                                 </div>
                                                 <div class="input-box name2">
                                                     <label>Last Name</label>
-                                                    <input type="text" name="namm" class="info" placeholder="Last Name">
+                                                    <input type="text" name="last_name" class="info" placeholder="Last Name">
                                                 </div>
                                             </div>
                                             <div class="input-box">
                                                 <label>Company Name</label>
-                                                <input type="text" name="cpany" class="info" placeholder="Company Name">
+                                                <input type="text" name="company" class="info" placeholder="Company Name">
                                             </div>
 
                                             <div class="input-box">
@@ -220,25 +211,24 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr class="cart_item check-item">
-                                <td class="ctg-type"> Fusce Laoreet Volutpat  × <span>2</span></td>
-                                <td class="cgt-des"> $26.00</td>
+                        {% for item in cart %}
+                           <tr class="cart_item check-item">
+                                <td class="ctg-type"> {{item.menu_item}}  × <span>{{item.quantity}}</span></td>
+                                <td class="cgt-des"> {{item.total_price}}</td>
                             </tr>
-                            <tr class="cart_item check-item">
-                                <td class="ctg-type"> Duis Odio Nulla  × <span>2</span></td>
-                                <td class="cgt-des">$1000.00</td>
-                            </tr>
+                        {% endfor %}
                             <tr class="cart_item">
                                 <td class="ctg-type"> Subtotal</td>
-                                <td class="cgt-des">$1.026.00</td>
+                                <td class="cgt-des">{{cart.summary}}</td>
                             </tr>
+                        <!--
                             <tr class="cart_item">
                                 <td class="ctg-type">Shipping</td>
                                 <td class="cgt-des">Free Shiping</td>
-                            </tr>
+                            </tr> -->
                             <tr class="cart_item">
                                 <td class="ctg-type"> Total</td>
-                                <td class="cgt-des"> $ 1.026.00 </td>
+                                <td class="cgt-des"> {{cart.summary}} </td>
                             </tr>
                         </tbody>
                     </table>
@@ -252,11 +242,11 @@
                                <div class="pay-type-total">
                                 <div class="pay-type">
                                     <input type="radio" id="pay-toggle" name="pay">
-                                    <label for="pay-toggle">Direct Bank Transfer</label>
+                                    <label for="pay-toggle">Visa</label>
                                 </div>
                                 <div class="pay-type">
                                     <input type="radio" id="pay-toggle2" name="pay">
-                                    <label for="pay-toggle2">Cheque Payment</label>
+                                    <label for="pay-toggle2">Mobile Money</label>
                                 </div>
                                 <div class="pay-type">
                                     <input type="radio" id="pay-toggle3" name="pay">
@@ -270,45 +260,6 @@
                         </div>
 
                     </div>
-                </div>
-                <div class="col-md-3 col-sm-4 col-xs-12">
-                    <aside>
-                        <div class="single-widget">
-                            <div class="whdget-title">
-                                <h2>Categories</h2>
-                            </div>
-                            <ul>
-                                <li><a href="#">Cake</a></li>
-                                <li><a href="#">Chef</a></li>
-                                <li><a href="#">Cup Cake</a></li>
-                                <li><a href="#">Fruit</a></li>
-                                <li><a href="#">Lemon</a></li>
-                                <li><a href="#">Mango</a></li>
-                            </ul>
-                        </div>
-                    </aside>
-                    <aside>
-                        <div class="single-widget tag-cloud">
-                            <div class="whdget-title">
-                                <h2>Tag</h2>
-                            </div>
-                            <ul>
-                                <li><a href="#">Foods</a></li>
-                                <li><a href="#">Lemo</a></li>
-                                <li><a href="#">Lemon</a></li>
-                                <li><a href="#">Fruiti</a></li>
-                                <li><a href="#">Lemon</a></li>
-                                <li><a href="#">Desse</a></li>
-                                <li><a href="#">Cupp Cake</a></li>
-                                <li><a href="#">Chocolates</a></li>
-                                <li><a href="#">Mangoes</a></li>
-                                <li><a href="#">Watermelon</a></li>
-                                <li><a href="#">Wordpress</a></li>
-                                <li><a href="#">Joomla</a></li>
-                            </ul>
-                        </div>
-                    </aside>
-
                 </div>
         </div>
     </div>

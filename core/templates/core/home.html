@@ -1,4 +1,55 @@
 {% extends 'core/base.html' %}
+{% block slider %}
+<!-- home slider start -->
+    <div class="slider-container">
+        <!-- Slider Image -->
+        <div id="mainSlider" class="nivoSlider slider-image">
+            <img src="/static/lavie/img/slider/slider-home.jpg" alt="main slider" title="#htmlcaption1" />
+            <img src="/static/lavie/img/slider/slider2-home.jpg" alt="main slider" title="#htmlcaption2" />
+        </div>
+        <!-- Slider Caption 1 -->
+        <div id="htmlcaption1" class="nivo-html-caption slider-caption-1">
+            <div class="slider-progress"></div>
+            <div class="slide1-text">
+               <div class="top-icon sl-icon">
+                   <img src="/static/lavie/img/slider/star-icon.png" alt="">
+               </div>
+                <div class="middle-text">
+                    <div class="cap-title wow bounceInRight" data-wow-duration="1.2s" data-wow-delay="0.2s">
+                        <h1>Bento Cusine</h1>
+                    </div>
+                    <div class="cap-dec wow bounceInDown" data-wow-duration="0.9s" data-wow-delay="0s">
+                        <h3>DELIVERIES</h3>
+                    </div>
+                    <div class="bottom-icon sl-icon">
+                        <img src="/static/lavie/img/slider/rou.png" alt="">
+                    </div>
+                </div>
+            </div>
+        <!-- Slider Caption 2 -->
+        <div id="htmlcaption2" class="nivo-html-caption slider-caption-2">
+            <div class="slider-progress"></div>
+            <div class="slide1-text">
+               <div class="top-icon sl-icon">
+                   <img src="/static/lavie/img/slider/star-icon.png" alt="">
+               </div>
+                <div class="middle-text">
+                    <div class="cap-title wow bounceInRight" data-wow-duration="1.2s" data-wow-delay="0.2s">
+                        <h1>Menu Cusine</h1>
+                    </div>
+                    <div class="cap-dec wow bounceInDown" data-wow-duration="0.9s" data-wow-delay="0s">
+                        <h3>LUXURYRESTRUNTLOOKBOOK</h3>
+                    </div>
+                    <div class="bottom-icon sl-icon">
+                        <img src="/static/lavie/img/slider/rou.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- home slider end -->
+    </div>
+{% endblock %}
 {% block content %}
   <!-- service holder area are start-->
     <div class="service-holder-area pt60 pb60">
@@ -199,95 +250,26 @@
 
             <div class="row">
                 <div class="total-our-menu carsoule-btn cb-2">
+                    {% for menu_item in menu_items %}
                     <div class="col-xs-12">
                         <div class="single-our-menu">
                             <div class="sm-image">
-                                <a href="#"><img src="/static/lavie/img/menu/01.JPG" alt=""></a>
-                                 <a class="com-btn" href="#">Add To Cart</a>
-                                <div class="sm-heading"><a href="#">Watermelon Smoothie</a></div>
+                                <a href="#"><img src="/static/lavie/img/menu/405/01.JPG" alt="" ></a>
+                                 <a class="com-btn" href="{% url 'core:add_to_cart' menu_item.id 1%}">Add To Cart</a>
+                                <div class="sm-heading"><a href="#">{{menu_item.name}}</a></div>
                             </div>
                             <div class="sm-content">
                                 <div class="sm-des">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed semper sem. Sed nec dui scelerisque, ornare nisl id, luctus neque….
-                                </div>
-                                <div class="sm-ratting">
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star-o"></i></a>
+                                   {{menu_item.description}}
                                 </div>
                                 <div class="sm-price">
-                                    $500.00
+                                    {{menu_item.unit_price}}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12">
-                        <div class="single-our-menu">
-                            <div class="sm-image">
-                                <a href="#"><img src="/static/lavie/img/menu/02.JPG" alt=""></a>
-                                 <a class="com-btn" href="#">Add To Cart</a>
-                                <div class="sm-heading"><a href="#">Huse Sagittis Dignissim</a></div>
-                            </div>
-                            <div class="sm-content">
-                                <div class="sm-des">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed semper sem. Sed nec dui scelerisque, ornare nisl id, luctus neque….
-                                </div>
-                                <div class="sm-price">
-                                    $350.00
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12">
-                        <div class="single-our-menu">
-                            <div class="sm-image">
-                                <a href="#"><img src="/static/lavie/img/menu/03.JPG" alt=""></a>
-                                 <a class="com-btn" href="#">Add To Cart</a>
-                                <div class="sm-heading"><a href="#">Watermelon Smoothie</a></div>
-                            </div>
-                            <div class="sm-content">
-                                <div class="sm-des">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed semper sem. Sed nec dui scelerisque, ornare nisl id, luctus neque….
-                                </div>
-                                <div class="sm-ratting">
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star-o"></i></a>
-                                </div>
-                                <div class="sm-price">
-                                    $500.00
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12">
-                        <div class="single-our-menu">
-                            <div class="sm-image">
-                                <a href="#"><img src="/static/lavie/img/menu/04.JPG" alt=""></a>
-                                 <a class="com-btn" href="#">Add To Cart</a>
-                                <div class="sm-heading"><a href="#">Fuse Sagittis Dignissim</a></div>
-                            </div>
-                            <div class="sm-content">
-                                <div class="sm-des">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed semper sem. Sed nec dui scelerisque, ornare nisl id, luctus neque….
-                                </div>
-                                <div class="sm-ratting">
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star-o"></i></a>
-                                </div>
-                                <div class="sm-price">
-                                    $600.00
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
+
                 </div>
             </div>
             <div class="find-more text-center">
