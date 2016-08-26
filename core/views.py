@@ -25,12 +25,32 @@ def cart(request):
         'cart':Cart(request)
     })
 
+
 def checkout(request):
     if request.method=='POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
+        company = request.POST.get('company')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        add1 = request.POST.get('add1')
+        add2 = request.POST.get('add2')
+        order_notes = request.POST.get('order')
         billing_details = BillingDetails()
-        billing_details
+        billing_details.first_name = first_name
+        billing_details.last_name =last_name
+        billing_details.company = company
+        billing_details.phone_number = phone
+        billing_details.email = email
+        billing_details.address_line1 = add1
+        billing_details.address_line2 = add2
+        billing_details.order_notes = order_notes
+        billing_details.save()
+        cart = Cart(request)
+        cart.billing_details = billing_details
+        return render(request,'core/payment.html',{
+            'cart':Cart(request),
+        })
     else:
          return render(request,'core/checkout.html',{
         'cart':Cart(request),

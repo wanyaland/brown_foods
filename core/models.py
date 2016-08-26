@@ -4,9 +4,11 @@ from django.db import models
 # Create your models here.
 
 class BillingDetails(models.Model):
+
     first_name  = models.CharField(max_length=100,null=True)
     last_name = models.CharField(max_length=100,null=True)
     company = models.CharField(max_length=100,null=True)
+    email = models.EmailField(null=True)
     address_line1 = models.TextField()
     address_line2 = models.TextField()
     latitude = models.FloatField()
