@@ -4,7 +4,8 @@ from django.db import models
 # Create your models here.
 
 class BillingDetails(models.Model):
-    user = models.OneToOneField(User,null=True)
+    first_name  = models.CharField(max_length=100,null=True)
+    last_name = models.CharField(max_length=100,null=True)
     company = models.CharField(max_length=100,null=True)
     address_line1 = models.TextField()
     address_line2 = models.TextField()
@@ -22,7 +23,7 @@ class Cart(models.Model):
         ('V','VISA CARD'),
         ('M','MOBILE MONEY'),
     )
-    user = models.ForeignKey(BillingDetails,null=True)
+    billing_details = models.OneToOneField(BillingDetails,null=True)
     creation_date = models.DateTimeField(null=True)
     checked_out = models.BooleanField(default=False)
     payment_type = models.CharField(max_length=100,null=True,choices=PAYMENT_TYPE)

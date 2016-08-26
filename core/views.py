@@ -27,7 +27,10 @@ def cart(request):
 
 def checkout(request):
     if request.method=='POST':
-        pass
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        billing_details = BillingDetails()
+        billing_details
     else:
          return render(request,'core/checkout.html',{
         'cart':Cart(request),
