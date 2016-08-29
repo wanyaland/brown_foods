@@ -3,6 +3,8 @@ from .models import CartItem,MenuItem,BillingDetails
 from django.views.generic import *
 from django.core.exceptions import ObjectDoesNotExist
 from cart import Cart
+import json
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -12,6 +14,9 @@ def home(request):
         'menu_items':menu_items,
     }
     return render(request,'core/home.html',context)
+
+def show_basket(request):
+    return render(request,'core/fly-to-basket.html')
 
 def signup(request):
     if request.method == 'POST':
@@ -25,6 +30,14 @@ def cart(request):
         'cart':Cart(request)
     })
 
+def update_cart(request):
+    pass
+
+def addProduct(request):
+    print request.GET['productId']
+
+def removeProduct(request):
+    print request.GET['productIdToRemove']
 
 def checkout(request):
     if request.method=='POST':
@@ -66,21 +79,14 @@ def add_to_cart(request,menu_id,quantity):
         'cart':cart,
     })
 
-def update_cart(request,menu_id,quantity):
-    menu_item = MenuItem.objects.get(id=menu_id)
-    cart = Cart(request)
-    cart.update(menu_item,quantity)
-    return render(request,'core/cart.html',{
-        'cart':cart,
-    })
 
-def remove_from_cart(request,menu_id):
+def remove_from_cart(request):
+    menu_id = request.GET.get('id')
     menu_item = MenuItem.objects.get(id=menu_id)
     cart = Cart(request)
     cart.remove(menu_item)
-    return render(request,'core/cart.html',{
-        'cart':cart,
-    })
+    data = {'success':'true'}
+    return HttpResponse(json.dumps(data),content_type="application/json")
 
 def process_payment(request):
     pass

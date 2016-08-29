@@ -31,30 +31,6 @@ class Cart(models.Model):
     payment_type = models.CharField(max_length=100,null=True,choices=PAYMENT_TYPE)
     payment_id = models.CharField(max_length=20,null=True )
 
-    def add_to_cart(self,item_id):
-        item = MenuItem.objects.get(pk=item_id)
-        try:
-            preexisting_order = CartItem.objects.get(menu_item=item,cart=self)
-            preexisting_order.quantity +=1
-            preexisting_order.save()
-        except CartItem.DoesNotExit:
-            new_order = CartItem.objects.create(
-                menu_item=item,
-                cart = self,
-                quantity=1
-            )
-            new_order.save()
-    def remove_from_cart(self,item_id):
-        item = MenuItem.objects.get(pk=item_id)
-        try:
-            preexisting_order = CartItem.objects.get(menu_item=item,cart=self)
-            if preexisting_order.quantity>1:
-                preexisting_order.quantity -=1
-                preexisting_order.save()
-            else:
-                preexisting_order.delete()
-        except CartItem.DoesNotExist:
-            pass
 
 class MenuItem(models.Model):
     name = models.CharField(max_length=100)
@@ -72,6 +48,8 @@ class CartItem(models.Model):
     def total_price(self):
         return self.unit_price*self.quantity
 
+class Basket(models.Model):
+    product_id = models.IntegerField()
 
 
 

@@ -1,3 +1,10 @@
+var brownfoodsManageCart = {
+  urls: {
+    updateCart: '/update_cart/',
+    deleteMenuItem: '/remove_from_cart/'
+  }
+};
+
 
 
 

@@ -1,31 +1,53 @@
-{% extends 'core/base.html' %}
+{% include 'core/components/page_head_tags.html' %}
+<body>
+<div class="our-menu-area  pt60 pb60">
+        <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                   <div class="section-title text-center pb40">
+                       <h1>Menu</h1>
+                        <div class="sec-img">
+                            <img src="/static/lavie/img/icon/product.png" alt="">
+                        </div>
+                   </div>
+              </div>
+              </div>
 
-{% block content %}
-<div class="content-section-a">
-    <div class="container">
-        <div class="table-header">
-            Menu Items
-        </div>
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Description</th>
-                </thead>
-                <tbody>
-                {% for item in object_list %}
-                <tr>
-                    <td>{{item.name}}</td>
-                    <td>{{item.unit_price}}</td>
-                    <td>{{item.description}}</td>
-                    <td><a href="" class="btn">Add to Cart</a> </td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+            <div class="row">
+                <div class="total-our-menu carsoule-btn cb-2">
+                    {% for item in object_list %}
+                    <form class="form-item">
+<h4>{{item.title}}</h4>
+<div><img src="/static/lavie/img/menu/01.JPG"></div>
+<div>Price : {{item.unit_price}}<div>
+<div class="item-box">
+    <div>
+	{{item.title}}
+        {{item.description}}
+
+	<div>
+    Qty :
+    <select name="product_qty">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    </select>
+	</div>
+
+	<div>
+
+
+    <input name="product_code" type="hidden" value="{$row["product_code"]}">
+    <button type="submit">Add to Cart</button>
+</div>
+</form>
+                    {% endfor %}
+
+            </div>
         </div>
     </div>
-</div>
-
-{% endblock %}
+    <!-- our menu area are end-->
+</body>
+</html>

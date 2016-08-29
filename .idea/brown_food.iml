@@ -4,5 +4,9 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="django-shop-ajax" />
+    <orderEntry type="module" module-name="africa_one" />
+    <orderEntry type="module" module-name="django-paypal-cart" />
+    <orderEntry type="module" module-name="ajax-shopping-cart-files-master" />
   </component>
 </module>
