@@ -543,7 +543,7 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
 -----------------------------*/
 .sm-ratting > a { color: #f9db57 }
 .sm-price {
-    bottom: 8%;
+    bottom: 50%;
     color: #cf2b29;
     font-family: great vibes;
     font-size: 30px;

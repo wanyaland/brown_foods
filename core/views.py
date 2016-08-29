@@ -10,8 +10,10 @@ from django.http import HttpResponse
 
 def home(request):
     menu_items = MenuItem.objects.all()
+    cart = Cart(request)
     context = {
         'menu_items':menu_items,
+        'cart':cart,
     }
     return render(request,'core/home.html',context)
 

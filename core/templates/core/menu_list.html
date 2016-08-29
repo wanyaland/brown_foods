@@ -1,53 +1,113 @@
 {% include 'core/components/page_head_tags.html' %}
 <body>
-<div class="our-menu-area  pt60 pb60">
-        <div class="container">
-            <div class="row">
-              <div class="col-md-12">
-                   <div class="section-title text-center pb40">
-                       <h1>Menu</h1>
-                        <div class="sec-img">
-                            <img src="/static/lavie/img/icon/product.png" alt="">
+<!-- shop are start-->
+    <div class="event-area blog-area pt60 pb60 ">
+            <div class="container">
+                <div class="row">
+                  <div class="col-md-8 col-sm-8 col-xs-12">
+                    <div class="resutl-filter pb20">
+                        <span class="result-count">Showing 1-6 of 10 results</span>
+                        <form class="filter-order">
+                            <select name="orderby" class="orderby">
+                                <option value="menu_order" selected='selected'>Default sorting</option>
+                                <option value="popularity">Sort by popularity</option>
+                                <option value="rating">Sort by average rating</option>
+                                <option value="date">Sort by newness</option>
+                                <option value="price">Sort by price: low to high</option>
+                                <option value="price-desc">Sort by price: high to low</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="total-product">
+                       <div class="row">
+                           {% for item in object_list %}
+                        <div class="col-md-6 col-sm-6">
+                        <div class="single-our-menu">
+                            <div class="sm-image">
+                                <a href="#"><img src="/static/lavie/img/menu/405/01.JPG" alt=""></a>
+                                <!-- <a class="com-btn" href="#">Add To Cart</a> -->
+                                <div class="sm-heading"><a href="#">{{item.name}}</a></div>
+                            </div>
+                            <div class="sm-content">
+                                <div class="sm-des">
+                                    {{item.description}}
+                                </div>
+                                <div class="sm-price">
+                                    UGX {{item.unit_price}}
+                                </div>
+                            </div>
+                            <div class="single-widget">
+                                <div class="info_widget">
+                                    <div class="price_filter">
+                                        <div id="slider-range"></div>
+                                        <div class="price_slider_amount">
+                                            <input type="submit"  value="Add"/>
+                                           <span> Qty: </span>
+                                            <input type="text" id="amount" name="qty"  placeholder="Quantity" />
+                                        </div>
+                                    </div>
+							    </div>
+                             </div>
                         </div>
-                   </div>
-              </div>
-              </div>
+                    </div>
 
-            <div class="row">
-                <div class="total-our-menu carsoule-btn cb-2">
-                    {% for item in object_list %}
-                    <form class="form-item">
-<h4>{{item.title}}</h4>
-<div><img src="/static/lavie/img/menu/01.JPG"></div>
-<div>Price : {{item.unit_price}}<div>
-<div class="item-box">
-    <div>
-	{{item.title}}
-        {{item.description}}
+                        {% endfor %}
+                       </div>
+                        <div class="event-paginaton text-center">
+                                <ul>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">→</a></li>
+                                </ul>
+                            </div>
+                      </div>
+                  </div>
+                   <div class="col-md-4 col-sm-4 col-xs-12">
+                       <div class="total-aside">
+                        <aside>
+                             <div class="single-widget my-cart">
+                                 <div class="whdget-title">
+                                     <h2>Your Cart</h2>
+                                 </div>
+                                <div class="total-top-rated">
+                                    <ul>
+                                         {% for item in cart %}
+                                        <li>
+                                             <div class="single-rate">
+                                                 <div class="rate-img">
+                                                     <a href="#"><img src="img/product/01.jpg" alt=""></a>
+                                                 </div>
+                                                 <div class="rate-content">
+                                                     <div class="tate-title">
+                                                         <a href="#">{{item.menu_item.name}}</a>
+                                                     </div>
 
-	<div>
-    Qty :
-    <select name="product_qty">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    </select>
-	</div>
+                                                        <div class="cart-price">
+                                                           {{item.quantity}} x UGX{{item.unit_price}}
+                                                        </div>
+                                                 </div>
+                                             </div>
+                                            </li>
+                                        {% endfor %}
+                                     </ul>
+                                     <div class="sub-total">
+                                         <strong>Subtotal:</strong> <span>{{item.total_price}}</span>
+                                     </div>
+                                     <div class="view-check-btn">
+                                         <a href="{% url 'core:cart' %}" class="com-btn">View Cart</a>
+                                         <a href="{% url 'core:checkout' %}" class="com-btn">Checkout</a>
+                                     </div>
+                                </div>
+                             </div>
+                         </aside>
 
-	<div>
 
-
-    <input name="product_code" type="hidden" value="{$row["product_code"]}">
-    <button type="submit">Add to Cart</button>
-</div>
-</form>
-                    {% endfor %}
-
+                        </div>
+                     </div>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- our menu area are end-->
+    <!-- shop are end-->
+
 </body>
 </html>
