@@ -20,6 +20,9 @@ def home(request):
 def show_basket(request):
     return render(request,'core/fly-to-basket.html')
 
+def about_us(request):
+    return render(request,'core/about-us.html')
+
 def signup(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -34,12 +37,6 @@ def cart(request):
 
 def update_cart(request):
     pass
-
-def addProduct(request):
-    print request.GET['productId']
-
-def removeProduct(request):
-    print request.GET['productIdToRemove']
 
 def checkout(request):
     if request.method=='POST':
@@ -72,15 +69,14 @@ def checkout(request):
     })
 
 
-
-def add_to_cart(request,menu_id,quantity):
+def add_to_cart(request):
+    menu_id = request.POST['menu_id']
     menu_item= MenuItem.objects.get(id=menu_id)
+    quantity = request.POST.get('quantity')
     cart = Cart(request)
     cart.add(menu_item,menu_item.unit_price,quantity)
-    return render(request,'core/cart.html',{
-        'cart':cart,
-    })
-
+    data={'success':'true'}
+    return HttpResponse(json.dumps(data))
 
 def remove_from_cart(request):
     menu_id = request.GET.get('id')
@@ -96,6 +92,10 @@ def process_payment(request):
 class MenuList(ListView):
     model = MenuItem
     template_name = 'core/menu_list.html'
+
+class MenuDetail(DetailView):
+    model = MenuItem
+    template_name = 'core/product-detail.html'
 
 
 

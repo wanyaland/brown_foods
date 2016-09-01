@@ -9,12 +9,12 @@ class BillingDetails(models.Model):
     last_name = models.CharField(max_length=100,null=True)
     company = models.CharField(max_length=100,null=True)
     email = models.EmailField(null=True)
-    address_line1 = models.TextField()
-    address_line2 = models.TextField()
-    latitude = models.FloatField()
-    longitude = models.FloatField()
-    phone_number = models.CharField(max_length=20)
-    order_notes = models.TextField()
+    address_line1 = models.TextField(null=True)
+    address_line2 = models.TextField(null=True)
+    latitude = models.FloatField(null=True)
+    longitude = models.FloatField(null=True)
+    phone_number = models.CharField(max_length=20,null=True)
+    order_notes = models.TextField(null=True)
 
     def __unicode__(self):
         return self.user.username

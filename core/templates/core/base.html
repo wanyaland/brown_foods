@@ -1,29 +1,9 @@
 {% include 'core/components/page_head_tags.html' %}
-<body>
+<body >
 <!--header slider area are start-->
     <div class="header-slider-area">
     <!-- mobile-menu-area start -->
-    <div class="mobile-menu-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <nav id="dropdown">
-                            <ul>
-                                <li><a href="index.html">Order</a>
-                                    <ul>
-                                        <li><a href="{% url 'core:cart' %}">Cart</a></li>
-                                        <li><a href="{% url 'core:checkout' %}">Checkout</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="shop.html">About</a></li>
-                                <li><a href="shop.html">Contact</a></li>
-                                <li><a href="shop.html">Login</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-</div>
+
     <!--mobile menu area end-->
 
     <!--header menu area are start-->
@@ -32,7 +12,7 @@
     <div class="header">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4 col-sm-4 hidden-xs">
+                    <div class="col-md-3 col-sm-3 hidden-xs">
                         <div class="search-phone">
                             <ul>
                                 <li>
@@ -44,16 +24,35 @@
                                    </form>
                                </li>
                                 <li><a class="phone" href="#"><i class="fa fa-phone" aria-hidden="true"></i>
-+256750821537</a></li>
+0414-230461</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4">
-                        <div class="logo">
-                            <a href="index.html"><img src="/static/lavie/img/brown_logo.png" alt=""></a>
-                        </div>
+
+                    <div class="col-md-6 col-sm-6">
+                           <div class="main-menu">
+                       <nav>
+                        <ul>
+                            <li><a href=""><i class="fa fa-home" aria-hidden="true"></i></a>
+                           </li>
+                            <li><a href="shop.html">Shop <i class="fa fa-angle-down" aria-hidden="true"></i>
+</a>
+                            <div class="mega-menu">
+                               <ul>
+                                   <li><a href="cart.html">Cart</a></li>
+                                   <li><a href="checkout.html">Checkout</a></li>
+                               </ul>
+                            </div>
+                           </li>
+                            <li><a href="{% url 'core:about_us' %}">About</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="login.html">login</a></li>
+                        </ul>
+                        </nav>
                     </div>
-                    <div class="col-md-4 col-sm-4 hidden-xs">
+                    </div>
+
+                    <div class="col-md-3 col-sm-3 hidden-xs">
                         <div class="social-icon">
                             <ul>
                                 <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i>
@@ -71,138 +70,15 @@
             </div>
         </div>
     <!--header-area are end-->
-
     <!-- Main menu area are start  -->
-    <div id="sticker" class="menu-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-					<div class="logo2">
-                      <a href="index.html"><img src="/static/lavie/img/brown_logo.png" alt=""></a>
-                  </div>
-                   <div class="main-menu">
-                       <nav>
-                        <ul>
-                            <li><a href="index.html"><i class="fa fa-home" aria-hidden="true">
-                            </i> </a>
-                           </li>
-                            <li><a href="menu.html">Menu<i class="fa fa-angle-down" aria-hidden="true"></i>
-</a>
-                            <div class="mega-menu mega-2">
-                               <span>
-                                  <a href="menu.html">
-                                     <span>Special Menu</span>
-                                      <img src="/static/lavie/img/menu/01.JPG" alt="">
-                                  </a>
-                               </span>
-                               <span>
-                                  <a href="menu.html">
-                                     <span>Breakfast Menu</span>
-                                      <img src="/static/lavie/img/menu/02.JPG" alt="">
-                                  </a>
-                               </span>
-                               <span>
-                                  <a href="menu.html">
-                                     <span>Lunch Menu</span>
-                                      <img src="/static/lavie/img/menu/03.JPG" alt="">
-                                  </a>
-                               </span>
-                               <span>
-                                  <a href="menu.html">
-                                     <span>Dinnar Menu</span>
-                                      <img src="/static/lavie/img/menu/04.JPG" alt="">
-                                  </a>
-                               </span>
-                               <span>
-                                  <a href="menu.html">
-                                     <span>Desserts</span>
-                                      <img src="/static/lavie/img/menu/05.JPG" alt="">
-                                  </a>
-                               </span>
-                                <span>
-                                  <a href="menu.html">
-                                     <span>Desserts</span>
-                                      <img src="/static/lavie/img/menu/06.JPG" alt="">
-                                  </a>
-                               </span>
-                                <span>
-                                  <a href="menu.html">
-                                     <span>Desserts</span>
-                                      <img src="/static/lavie/img/menu/07.JPG" alt="">
-                                  </a>
-                               </span>
-                           </div>
-                           </li>
-                            <li><a href="shop.html">Shop <i class="fa fa-angle-down" aria-hidden="true"></i>
-</a>
-                            <div class="mega-menu">
-                               <ul>
-                                   <li><a href="{% url 'core:cart' %} ">Cart</a></li>
-                                   <li><a href="{% url 'core:checkout' %} ">Checkout</a></li>
-                               </ul>
-                            </div>
-                           </li>
-                            <li><a href="about-us.html">About</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            {% if request.user.is_authenticated %}
-                            <li><a href="{% url 'core:cart' %}">My Orders</a> </li>
-                            {% else %}
-                            <li><a href="login.html">login</a></li>
-                            {% endif %}
-                        </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Main menu area are end  -->
-    </div>
-    <!--header menu area are end-->
 
+    </div>
     {% block slider %} {% endblock %}
     </div>
 
- <!--about area are start-->
-    <div class="about-area">
-        <div class="single-about">
-           <img src="/static/lavie/img/banner/banner1.jpg" alt="">
-            <div class="about-content">
-                <div class="about-table">
-                    <div class="about-cell">
-                        <!--<img src="/static/lavie/img/banner/restaurant.png" alt="">-->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="single-about sab-2">
-           <img src="/static/lavie/img/banner/banner2.jpg" alt="">
-            <div class="about-content">
-                <div class="about-table">
-                    <div class="about-cell">
-                        <!--<img src="/static/lavie/img/banner/midd.png" alt="">-->
-                        <p></p>
-                        <a class="com-btn" href="{% url 'core:menu_items' %}">Order Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="single-about">
-           <img src="/static/lavie/img/banner/banner3.jpg" alt="">
-            <div class="about-content">
-                <div class="about-table">
-                    <div class="about-cell">
-                       <!-- <img src="/static/lavie/img/banner/chef.png" alt=""> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--about area are end-->
+  {%block content %}
+  {% endblock %}
 
-{% block content %}
-
-{% endblock %}
 
 {% include 'core/components/page_foot_tags.html' %}
 </body>

@@ -161,11 +161,11 @@ em { color: red }
     padding-left: 10px;
     border-left: 1px solid #fff;
 }
+.pay-options{line-height:130px;}
 .social-icon { line-height: 130px }
 .social-icon > ul { float: right }
 .logo {
-    text-align: center;
-    line-height: 130px;
+    float:top;
 }
 /*===menu-area====*/
 .main-menu { font-family: lora }
@@ -534,7 +534,7 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
     transform: rotate(10deg);
 }
 .service-holder-area {
-    background: rgba(0, 0, 0, 0) url("img/bg-1.jpg") no-repeat scroll 0 0 / 100% 100%;
+    background: rgba(0, 0, 0, 0) url("{{STATIC_URl}}img/bg-1.jpg") no-repeat scroll 0 0 / 100% 100%;
     overflow: hidden;
     width: 100%;
 }
@@ -603,7 +603,6 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
     width: 30px;
 }
 .sm-content {
-    min-height: 240px;
     padding: 40px;
     position: relative;
     text-align: center;
@@ -1482,7 +1481,7 @@ aside:last-child { margin-bottom: 0 }
 }
 .cart-price {
     color: #7d7b6d;
-    padding-top: 5px;
+    padding-top: 15px;
 }
 .my-cart .single-rate:hover {
     opacity: inherit;
@@ -1500,6 +1499,7 @@ aside:last-child { margin-bottom: 0 }
     font-size: 14px;
     padding: 5px 10px;
 }
+
 .view-check-btn {
     margin-top: 20px;
     text-align: center;

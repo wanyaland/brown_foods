@@ -1,0 +1,125 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<!-- product-details-area are start-->
+    <div class="product-details-area pt60 pb60 ">
+            <div class="container">
+                <div class="row">
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+                      <div class="row">
+                          <div class="col-md-6 col-sm-6">
+                              <div class="pd-img">
+                                  <a class="venobox" data-gall="myGallery" href="img/product/single.jpg"><img src="/static/lavie/img/menu/405/01.JPG" alt=""></a>
+                              </div>
+                          </div>
+                          <div class="col-md-6 col-sm-6">
+                                <div class="pd-content">
+                                  <div class="section-title">
+                                        <h3>{{object}}</h3>
+                                   </div>
+                                    <div class="sm-price">
+                                        {{object.unit_price}}
+                                    </div>
+                                    <div class="sm-des">
+                                     {{object.description}}
+                                </div>
+                                <div class="qty-add">
+                                     <input type="number" class="qty-btn" min="1" value="1">
+                                     <a class="com-btn" href="#">Add to Cart</a>
+                                </div>
+                                    <!--
+                                <div class="cata_gories">
+                                    <ul>
+                                        <li><span>Catogaires:</span></li>
+                                        <li><a href="#">Cupcake,</a></li>
+                                        <li><a href="#">Desserts,</a></li>
+                                        <li><a href="#">dinner,</a></li>
+                                        <li><a href="#">Dinner Menu,</a></li>
+                                        <li><a href="#">Cupcake,</a></li>
+                                        <li><a href="#">Desserts,</a></li>
+                                        <li><a href="#">dinner,</a></li>
+                                        <li><a href="#">Dinner Menu,</a></li>
+                                        <li><a href="#">Drink Breakfast,</a></li>
+                                        <li><a href="#">Drinks Lunch,</a></li>
+                                        <li><a href="#">Fruit,</a></li>
+                                        <li><a href="#">Salads,</a></li>
+                                        <li><a href="#">Special Menu,</a></li>
+                                        <li><a href="#">Water,</a></li>
+                                        <li><a href="#">Drink Dinner,</a></li>
+                                        <li><a href="#">Drink</a></li>
+                                    </ul>
+                                </div> -->
+                                <div class="social-share pb60">
+                                        <ul>
+                                            <li><a href="#"><i aria-hidden="true" class="fa fa-facebook"></i>
+        </a></li>
+                                            <li><a href="#"><i aria-hidden="true" class="fa fa-twitter"></i>
+        </a></li>
+                                            <li><a href="#"><i aria-hidden="true" class="fa fa-pinterest-p"></i>
+        </a></li>
+                                            <li><a href="#"><i aria-hidden="true" class="fa fa-google-plus"></i>
+        </a></li>
+                                        </ul>
+                                </div>
+                                </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-3 col-sm-3 col-xs-12">
+                        <aside>
+                             <div class="single-widget my-cart detail-cart">
+                                 <div class="whdget-title">
+                                     <h2>Your Cart</h2>
+                                 </div>
+                                <div class="total-top-rated">
+                                    <ul>
+                                         <li>
+                                             <div class="single-rate">
+                                                 <div class="rate-img">
+                                                     <a href="#"><img src="/static/lavie/img/menu/405/01.JPG" alt=""></a>
+                                                 </div>
+                                                 <div class="rate-content">
+                                                     <div class="tate-title">
+                                                         <a href="#">{{object}}</a>
+                                                     </div>
+
+                                                        <div class="cart-price">
+                                                           {{object.unit_price}}
+                                                        </div>
+                                                 </div>
+                                             </div>
+                                            </li>
+                                     </ul>
+                                     <div class="sub-total">
+                                         <strong>Subtotal:</strong> <span>{{object.unit_price}}</span>
+                                     </div>
+                                     <div class="view-check-btn">
+                                         <a href="{% url 'core:cart' %}" class="com-btn">View Cart</a>
+                                         <a href="{% url 'core:checkout' %} " class="com-btn">Checkout</a>
+                                     </div>
+                                </div>
+                             </div>
+                         </aside>
+                     </div>
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                        <!-- des -review -->
+                        <div class="des-review">
+                        <ul role="tablist">
+                            <li class="active"><a href="#descrip" role="tab" data-toggle="tab">Description</a></li>
+
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="descrip">
+                            <div class="des-content">
+                                <div class="sm-des">
+                                  {{object.description}}
+                                </div>
+                            </div>
+                            </div>
+
+        </div>
+                            </div>
+    <!-- product-details-area are end-->
+
+{% endblock %}

@@ -2,11 +2,13 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 2.7.12 virtualenv at D:\workspace\brown_foods\env" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="django-shop-ajax" />
     <orderEntry type="module" module-name="africa_one" />
     <orderEntry type="module" module-name="django-paypal-cart" />
     <orderEntry type="module" module-name="ajax-shopping-cart-files-master" />
+    <orderEntry type="module" module-name="php-shopping-cart-with-jquery-ajax" />
+    <orderEntry type="module" module-name="lavie_resturant" />
   </component>
 </module>

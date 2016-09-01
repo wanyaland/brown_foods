@@ -11,30 +11,20 @@
                         <div class="col-md-6 col-sm-6">
                         <div class="single-our-menu">
                             <div class="sm-image">
-                                <a href="#"><img src="/static/lavie/img/menu/405/01.JPG" alt=""></a>
-                                <!-- <a class="com-btn" href="#">Add To Cart</a> -->
+                                <a href="{% url 'core:menu-detail' item.id %}"><img src="/static/lavie/img/menu/405/01.JPG" alt=""></a>
                                 <div class="sm-heading"><a href="#">{{item.name}}</a></div>
                             </div>
                             <div class="sm-content">
-                                <div class="sm-des">
-                                    {{item.description}}
-                                </div>
                                 <div class="sm-price">
                                     UGX {{item.unit_price}}
                                 </div>
+
+                                 <div class="qty-add">
+                                     <input type="number" class="qty-btn" min="1" value="1">
+                                     <a class="com-btn" href="#">Add to Cart</a>
+                                </div>
+
                             </div>
-                            <div class="single-widget">
-                                <div class="info_widget">
-                                    <div class="price_filter">
-                                        <div id="slider-range"></div>
-                                        <div class="price_slider_amount">
-                                            <input type="submit"  value="Add"/>
-                                           <span> Qty: </span>
-                                            <input type="text" id="amount" name="qty"  placeholder="Quantity" />
-                                        </div>
-                                    </div>
-							    </div>
-                             </div>
                         </div>
                     </div>
 
@@ -58,6 +48,7 @@
                                  </div>
                                 <div class="total-top-rated">
                                     <ul>
+
                                          {% for item in cart %}
                                         <li>
                                              <div class="single-rate">
@@ -81,7 +72,7 @@
                                          <strong>Subtotal:</strong> <span>{{item.total_price}}</span>
                                      </div>
                                      <div class="view-check-btn">
-                                         <a href="{% url 'core:cart' %}" class="com-btn">View Cart</a>
+                                         <a href="{% url 'core:cart' %}" class="com-btn" >View Cart</a>
                                          <a href="{% url 'core:checkout' %}" class="com-btn">Checkout</a>
                                      </div>
                                 </div>
@@ -97,4 +88,5 @@
     <!-- shop are end-->
 
 </body>
+{% include 'core/components/page_foot_tags.html' %}
 </html>

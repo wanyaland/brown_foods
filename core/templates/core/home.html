@@ -5,7 +5,7 @@
         <!-- Slider Image -->
         <div id="mainSlider" class="nivoSlider slider-image">
             <img src="/static/lavie/img/banner/home_banner.jpg" alt="main slider" title="#htmlcaption1" />
-            <img src="/static/lavie/img/slider/slider2-home.jpg" alt="main slider" title="#htmlcaption2" />
+            <!--<img src="/static/lavie/img/slider/slider2-home.jpg" alt="main slider" title="#htmlcaption2" />-->
         </div>
         <!-- Slider Caption 1 -->
         <!--
@@ -28,13 +28,110 @@
                 </div>
             </div> -->
         <!-- Slider Caption 2 -->
-    </div>
+
     <!-- home slider end -->
     </div>
 {% endblock %}
 {% block content %}
+  <!-- service holder area are start-->
+    <div class="service-holder-area pt60 pb60">
+        <div class="container">
+            <div class="row">
 
+                 <!--Reservation area start-->
+    <div class="reservation-area pt60 pb60">
+        <div class="container">
+                <div class="slider-reserve">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="reserve-slide carasourl-pagi">
+                            <div class="rsa-img">
+                                <img src="img/slider/slider-small.jpg" alt="">
+                                    <div class="rsa-content text-center">
+                                        <img src="img/slider/baner-slider.png" alt="">
+                                        <h3>Booking</h3>
+                                        <img src="img/slider/icon-rou-small.png" alt="">
+                                    </div>
+                            </div>
+                            <div class="rsa-img">
+                                <img src="img/slider/slider2-small.jpg" alt="">
+                                    <div class="rsa-content text-center">
+                                        <img src="img/slider/baner-slider.png" alt="">
+                                        <h3>Booking</h3>
+                                        <img src="img/slider/icon-rou-small.png" alt="">
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="reserve-table">
+                            <form action="#" method="post">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
 
+                                        <div class="input-box">
+                                            <label>Payment Option</label>
+                                            <select name="guest">
+                                                <option value="https://food.jumia.ug">Cash on Delivery</option>
+                                                <option value="2">PayPal</option>
+                                                <option value="3">Mobile Money</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-box checkout">
+                                    <a class="com-btn" href="{% url 'core:menu_items' %}">Order</a>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Reservation area end-->
+               <div class="total-service-holder carsoule-btn">
+                <div class="single-service-holder">
+                <div class="col-md-5 col-sm-5 col-xs-12">
+                  <div class="holder-img">
+                      <a href="#"><img src="/static/lavie/img/menu/405/01.JPG" alt=""></a>
+                  </div>
+                </div>
+                <div class="col-md-7 col-sm-7 col-xs-12">
+                    <div class="holder-content sm-des">
+                        <div class="hc-title">
+                            <h2>Shiawase Bento</h2>
+                        </div>
+
+                        <P>
+                             Bento is a Japanese word meaning packed meal, and most commonly used for meaning of
+                            packed lunch.Originally, bento was a simple meal for people who work outdoor, but nowadays it is a common lunch meal for many office workers, students and those in picnic.
+
+We have tried our best to bring this Japanese meal to Uganda at an affordable price. Also, we wish to bring you smiles with our bento because Shiawase means happiness.
+                        </P>
+                    </div>
+                    <div class="holder-icon">
+                        <div class="single-icon">
+                            <img src="/static/lavie/img/brown_logo.png" alt="">
+                        </div>
+                        <div class="single-icon">
+                            <img src="img/author/icon02.png" alt="">
+                        </div>
+                        <div class="single-icon">
+                            <img src="img/author/icon03.png" alt="">
+                        </div>
+                        <div class="single-icon">
+                            <img src="img/author/icon04.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                </div>
+                <div class="clearfix"></div>
+        </div>
+    </div>
+    <!-- ser
     <!-- our-special-menu-area are start-->
     <div class="our-special-menu-area pt60 pb60 ">
             <div class="container">
@@ -56,7 +153,6 @@
                         <div class="total-menu-item carsoule-btn smp-carsoule">
                             <div class="total-menu-single">
                                 {% for item in menu_items %}
-
                                   <div class="single-menu-item">
                                       <img src="{{item.image.url}}">
                                    <div class="smi-heading">
@@ -76,8 +172,7 @@
                         </div>
                     </div>
                 </div>
-
-                            </div>
+            </div>
                         </div>
                         </div>
                     </div>
