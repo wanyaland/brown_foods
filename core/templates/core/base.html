@@ -1,9 +1,35 @@
 {% include 'core/components/page_head_tags.html' %}
-<body >
-<!--header slider area are start-->
-    <div class="header-slider-area">
-    <!-- mobile-menu-area start -->
+<body>
+<div class="shop-wraper">
+    <!--header slider area are start-->
+    <div class="header-slider-area common-page product-details">
 
+    <!-- mobile-menu-area start -->
+    <div class="mobile-menu-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <nav id="dropdown">
+                            <ul>
+                                <li><a href="{% url 'core:home' %}">HOME</a>
+                                </li>
+                                <li><a href="{% url 'core:menu' %}">Menu</a></li>
+                                <li><a href="{% url 'core:menu_items' %}">Order</a></li>
+                                <li><a href="{% url 'core:how-it-works' %}">How it works</a></li>
+                                <li><a href="index.html">Shop</a>
+                                    <ul>
+                                        <li><a href="{% url 'core:cart' %}">Cart</a></li>
+                                        <li><a href="{% url 'core:checkout' %}">Checkout</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="{% url 'core:about_us' %}">About</a></li>
+                                <li><a href="{% url 'core:login' %}">Login</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+</div>
     <!--mobile menu area end-->
 
     <!--header menu area are start-->
@@ -12,7 +38,7 @@
     <div class="header">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 col-sm-3 hidden-xs">
+                    <div class="col-md-4 col-sm-4 hidden-xs">
                         <div class="search-phone">
                             <ul>
                                 <li>
@@ -29,56 +55,128 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-sm-6">
-                           <div class="main-menu">
-                       <nav>
-                        <ul>
-                            <li><a href=""><i class="fa fa-home" aria-hidden="true"></i></a>
-                           </li>
-                            <li><a href="shop.html">Shop <i class="fa fa-angle-down" aria-hidden="true"></i>
-</a>
-                            <div class="mega-menu">
-                               <ul>
-                                   <li><a href="cart.html">Cart</a></li>
-                                   <li><a href="checkout.html">Checkout</a></li>
-                               </ul>
-                            </div>
-                           </li>
-                            <li><a href="{% url 'core:about_us' %}">About</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="login.html">login</a></li>
-                        </ul>
-                        </nav>
-                    </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-3 hidden-xs">
-                        <div class="social-icon">
-                            <ul>
-                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i>
-</a></li>
-                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i>
-</a></li>
-                                <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i>
-</a></li>
-                                <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i>
-</a></li>
-                            </ul>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="logo">
+                            <a href="{% url 'core:home' %}"><img src="/static/lavie/img/brown_logo.png" alt=""></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     <!--header-area are end-->
+
     <!-- Main menu area are start  -->
+    <div id="sticker" class="menu-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+					<div class="logo2">
+                      <a href="{% url 'core:home' %}"><img src="/static/core/img/brown_logo.png" alt=""></a>
+                  </div>
+                   <div class="main-menu">
+                       <nav>
+                        <ul>
+                            <li><a href="{% url 'core:home' %} "><i class="fa fa-home" aria-hidden="true">
+                            </i></a>
+                           </li>
+                            <li><a href="{% url 'core:menu' %}">Menu</a>
+                           </li>
+                            <li><a href="{% url 'core:menu_items' %}">Order</a></li>
+                            <li><a href="{% url 'core:how-it-works' %}">How it works</a></li>
+                            <li><a href="{% url 'core:about_us' %}">About</a></li>
+                            <li><a href="{% url 'core:cart' %}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
 
+</a>
+                           </li>
+                            <li><a href="{% url 'core:login' %}">login</a></li>
+                        </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    {% block slider %} {% endblock %}
+    <!-- Main menu area are end  -->
+    </div>
+    <!--header menu area are end-->
+           <div class="slider-container">
+        <div class="bread-main">
+            <div class="bred-hading text-center">
+                <h1>Brown Foods Agency</h1>
+            </div>
+            <ol class="breadcrumb">
+                <li class="home"><a title="Go to Home Page" href="{% url 'core:home' %}">Home</a></li>
+                <li class="active">{% block title %} {% endblock %}</li>
+            </ol>
+        </div>
+    </div>
+    <!-- home slider start -->
     </div>
 
-  {%block content %}
-  {% endblock %}
+    {% block content %}
 
+    {% endblock %}
+
+
+
+
+    <!--footer area are start-->
+     <div class="footer-area pt60 pb60">
+         <div class="container">
+             <div class="row">
+                 <div class="col-md-4 col-sm-4 col-xs-12">
+                     <div class="single-footer text-center">
+                        <div class="sosa-icon">
+                            <img src="/static/core/img/icon/icon-service.png" alt="">
+                        </div>
+                         <h1>Brown Foods Agency</h1>
+                         <div class="address">
+                            <span>
+                                 FF55, Forest Mall, <br>
+                                3A2/3A3 Sports Lane, Kampala Uganda <br>
+                                P. O. Box: 27139 Kampala<br>
+                                <br>
+                                <span class="email">sales@brownfoods.com</span>
+                            </span>
+                            <div class="phone-no">
+                                <span>0414-230461</span>
+                            </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-md-4 col-sm-4 col-xs-12">
+                     <div class="single-footer footer-middle text-center">
+                        <div class="sosa-icon">
+                            <img src="/static/core/img/icon/icon-time.png" alt="">
+                        </div>
+                         <h1>Time</h1>
+                        <div class="service-time">
+                            <h2>LUNCH DELIVERIES</h2>
+                            <span>1:00pm</span>
+                        </div>
+                        <div class="service-time">
+                            <h2>BOOKING</h2>
+                            <span>Daily Booking till 7pm</span>
+                        </div>
+                     </div>
+                 </div>
+
+             </div>
+         </div>
+     </div>
+    <!--footer area are end-->
+
+    <!--Copyright area are start-->
+      <div class="copyright-info pt60 pb60">
+        <div class="container">
+            <div class="row">
+                <a href="index.html"><img src="/lavie/img/brown_logo.png" alt=""></a>
+			<p>Copyright &copy; 2016-All rights reserved. Brown Foods Agency </p>
+            </div>
+        </div>
+    </div>
+    <!--Copyright area are end-->
+</div>
 
 {% include 'core/components/page_foot_tags.html' %}
 </body>

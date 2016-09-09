@@ -1,92 +1,71 @@
-{% include 'core/components/page_head_tags.html' %}
-<body>
-<!-- shop are start-->
-    <div class="event-area blog-area pt60 pb60 ">
-            <div class="container">
-                <div class="row">
-                  <div class="col-md-8 col-sm-8 col-xs-12">
-                    <div class="total-product">
-                       <div class="row">
-                           {% for item in object_list %}
-                        <div class="col-md-6 col-sm-6">
-                        <div class="single-our-menu">
-                            <div class="sm-image">
-                                <a href="{% url 'core:menu-detail' item.id %}"><img src="/static/lavie/img/menu/405/01.JPG" alt=""></a>
-                                <div class="sm-heading"><a href="#">{{item.name}}</a></div>
-                            </div>
-                            <div class="sm-content">
-                                <div class="sm-price">
-                                    UGX {{item.unit_price}}
-                                </div>
-
-                                 <div class="qty-add">
-                                     <input type="number" class="qty-btn" min="1" value="1">
-                                     <a class="com-btn" href="#">Add to Cart</a>
-                                </div>
-
-                            </div>
+{% extends 'core/base.html' %}
+{% block title %}Order {% endblock %}
+{% block content %}
+<div class="product-details-area pt60 pb60">
+    <div class="container">
+        <div class="col-md-9 col-sm-9 col-xs-12">
+            {% for object in object_list %}
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="pd-img">
+                        <a class="venobox" data-gall="myGallery" href="img/product/single.jpg"><img src="/static/core/img/menu/405/01.JPG" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="pd-content">
+                        <div class="section-title">
+                            <h3>{{object}}</h3>
+                        </div>
+                        <div class="sm-price">
+                            {{object.unit_price}}
+                        </div>
+                        <div class="sm-des">
+                            {{object.description}}
+                        </div>
+                        <div class="qty-add">
+                            <input type="number" class="qty-btn" min="1" value="1">
+                            <a class="com-btn" href="#">Add to Cart</a>
                         </div>
                     </div>
-
-                        {% endfor %}
-                       </div>
-                        <div class="event-paginaton text-center">
-                                <ul>
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">→</a></li>
-                                </ul>
-                            </div>
-                      </div>
-                  </div>
-                   <div class="col-md-4 col-sm-4 col-xs-12">
-                       <div class="total-aside">
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+          <div class="col-md-3 col-sm-3 col-xs-12">
                         <aside>
-                             <div class="single-widget my-cart">
+                             <div class="single-widget my-cart detail-cart">
                                  <div class="whdget-title">
                                      <h2>Your Cart</h2>
                                  </div>
                                 <div class="total-top-rated">
                                     <ul>
-
-                                         {% for item in cart %}
-                                        <li>
+                                         <li>
                                              <div class="single-rate">
                                                  <div class="rate-img">
-                                                     <a href="#"><img src="img/product/01.jpg" alt=""></a>
+                                                     <a href="#"><img src="/static/lavie/img/menu/405/01.JPG" alt=""></a>
                                                  </div>
                                                  <div class="rate-content">
                                                      <div class="tate-title">
-                                                         <a href="#">{{item.menu_item.name}}</a>
+                                                         <a href="#">{{object}}</a>
                                                      </div>
 
                                                         <div class="cart-price">
-                                                           {{item.quantity}} x UGX{{item.unit_price}}
+                                                           {{object.unit_price}}
                                                         </div>
                                                  </div>
                                              </div>
                                             </li>
-                                        {% endfor %}
                                      </ul>
                                      <div class="sub-total">
-                                         <strong>Subtotal:</strong> <span>{{item.total_price}}</span>
+                                         <strong>Subtotal:</strong> <span>{{object.unit_price}}</span>
                                      </div>
                                      <div class="view-check-btn">
-                                         <a href="{% url 'core:cart' %}" class="com-btn" >View Cart</a>
-                                         <a href="{% url 'core:checkout' %}" class="com-btn">Checkout</a>
+                                         <a href="{% url 'core:cart' %}" class="com-btn">View Cart</a>
+                                         <a href="{% url 'core:checkout' %} " class="com-btn">Checkout</a>
                                      </div>
                                 </div>
                              </div>
                          </aside>
-
-
-                        </div>
-                     </div>
-                </div>
-            </div>
-        </div>
-    <!-- shop are end-->
-
-</body>
-{% include 'core/components/page_foot_tags.html' %}
-</html>
+    </div>
+</div>
+{% endblock %}

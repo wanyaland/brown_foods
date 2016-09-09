@@ -1,0 +1,103 @@
+{% extends 'core/base.html' %}
+{% block title %} How it works {% endblock %}
+{% block content %}
+    <!-- product-details-area are start-->
+    <div class="product-details-area pt60 pb60 ">
+            <div class="container">
+                <div class="row">
+
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                        <!-- des -review -->
+                        <div class="des-review">
+                        <ul role="tablist">
+                            <li class="active"><a href="#order" role="tab" data-toggle="tab">Order</a></li>
+                            <li><a href="#payment"  role="tab" data-toggle="tab">Payment</a></li>
+                            <li><a href="#delivery" role="tab" data-toggle="tab">Delivery</a> </li>
+                            <li><a href="#postpaid" role="tab" data-toggle="tab">Postpaid</a> </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="order">
+                            <div class="des-content">
+                                <div class="sm-des">
+                                    <span>As of now, our capacity allows to produce only 30 meals per day. We may
+decline to accept order if we receive order exceeding our capacity.</span><br>
+                                </div>
+                            </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="payment">
+                              <div class="des-content">
+                                  <div class="sm-des">
+                                      <span>
+                                          Payment can be done online at the time of placing order by credit card
+(VISA, Master) or mobile money (MTN, Airtel) only. We do not collect cash on
+delivery.
+Postpaid system is available for the customers who wish to pay weekly or
+monthly. (link)
+                                      </span>
+                                  </div>
+                              </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="delivery">
+                              <div class="des-content">
+                                  <div class="sm-des">
+                                      <span class="sm-title">First Time Customer</span>
+                                      <span>
+                                        We will make a call or send e-mail to confirm delivery details every time
+when we receive order from new customers in order to deliver bento without
+mistake.
+                                      </span>
+                                      <span class="sm-title">Attempt Delivery Notice</span>
+                                      <span>
+We will issue this notice if we attempted our delivery in your absence.
+Please call us as soon as you return to your home/office to arrange
+re-delivery.
+                                      </span>
+                                      <span class="sm-title">Discount Coupon</span>
+                                      <span>We will issue this coupon if we noticed that we damaged bento during
+delivery. We will send coupon number by e-mail later. Please feel free to
+contact us if you do not find the coupon while you received damaged bento,
+but preferably with photograph.</span>
+                                      <span class="sm-title">Disclaimer</span>
+                                      <span>We deliver our bento using motorcycles. We may fail to deliver or deliver
+late due to the following reasons.
+ - In the case where driving motorcycles is difficult due to heavy rainfall,
+thunderstorm, strike, riot, roadblock.
+ - In the case we received wrong contact, delivery address.
+ - In the case receiver is not available at the time of delivery.</span>
+                                  </div>
+                              </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="postpaid">
+                                <div class="des-content">
+                                    <div class="sm-des">
+                                                                        <span>This is a payment system for customers who wish to pay for our service
+weekly or monthly depending on your preference</span>
+                                <span>1. Customers deposit certain amount to us.</span>
+                                <span>2. We shall make ID for postpaid customers.</span>
+                                <span>3. Customer shall select "postpaid customer" on the payment page, and enter
+your ID and password.</span>
+                                <span>4. Customers are free to order bento not exceeding the amount of deposit.</span>
+                                <span>5. We shall provide you weekly or monthly invoice according to your
+preference</span>
+                                <span>6. Customers can make payment from the following choice.</span>
+   <span>Online settlement</span>
+                                <span>
+   <span>* Mobile money / MTN or Airtel only</span>
+   <span>* Credit card / VISA or MASTER only</span>
+   <span>Offline settlement</span>
+   <span>* Cash payment at our office</span>
+  <span> * Bank transfer or deposit to our bank account</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            </div>
+                            </div>
+                      </div>
+                    </div>
+                </div>
+        </div>
+
+{% endblock %}

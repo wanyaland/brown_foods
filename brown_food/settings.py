@@ -86,3 +86,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static/')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
+PESAPAL_KEY = "Au93fiwr5A/NhPZqesxbjVNDqzFBdMI+"
+PESAPAL_SECRET = "d00fVQICYG8f/3kxueNRKQkfXnk="

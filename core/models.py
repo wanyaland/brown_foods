@@ -4,7 +4,6 @@ from django.db import models
 # Create your models here.
 
 class BillingDetails(models.Model):
-
     first_name  = models.CharField(max_length=100,null=True)
     last_name = models.CharField(max_length=100,null=True)
     company = models.CharField(max_length=100,null=True)
@@ -19,6 +18,7 @@ class BillingDetails(models.Model):
     def __unicode__(self):
         return self.user.username
 
+
 class Cart(models.Model):
     PAYMENT_TYPE=(
         ('C','CASH'),
@@ -29,7 +29,7 @@ class Cart(models.Model):
     creation_date = models.DateTimeField(null=True)
     checked_out = models.BooleanField(default=False)
     payment_type = models.CharField(max_length=100,null=True,choices=PAYMENT_TYPE)
-    payment_id = models.CharField(max_length=20,null=True )
+    payment_id = models.CharField(max_length=20,null=True)
 
 
 class MenuItem(models.Model):
@@ -37,6 +37,7 @@ class MenuItem(models.Model):
     image = models.ImageField(upload_to='brown_food/%Y/%m/%d',null=True)
     unit_price = models.DecimalField(max_digits=10,decimal_places=2)
     description = models.TextField()
+
     def __unicode__(self):
         return self.name
 
@@ -45,6 +46,7 @@ class CartItem(models.Model):
     cart = models.ForeignKey(Cart)
     unit_price = models.IntegerField()
     quantity = models.IntegerField()
+
     def total_price(self):
         return self.unit_price*self.quantity
 
