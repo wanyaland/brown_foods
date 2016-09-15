@@ -6,12 +6,12 @@
         <div class="col-md-9 col-sm-9 col-xs-12">
             {% for object in object_list %}
             <div class="row">
-                <div class="col-md-6 col-sm-6">
-                    <div class="pd-img">
-                        <a class="venobox" data-gall="myGallery" href="img/product/single.jpg"><img src="/static/core/img/menu/405/01.JPG" alt=""></a>
+                <div class="col-md-4 col-sm-4">
+                    <div class="order-img">
+                        <a class="venobox" data-gall="myGallery" href="/static/core/img/product/single.jpg"><img src="/static/core/img/menu/405/01.JPG" alt=""></a>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-8 col-sm-8">
                     <div class="pd-content">
                         <div class="section-title">
                             <h3>{{object}}</h3>
@@ -19,9 +19,9 @@
                         <div class="sm-price">
                             {{object.unit_price}}
                         </div>
-                        <div class="sm-des">
+                       <!-- <div class="sm-des">
                             {{object.description}}
-                        </div>
+                        </div> -->
                         <div class="qty-add">
                             <input type="number" class="qty-btn" min="1" value="1">
                             <a class="com-btn" href="#">Add to Cart</a>
@@ -29,6 +29,7 @@
                     </div>
                 </div>
             </div>
+
             {% endfor %}
         </div>
           <div class="col-md-3 col-sm-3 col-xs-12">

@@ -6,7 +6,11 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-xs-12">
-                <form action="#" class="login-side">
+                <form action="{% url 'core:login' %}" class="login-side" method="post">
+                    {%csrf_token%}
+                    {% if next %}
+                    <input type="hidden" name="next" value="{{next}}"/>
+                    {% endif %}
               <div class="login-reg">
                 <h3>Login</h3>
                 <div class="form-group">
@@ -30,7 +34,7 @@
                 </form>
             </div>
             <div class="col-sm-6 col-xs-12 lr2">
-                <form action="#">
+                <form action="{% url 'core:register' %}">
               <div class="login-reg">
                 <h3>Register</h3>
                 <div class="form-group">

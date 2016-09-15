@@ -4,7 +4,7 @@ from django.views.generic import *
 from django.core.exceptions import ObjectDoesNotExist
 from cart import Cart
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth import login,logout,authenticate
 import urllib
 import time
@@ -18,20 +18,33 @@ from django.conf import settings
 
 
 # Create your views here.
-def login(request):
+def login_customer(request):
+    email = password = next_url = state = ''
+    if request.GET:
+        next_url = request.GET.get('next')
+    if request.POST:
+        next_url = request.POST.get('next')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(email=email,password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                if next_url:
+                    return HttpResponseRedirect(next_url)
+                else:
+                    return redirect('core:home')
+            else:
+                state = "Your account is not active"
+        else:
+            state = "Your email and password do not match"
+    return render(request, 'core/login.html', {'state': state, 'email': email, 'password': password, 'next': next_url, })
+
+def register(request):
     return render(request,'core/login.html')
 
 def home(request):
-    menu_items = MenuItem.objects.all()
-    cart = Cart(request)
-    context = {
-        'menu_items':menu_items,
-        'cart':cart,
-    }
-    return render(request,'core/home.html',context)
-
-def show_basket(request):
-    return render(request,'core/fly-to-basket.html')
+    return render(request,'core/home.html')
 
 def about_us(request):
     return render(request,'core/about-us.html')
@@ -51,16 +64,16 @@ def cart(request):
 def update_cart(request):
     pass
 
-def api_call(self,cart):
+def api_call(cart):
     url = "https://www.pesapal.com/API/PostPesapalDirectOrderV4"
     root = ElementTree.Element('PesapalDirectOrderInfo')
     root.set('xmlns:xsi',"http://www.w3.org/2001/XMLSchema-instance")
     root.set('xmlns:xsd',"http://www.w3.org/2001/XMLSchema")
     root.set('amount',str(cart.summary))
     root.set('currency',str('UGX'))
-    root.set('description','order payment for'+str(cart.id))
+    root.set('description','order payment for')
     root.set('type','MERCHANT')
-    root.set('reference',str(cart.id))
+    root.set('reference',str(1))
     root.set('firstname',str(cart.billing_details.first_name))
     root.set('lastname',str(cart.billing_details.last_name))
     root.set('email',str(cart.billing_details.email))
