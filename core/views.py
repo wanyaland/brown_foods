@@ -135,10 +135,9 @@ def checkout(request):
         'cart':Cart(request),
     })
 
-def add_to_cart(request):
-    menu_id = request.POST['menu_id']
+def add_to_cart(request,menu_id):
     menu_item= MenuItem.objects.get(id=menu_id)
-    quantity = request.POST.get('quantity')
+    quantity = request.GET.get('quantity')
     cart = Cart(request)
     cart.add(menu_item,menu_item.unit_price,quantity)
     data={'success':'true'}
@@ -167,9 +166,16 @@ def how_it_works(request):
     return render(request,'core/how-it-works.html')
 
 def menu(request):
-    menu_items = MenuItem.objects.all()
-    context = {'menu_items':menu_items}
+    menu_items = MenuItem.objects.filter(menu_type='M')
+    side_dishes = MenuItem.objects.filter(menu_type='S')
+    context = {'menu_items':menu_items,'side_dishes':side_dishes,}
     return render(request,'core/menu.html',context)
+
+def order(request):
+    menu_items = MenuItem.objects.filter(menu_type='M')
+    side_dishes = MenuItem.objects.filter(menu_type='S')
+    context = {'menu_items':menu_items,'side_dishes':side_dishes,}
+    return render(request,'core/menu_list.html',context)
 
 
 

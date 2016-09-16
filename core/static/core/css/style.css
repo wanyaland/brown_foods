@@ -1410,7 +1410,11 @@ aside:last-child { margin-bottom: 0 }
 }
 
 .order-img {
-width:60%;
+width:100%;
+}
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
 }
 .total-top-rated ul li .single-rate a:hover { padding: 0 }
 .total-top-rated ul li .sm-ratting a:hover { color: #f9db57 }
@@ -1607,9 +1611,10 @@ width:60%;
     height: 40px;
     margin-right: 10px;
     padding: 0 5px 0 10px;
-    width: 80px;
+    width: 50px;
 }
-.qty-add .com-btn { background: #3b3330 none repeat scroll 0 0;   }
+.qty-add .com-btn { background: #3b3330 none repeat scroll 0 0;
+                    }
 .cata_gories ul li a { color: #3a332f }
 .cata_gories ul li { display: inline-block }
 .cata_gories li span { color: #7d7b6d }

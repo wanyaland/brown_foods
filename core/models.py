@@ -46,7 +46,7 @@ class Customer(AbstractBaseUser):
     def has_perm(self,perm,obj=None):
         return True
 
-    def has_module_perm(self,app_label):
+    def has_module_perms(self,app_label):
         return True
 
     @property
@@ -89,10 +89,10 @@ class MenuItem(models.Model):
         ('S','SIDE DISH'),
     )
     name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='brown_food/%Y/%m/%d',null=True)
+    image = models.ImageField(upload_to='brown_food/%Y/%m/%d',null=True,blank=True)
     unit_price = models.DecimalField(max_digits=10,decimal_places=2)
-    description = models.TextField()
-    category = models.CharField(max_length=100,choices=CATEGORY)
+    description = models.TextField(blank=True)
+    menu_type = models.CharField(null=True,choices=CATEGORY,max_length=100)
 
     def __unicode__(self):
         return self.name

@@ -3,34 +3,41 @@
 {% block content %}
 <div class="product-details-area pt60 pb60">
     <div class="container">
-        <div class="col-md-9 col-sm-9 col-xs-12">
-            {% for object in object_list %}
+        <div class="col-md-8 col-sm-8 col-xs-12">
+            <div class="total-product">
+            {% for object in menu_items %}
             <div class="row">
-                <div class="col-md-4 col-sm-4">
-                    <div class="order-img">
-                        <a class="venobox" data-gall="myGallery" href="/static/core/img/product/single.jpg"><img src="/static/core/img/menu/405/01.JPG" alt=""></a>
+                <div class="single-our-menu">
+                <div class="col-md-3 col-sm-3  ">
+                    <div >
+                        <img class="order-img" src="{{object.image.url}}" alt="">
                     </div>
                 </div>
-                <div class="col-md-8 col-sm-8">
+                <div class="col-md-3 col-sm-3 ">
                     <div class="pd-content">
                         <div class="section-title">
                             <h3>{{object}}</h3>
                         </div>
                         <div class="sm-price">
-                            {{object.unit_price}}
+                            UGX {{object.unit_price}}
                         </div>
                        <!-- <div class="sm-des">
                             {{object.description}}
                         </div> -->
-                        <div class="qty-add">
-                            <input type="number" class="qty-btn" min="1" value="1">
-                            <a class="com-btn" href="#">Add to Cart</a>
-                        </div>
                     </div>
                 </div>
+                <div class="col-md-4 col-sm-4 nopadding">
+                     <div class="qty-add">
+                            <input type="number" class="qty-btn" min="1" value="1" name="quantity">
+                            <a class="btn btn-default" href="{% url 'core:add_to_cart' object.id %}" >Add to Cart</a>
+                        </div>
+                    </div>
+                    </div>
             </div>
+            <div class="divider"></div>
 
             {% endfor %}
+                </div>
         </div>
           <div class="col-md-3 col-sm-3 col-xs-12">
                         <aside>

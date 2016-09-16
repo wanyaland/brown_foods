@@ -44,11 +44,12 @@
             </div>
             <aside>
                              <div class="single-widget top-rated">
-                                 <div class="whdget-title">
-                                     <h2>Side Dish</h2>
+                                 <div class="whdget-title" align="center">
+                                     <h2>Side Dishes</h2>
                                  </div>
                                 <div class="total-top-rated">
                                     <ul>
+                                        {% for side_dish in side_dishes %}
                                          <li>
                                              <div class="single-rate">
                                                  <div class="rate-img">
@@ -56,106 +57,15 @@
                                                  </div>
                                                  <div class="rate-content">
                                                      <div class="tate-title">
-                                                         <a href="#">Fusce Laoreet</a>
+                                                         <a href="#">{{side_dish}}</a>
                                                      </div>
-                                                        <div class="sm-ratting">
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star-o"></i></a>
-                                                        </div>
-                                                        <div class="rate-price">
-                                                            $500.00
+                                                        <div >
+                                                            UGX {{side_dish.unit_price}}
                                                         </div>
                                                  </div>
                                              </div>
                                          </li>
-                                         <li>
-                                             <div class="single-rate">
-                                                 <div class="rate-img">
-                                                     <a href="#"><img src="img/product/02.jpg" alt=""></a>
-                                                 </div>
-                                                 <div class="rate-content">
-                                                     <div class="tate-title">
-                                                         <a href="#">Fusce Laoreet</a>
-                                                     </div>
-                                                        <div class="sm-ratting">
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star-o"></i></a>
-                                                        </div>
-                                                        <div class="rate-price">
-                                                            $500.00
-                                                        </div>
-                                                 </div>
-                                             </div>
-                                         </li>
-                                         <li>
-                                             <div class="single-rate">
-                                                 <div class="rate-img">
-                                                     <a href="#"><img src="img/product/03.jpg" alt=""></a>
-                                                 </div>
-                                                 <div class="rate-content">
-                                                     <div class="tate-title">
-                                                         <a href="#">Fusce Laoreet</a>
-                                                     </div>
-                                                        <div class="sm-ratting">
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star-o"></i></a>
-                                                        </div>
-                                                        <div class="rate-price">
-                                                            $500.00
-                                                        </div>
-                                                 </div>
-                                             </div></li>
-                                         <li>
-                                             <div class="single-rate">
-                                                 <div class="rate-img">
-                                                     <a href="#"><img src="img/product/04.jpg" alt=""></a>
-                                                 </div>
-                                                 <div class="rate-content">
-                                                     <div class="tate-title">
-                                                         <a href="#">Fusce Laoreet</a>
-                                                     </div>
-                                                        <div class="sm-ratting">
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star-o"></i></a>
-                                                        </div>
-                                                        <div class="rate-price">
-                                                            $500.00
-                                                        </div>
-                                                 </div>
-                                             </div></li>
-                                         <li>
-                                             <div class="single-rate">
-                                                 <div class="rate-img">
-                                                     <a href="#"><img src="img/product/05.jpg" alt=""></a>
-                                                 </div>
-                                                 <div class="rate-content">
-                                                     <div class="tate-title">
-                                                         <a href="#">Fusce Laoree</a>
-                                                     </div>
-                                                        <div class="sm-ratting">
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star"></i></a>
-                                                            <a href="#"><i class="fa fa-star-o"></i></a>
-                                                        </div>
-                                                        <div class="rate-price">
-                                                            $500.00
-                                                        </div>
-                                                 </div>
-                                             </div></li>
+                                        {% endfor %}
                                      </ul>
                                 </div>
                              </div>
