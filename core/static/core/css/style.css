@@ -42,6 +42,7 @@ body {
     height: 100%;
     font-family: 'Lato', sans-serif;
     font-size: 15px;
+    padding-top:10px;
 }
 .floatleft { float: left }
 .floatright { float: right }
@@ -544,8 +545,7 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
 .sm-ratting > a { color: #f9db57 }
 .sm-price {
     bottom: 50%;
-    font-size: 30px;
-    position: absolute;
+    font-size: 20px;
     width: 100%;
     text-align: center;
     left: 0;
@@ -579,6 +579,12 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
     text-align: center;
     width: 300px;
 }
+
+.menu-heading{
+   background: #fff none repeat scroll 0 0;
+   font-size:20px;
+   text-align:center;
+}
 .sm-heading > a {
     color: #222;
     font-size: 18px;
@@ -605,10 +611,10 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
     position: relative;
     text-align: center;
 }
-.our-menu-area { background: rgba(0, 0, 0, 0) url("img/parallax-1.jpg") repeat scroll 0 0 }
+.our-menu-area { background: rgba(0, 0, 0, 0) url("/static/core/img/parallax-1.jpg") repeat scroll 0 0 }
 .single-our-menu {
     background: #fff none repeat scroll 0 0;
-    border-radius: 10px;
+    border-radius: 20px;
     overflow: hidden;
 }
 .sm-ratting { padding-top: 5px }
@@ -626,6 +632,7 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
 .sm-image img {
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
+    height:50%;
 }
 .sm-image:hover .com-btn {
     opacity: 1;
@@ -981,7 +988,8 @@ input.newslatter {
 -----------------------------*/
 .shape-holder .section-title h1,
 .shape-holder .section-title h2 { color: #222 }
-.service-holder-area.shape-holder { background: rgba(0, 0, 0, 0) url("img/bg1_lavie.jpg") no-repeat scroll 0 0 / 100% 100% }
+.service-holder-area.shape-holder { background: rgba(0, 0, 0, 0) url("/static/core/img/bgmen.jpg") no-repeat scroll 0 0 / 100% 100% ;
+                                    padding-bottom:30px;}
 .shape-team-img { margin-top: 35px }
 .shape-holder .sm-des { padding: 0 90px }
 .about-reserv .single-about { width: 50% }
@@ -2001,4 +2009,43 @@ h4.panel-title a:hover {
 }
 .error-img img {
   width: 70%;
+}
+
+/* ---------------------------
+ 16. Custom Navbar
+-----------------------------*/
+.navbar-custom {
+    background-color:#8B4513;
+    color:#ffffff;
+    border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:#fff;
+}
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #ffffff;
+    background-color:transparent;
+}
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
+
+.navbar-custom .logo {
+    display: block;
+    float: left;
+    margin-top: 2px;
+}
+.navbar-custom .logo img { width: 100px }
+
+.navbar-custom .navbar-toggle {
+    border-color:#c0392b;
+}
+
+.navbar-custom .navbar-toggle &:hover, &:focus{
+    background-color:#c0392b;
+}
+
+.navbar-custom .icon-bar{
+   background-color:#ecf0f1;
 }

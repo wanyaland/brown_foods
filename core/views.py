@@ -40,6 +40,10 @@ def login_customer(request):
             state = "Your email and password do not match"
     return render(request, 'core/login.html', {'state': state, 'email': email, 'password': password, 'next': next_url, })
 
+def logout_customer(request):
+    logout(request)
+    return redirect('core:home')
+
 def register(request):
     return render(request,'core/login.html')
 

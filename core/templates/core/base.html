@@ -1,208 +1,97 @@
 {% include 'core/components/page_head_tags.html' %}
 <body>
-<div class="shop-wraper">
-    <!--header slider area are start-->
-    <div class="header-slider-area common-page product-details">
+<nav class="navbar navbar-custom navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="logo" href="{% url 'core:home' %}"><img src="/static/core/img/brown_logo.png"> </a>
+    </div>
 
-    <!-- mobile-menu-area start -->
-    <div class="mobile-menu-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <nav id="dropdown">
-                            <ul>
-                                <li><a href="{% url 'core:home' %}">HOME</a>
-                                </li>
-                                <li><a href="{% url 'core:menu' %}">Menu</a></li>
-                                <li><a href="{% url 'core:menu_items' %}">Order</a></li>
-                                <li><a href="{% url 'core:how-it-works' %}">How it works</a></li>
-                                <li><a href="index.html">Shop</a>
-                                    <ul>
-                                        <li><a href="{% url 'core:cart' %}">Cart</a></li>
-                                        <li><a href="{% url 'core:checkout' %}">Checkout</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="{% url 'core:about_us' %}">About</a></li>
-                                {% if user.is_authenticated %}
-                                <li>Welcome {{user.email}}</li>
-                                {% else %}
-                                <li><a href="{% url 'core:login' %}">Login</a></li>
-                                {% endif %}
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-</div>
-    <!--mobile menu area end-->
-
-    <!--header menu area are start-->
-    <div class="header-menu-area">
-    <!--header-area are start-->
-    <div class="header">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 col-sm-4 hidden-xs">
-                        <div class="search-phone">
-                            <ul>
-                                <li>
-                                   <form action="#">
-                                       <div class="search-bar">
-                                          <button type="button" class="search"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                           <input type="search" name="search" placeholder="Search...">
-                                       </div>
-                                   </form>
-                               </li>
-                              <!--  <li><a class="phone" href="#"><i class="fa fa-phone" aria-hidden="true"></i>
-0414-230461</a></li> -->
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-4">
-                        <div class="logo">
-                            <a href="{% url 'core:home' %}"><img src="/static/core/img/brown_logo.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{%url 'core:home'%}"><i class="fa fa-home" aria-hidden="true"></i> <span class="sr-only">(current)</span></a></li>
+        <li><a href="{%url 'core:menu' %}">Menu</a></li>
+        <!--<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>-->
+          <li><a href="{%url 'core:menu_items' %}">Order</a> </li>
+          <li><a href="{%url 'core:how-it-works'%}">How it works</a> </li>
+          <li><a href="{% url 'core:about_us'%}">About Us</a> </li>
+          <li><a href="{% url 'core:cart' %}">Cart</a> </li>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
         </div>
-    <!--header-area are end-->
+        <button type="button" class="search"><i class="fa fa-search" aria-hidden="true"></i></button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+          {% if user.is_authenticated %}
+           <li><a href="">{{user}}</a> </li>
+          <li><a href="{% url 'core:logout' %}">Logout</a> </li>
+          {% else %}
+          <li><a href="{% url 'core:login' %}">Login</a></li>
+          {% endif %}
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
-    <!-- Main menu area are start  -->
 
-    <div id="sticker" class="menu-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-					<div class="logo2">
-                      <a href="{% url 'core:home' %}"><img src="/static/core/img/brown_logo.png" alt=""></a>
-                  </div>
-                   <div class="main-menu">
-                       <nav>
-                        <ul>
-                            <li><a href="{% url 'core:home' %} "><i class="fa fa-home" aria-hidden="true">
-                            </i></a>
-                           </li>
-                            <li><a href="{% url 'core:menu' %}">Menu</a>
-                           </li>
-                            <li><a href="{% url 'core:menu_items' %}">Order</a></li>
-                            <li><a href="{% url 'core:how-it-works' %}">How it works</a></li>
-                            <li><a href="{% url 'core:about_us' %}">About</a></li>
-                            <li><a href="{% url 'core:cart' %}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
-
-</a>
-                           </li>
-                            {% if user.is_authenticated %}
-                            <li><a href="#">{{user}}</a> </li>
-                            {% else %}
-                            <li><a href="{% url 'core:login' %}">login</a></li>
-                            {% endif %}
-                        </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Main menu area are end  -->
-    </div>
-    <!--header menu area are end-->
-        <!--
-           <div class="slider-container">
-        <div class="bread-main">
-            <div class="bred-hading text-center">
-                <h1>Brown Foods Agency</h1>
-            </div>
-            <ol class="breadcrumb">
-                <li class="home"><a title="Go to Home Page" href="{% url 'core:home' %}">Home</a></li>
-                <li class="active">{% block title %} {% endblock %}</li>
-            </ol>
-        </div>
-    </div>
-    -->
-    <!-- home slider start -->
-    </div>
-
+    {% if state %}
+     <div class="alert alert-success" role="alert">
+       {{state}}
+     </div>
+    {% endif %}
     {% block content %}
-
     {% endblock %}
 
 
 
-
     <!--footer area are start-->
-     <div class="footer-area pt60 pb60">
+     <div class="navbar navbar-custom" role="navigation">
          <div class="container">
              <div class="row">
-                 <div class="col-md-4 col-sm-4 col-xs-12">
-                     <div class="single-footer text-center">
-                        <div class="sosa-icon">
+                <div class="col-md-6 col-sm-6 col-xs-12 aligncenter">
+                    <div class="single-footer text-center">
+                        <!--<div class="sosa-icon">
                             <img src="/static/core/img/icon/icon-service.png" alt="">
-                        </div>
-                         <h1>Brown Foods Agency</h1>
+                        </div> -->
                          <div class="address">
-                            <span>
-                                 FF55, Forest Mall, <br>
-                                3A2/3A3 Sports Lane, Kampala Uganda <br>
-                                P. O. Box: 27139 Kampala<br>
-                                <br>
-                                <span class="email">sales@brownfoods.com</span>
+                             <img src="/static/core/img/brown_logo.png">
+                             <span>
+                                Sales agent for Takumi Foods Ltd <br>
                             </span>
-                            <div class="phone-no">
-                                <span>0414-230461</span>
-                            </div>
+                             <p>Copyright &copy; 2016-All rights reserved.</p>
+                           <!-- <div class="phone-no">
+                                <span>+84 866 725 048</span>
+                            </div> -->
                          </div>
                      </div>
-                 </div>
-                 <div class="col-md-4 col-sm-4 col-xs-12">
-                     <div class="single-footer footer-middle text-center">
-                        <div class="sosa-icon">
-                            <img src="/static/core/img/icon/icon-time.png" alt="">
-                        </div>
-                         <h1>Time</h1>
-                        <div class="service-time">
-                            <h2>LUNCH DELIVERIES</h2>
-                            <span>1:00pm</span>
-                        </div>
-                        <div class="service-time">
-                            <h2>BOOKING</h2>
-                            <span>Daily Booking till 7pm</span>
-                        </div>
-                     </div>
-                 </div>
-                 <div class="col-md-4 col-sm-4 col-xs-12">
-                     <div class="single-footer text-center">
-                        <div class="sosa-icon">
-                            <img src="/static/core/img/icon/icon-service.png" alt="">
-                        </div>
-                         <h1>Manufucturer</h1>
-                         <div class="address">
-                            <span>
-                               Takumi Foods Limited
-                            </span>
-                            <div class="phone-no">
-                                <span>0790120240</span>
-                            </div>
-                         </div>
-                     </div>
-                 </div>
+                </div>
+             </div>
 
              </div>
-         </div>
      </div>
     <!--footer area are end-->
 
-    <!--Copyright area are start-->
-      <div class="copyright-info pt60 pb60">
-        <div class="container">
-            <div class="row">
-                <a href="index.html"><img src="/lavie/img/brown_logo.png" alt=""></a>
-			<p>Copyright &copy; 2016-All rights reserved. Brown Foods Agency </p>
-            </div>
-        </div>
-    </div>
-    <!--Copyright area are end-->
+
 </div>
 
 {% include 'core/components/page_foot_tags.html' %}

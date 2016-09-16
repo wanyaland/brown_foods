@@ -2,6 +2,7 @@ __author__ = 'wanyama'
 
 from django.conf.urls import patterns,url
 from core.views import *
+from django.contrib.staticfiles.urls import static
 
 urlpatterns = patterns('',
                        url(r'^$',home,name='home'),
@@ -20,4 +21,7 @@ urlpatterns = patterns('',
                        url(r'^how-it-works/$',how_it_works,name='how-it-works'),
                        url(r'^menu/$',menu,name='menu'),
                        url(r'^login/$',login_customer,name='login'),
+                       url(r'^logout/$',logout_customer,name='logout'),
 )
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
