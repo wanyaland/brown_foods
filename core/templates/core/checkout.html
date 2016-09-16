@@ -48,11 +48,15 @@
                     </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 col-sm-12 col-xs-12">c
+                        <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="billing-details">
                                 <div class="contact-text right-side">
-                                      <h2>Billing Details</h2>
-                            <form action="{% url 'core:signup' %}">
+                                      <h2>Delivery Details</h2>
+                            <form action="{% url 'core:register' %}" method="post">
+                                <div class="input-box">
+                                    <label>Delivery date</label>
+                                    <input type="text" name="delivery_date" class="datepicker" >
+                                </div>
                                <div class="first-last-name">
                                     <div class="input-box name1">
                                         <label>First Name</label>
@@ -73,7 +77,7 @@
                                         <input type="email" name="email" class="info" placeholder="Your Email">
                                     </div>
                                     <div class="input-box name2">
-                                        <label>Phone Number</label>
+                                        <label>Phone Number 1</label>
                                         <input type="text" name="phone" class="info" placeholder="Phone Number">
                                     </div>
                                </div>
@@ -96,7 +100,7 @@
                                 <div class="create-acc clearfix">
                                     <div class="acc-toggle">
                                         <input type="checkbox" id="acc-toggle">
-                                        <label for="acc-toggle">Create an Account</label>
+                                        <label for="acc-toggle">Handle Transport </label>
                                     </div>
                                     <div class="create-acc-body">
                                        <div class="sm-des">

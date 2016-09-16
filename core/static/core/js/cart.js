@@ -1,16 +1,17 @@
-function cartAction(action,product_code) {
-
+function cartAction(product_code) {
+    quantity = $("#qty_"+product_code).val();
 	jQuery.ajax({
 	url: "/add_to_cart/",
-	data:{'menu_id':product_code,'quantity':1},
-	method:'post',
+	data:{'menu_id':product_code,'quantity':quantity},
+	type:'post',
 	dataType:'json',
 	success:function(data){
-        console.log(data.sucess)
+        $("#cart-item").html(data)
 	},
 	error:function (){}
 	});
 }
+
 
 function getCookie(name) {
     var cookieValue = null;

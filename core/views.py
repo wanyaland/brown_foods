@@ -135,12 +135,13 @@ def checkout(request):
         'cart':Cart(request),
     })
 
-def add_to_cart(request,menu_id):
+def add_to_cart(request):
+    quantity = request.POST.get('quantity')
+    menu_id = request.POST.get('menu_id')
     menu_item= MenuItem.objects.get(id=menu_id)
-    quantity = request.GET.get('quantity')
     cart = Cart(request)
     cart.add(menu_item,menu_item.unit_price,quantity)
-    data={'success':'true'}
+    data={'success':'true','menu_name':menu_item.name,'quantity':quantity,'menu_price':str(menu_item.unit_price)}
     return HttpResponse(json.dumps(data))
 
 def remove_from_cart(request):

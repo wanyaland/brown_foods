@@ -6,8 +6,10 @@
         <div class="col-md-8 col-sm-8 col-xs-12">
             <div class="total-product">
             {% for object in menu_items %}
-            <div class="row">
+            <div class="row row-item">
                 <div class="single-our-menu">
+                    <form id="formCart">
+
                 <div class="col-md-3 col-sm-3  ">
                     <div >
                         <img class="order-img" src="{{object.image.url}}" alt="">
@@ -26,12 +28,13 @@
                         </div> -->
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-4 nopadding">
-                     <div class="qty-add">
-                            <input type="number" class="qty-btn" min="1" value="1" name="quantity">
-                            <a class="btn btn-default" href="{% url 'core:add_to_cart' object.id %}" >Add to Cart</a>
+                <div class="col-md-4 col-sm-4 ">
+                     <div class="qty-add" id="{{object.id}}">
+                             <input type="number" class="qty-btn" min="1" value="1" id="qty_{{object.id}}" name="quantity">
+                             <a class="btn btn-default" onclick="cartAction('{{object.id}}')">Add to Cart</a>
                         </div>
                     </div>
+                        </form>
                     </div>
             </div>
             <div class="divider"></div>
