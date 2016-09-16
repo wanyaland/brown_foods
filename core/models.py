@@ -84,10 +84,15 @@ class Cart(models.Model):
 
 
 class MenuItem(models.Model):
+    CATEGORY = (
+        ('M','MAIN'),
+        ('S','SIDE DISH'),
+    )
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to='brown_food/%Y/%m/%d',null=True)
     unit_price = models.DecimalField(max_digits=10,decimal_places=2)
     description = models.TextField()
+    category = models.CharField(max_length=100,choices=CATEGORY)
 
     def __unicode__(self):
         return self.name
