@@ -21,7 +21,7 @@
                         <tbody>
                             {% for item in cart %}
                             <tr class="cart_item">
-                                <td class="remove"><a href="{% url 'core:remove_from_cart' item.id %}">X</a></td>
+                                <td class="remove"><a onclick="remove('item.id')">X</a></td>
                                 <td>
                                     <a href="#"><img class="order-img" src="{{item.image.url}}" alt=""> </a>
                                 </td>

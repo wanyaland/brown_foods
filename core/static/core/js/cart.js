@@ -6,11 +6,27 @@ function cartAction(product_code) {
 	type:'post',
 	dataType:'json',
 	success:function(data){
-        $("#cart-item").html(data)
+        $("#cart-item").html(data);
+        $("#add_"+product_code).hide()
+        $('#added_'+product_code).show()
 	},
 	error:function (){}
 	});
 }
+
+function remove(product_code) {
+	jQuery.ajax({
+	url: "/remove_from_cart/",
+	data:{'menu_id':product_code},
+	type:'post',
+	dataType:'json',
+	success:function(data){
+        alert("Removed to cart!");
+	},
+	error:function (){}
+	});
+}
+
 
 
 function getCookie(name) {

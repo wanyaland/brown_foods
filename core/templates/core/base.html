@@ -33,7 +33,7 @@
           <li><a href="{%url 'core:menu_items' %}">Order</a> </li>
           <li><a href="{%url 'core:how-it-works'%}">How it works</a> </li>
           <li><a href="{% url 'core:about_us'%}">About Us</a> </li>
-          <li><a href="{% url 'core:cart' %}">Cart</a> </li>
+          <!--<li><a href="{% url 'core:cart' %}">Cart</a> </li>-->
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">
@@ -59,10 +59,10 @@
        {{state}}
      </div>
     {% endif %}
-    {% block content %}
-    {% endblock %}
-
-
+   <div class="container" align="center">
+       {% block content %}
+       {% endblock %}
+   </div>
 
     <!--footer area are start-->
      <div class="navbar navbar-custom" role="navigation">

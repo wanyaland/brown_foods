@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import CartItem,MenuItem,BillingDetails
+from .models import CartItem,MenuItem,BillingDetails, Customer
 from django.views.generic import *
 from django.core.exceptions import ObjectDoesNotExist
 from cart import Cart
@@ -45,6 +45,14 @@ def logout_customer(request):
     return redirect('core:home')
 
 def register(request):
+    if request.POST:
+        email = request.POST.get('email')
+        password = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        customer = Customer()
+        customer.email = email
+        customer.password = password
+        customer.save()
     return render(request,'core/login.html')
 
 def home(request):
@@ -145,7 +153,7 @@ def add_to_cart(request):
     return HttpResponse(json.dumps(data))
 
 def remove_from_cart(request):
-    menu_id = request.GET.get('id')
+    menu_id = request.POST.get('menu_id')
     menu_item = MenuItem.objects.get(id=menu_id)
     cart = Cart(request)
     cart.remove(menu_item)
@@ -173,9 +181,10 @@ def menu(request):
     return render(request,'core/menu.html',context)
 
 def order(request):
+    cart = Cart(request)
     menu_items = MenuItem.objects.filter(menu_type='M')
     side_dishes = MenuItem.objects.filter(menu_type='S')
-    context = {'menu_items':menu_items,'side_dishes':side_dishes,}
+    context = {'menu_items':menu_items,'side_dishes':side_dishes,'cart':cart,}
     return render(request,'core/menu_list.html',context)
 
 

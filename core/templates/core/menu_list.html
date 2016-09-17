@@ -1,82 +1,95 @@
 {% extends 'core/base.html' %}
 {% block title %}Order {% endblock %}
 {% block content %}
+{% load core_extras %}
 <div class="product-details-area pt60 pb60">
     <div class="container">
+        <!--<pre> {% filter force_escape %} {% debug %} {% endfilter %} </pre>-->
         <div class="col-md-8 col-sm-8 col-xs-12">
             <div class="total-product">
             {% for object in menu_items %}
-            <div class="row row-item">
+            <div class="row">
                 <div class="single-our-menu">
-                    <form id="formCart">
-
-                <div class="col-md-3 col-sm-3  ">
-                    <div >
-                        <img class="order-img" src="{{object.image.url}}" alt="">
-                    </div>
+                <div class="col-md-3 col-sm-3">
+                    <img src="{{object.image.url}}"/>
                 </div>
-                <div class="col-md-3 col-sm-3 ">
-                    <div class="pd-content">
-                        <div class="section-title">
-                            <h3>{{object}}</h3>
-                        </div>
-                        <div class="sm-price">
-                            UGX {{object.unit_price}}
-                        </div>
-                       <!-- <div class="sm-des">
-                            {{object.description}}
-                        </div> -->
-                    </div>
+                <div class="col-md-3 col-sm-3 shop-title">
+                    {{object}}
                 </div>
-                <div class="col-md-4 col-sm-4 ">
-                     <div class="qty-add" id="{{object.id}}">
-                             <input type="number" class="qty-btn" min="1" value="1" id="qty_{{object.id}}" name="quantity">
-                             <a class="btn btn-default" onclick="cartAction('{{object.id}}')">Add to Cart</a>
-                        </div>
-                    </div>
-                        </form>
-                    </div>
+                <div class="col-md-2 col-sm-2 shop-price ">
+                    UGX {{object.unit_price}}
+                </div>
+                <div class="col-md-2 col-sm-2 shop-quantity">
+                    <input type="number" min="1" value="0" id="qty_{{object.id}}" name="quantity"/>
+                </div>
+                <div class="col-md-2 col-sm-2 add-cart">
+                    <a id="add_{{object.id}}" class="btn btn-default"onclick="cartAction('{{object.id}}')" {% if not object.id|in_cart_session:cart %}style="display:none" {%endif %}>Add to Cart</a>
+                    <a id="added_{{object.id}}" class="btn btn-primary"onclick="cartAction('{{object.id}}')" {% if  object.id|in_cart_session:cart %}style="display:none" {% endif %}>Added</a>
+                </div>
+                </div>
             </div>
-            <div class="divider"></div>
-
             {% endfor %}
                 </div>
         </div>
-          <div class="col-md-3 col-sm-3 col-xs-12">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+                       <div class="total-aside">
                         <aside>
-                             <div class="single-widget my-cart detail-cart">
+                             <div class="single-widget my-cart">
                                  <div class="whdget-title">
                                      <h2>Your Cart</h2>
                                  </div>
                                 <div class="total-top-rated">
-                                    <ul>
+                                    <!--<ul>
                                          <li>
                                              <div class="single-rate">
                                                  <div class="rate-img">
-                                                     <a href="#"><img src="/static/lavie/img/menu/405/01.JPG" alt=""></a>
+                                                     <a href="#"><img src="img/product/01.jpg" alt=""></a>
                                                  </div>
                                                  <div class="rate-content">
                                                      <div class="tate-title">
-                                                         <a href="#">{{object}}</a>
+                                                         <a href="#">Fusce Laoreet Volutpat</a>
                                                      </div>
 
                                                         <div class="cart-price">
-                                                           {{object.unit_price}}
+                                                           1 x $500.00
                                                         </div>
                                                  </div>
                                              </div>
                                             </li>
+                                         <li>
+                                            </li>
                                      </ul>
                                      <div class="sub-total">
-                                         <strong>Subtotal:</strong> <span>{{object.unit_price}}</span>
-                                     </div>
+                                         <strong>Subtotal:</strong> <span>$513.00</span>
+                                     </div> -->
+                                    <div id="cart-item">
+
+                                    </div>
+
                                      <div class="view-check-btn">
                                          <a href="{% url 'core:cart' %}" class="com-btn">View Cart</a>
-                                         <a href="{% url 'core:checkout' %} " class="com-btn">Checkout</a>
+                                         <a href="#" class="com-btn">Checkout</a>
                                      </div>
                                 </div>
                              </div>
                          </aside>
-    </div>
+                        <aside>
+                             <div class="single-widget">
+                                 <div class="whdget-title">
+                                     <h2>Categories</h2>
+                                 </div>
+                                 <ul>
+                                     <li><a href="#">Cake</a></li>
+                                     <li><a href="#">Chef</a></li>
+                                     <li><a href="#">Cup Cake</a></li>
+                                     <li><a href="#">Fruit</a></li>
+                                     <li><a href="#">Lemon</a></li>
+                                     <li><a href="#">Mango</a></li>
+                                 </ul>
+                             </div>
+                         </aside>
+                        </div>
+                     </div>
 </div>
+    </div>
 {% endblock %}
