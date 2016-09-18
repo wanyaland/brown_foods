@@ -22,6 +22,8 @@ urlpatterns = patterns('',
                        url(r'^menu/$',menu,name='menu'),
                        url(r'^login/$',login_customer,name='login'),
                        url(r'^logout/$',logout_customer,name='logout'),
+                       url(r'^complete/$',complete,name='complete'),
+
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

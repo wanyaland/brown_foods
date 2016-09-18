@@ -1,3 +1,4 @@
+
 function cartAction(product_code) {
     quantity = $("#qty_"+product_code).val();
 	jQuery.ajax({
@@ -6,7 +7,10 @@ function cartAction(product_code) {
 	type:'post',
 	dataType:'json',
 	success:function(data){
-        $("#cart-item").html(data);
+	    var cartWrapper = $('.my-cart');
+	    var cartList = cartWrapper.find('ul').eq(0);
+        var productAdded = $('<li><div class="single-rate"><div class="rate-img"><a href="#"><img src="/static/core/img/menu/01.JPG" alt=""></a></div></div></li>');
+        cartList.prepend(productAdded);
         $("#add_"+product_code).hide()
         $('#added_'+product_code).show()
 	},
@@ -21,7 +25,7 @@ function remove(product_code) {
 	type:'post',
 	dataType:'json',
 	success:function(data){
-        alert("Removed to cart!");
+        alert("Removed from cart!");
 	},
 	error:function (){}
 	});

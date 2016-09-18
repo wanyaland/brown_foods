@@ -149,7 +149,7 @@ def add_to_cart(request):
     menu_item= MenuItem.objects.get(id=menu_id)
     cart = Cart(request)
     cart.add(menu_item,menu_item.unit_price,quantity)
-    data={'success':'true','menu_name':menu_item.name,'quantity':quantity,'menu_price':str(menu_item.unit_price)}
+    data={'success':'true','menu_name':menu_item.name,'quantity':quantity,'menu_price':str(menu_item.unit_price),'menu_image':menu_item.image.url}
     return HttpResponse(json.dumps(data))
 
 def remove_from_cart(request):
@@ -173,6 +173,9 @@ class MenuDetail(DetailView):
 
 def how_it_works(request):
     return render(request,'core/how-it-works.html')
+
+def complete(request):
+    return render(request,'core/complete.html')
 
 def menu(request):
     menu_items = MenuItem.objects.filter(menu_type='M')
