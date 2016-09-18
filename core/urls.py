@@ -23,6 +23,7 @@ urlpatterns = patterns('',
                        url(r'^login/$',login_customer,name='login'),
                        url(r'^logout/$',logout_customer,name='logout'),
                        url(r'^complete/$',complete,name='complete'),
+                       url(r'^pesapal-iframe/$',PaymentView,name='iframe'),
 
 )
 

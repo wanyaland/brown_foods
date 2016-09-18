@@ -1,4 +1,13 @@
 {% extends 'core/base.html' %}
 {% block content %}
+<div class="cart-area pt60 pb60">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h1>Payment</h1>
+            <iframe src="{% url 'core:iframe' %}" width="900" height="900"></iframe>
+        </div>
+    </div>
+</div> </div>
 
 {% endblock %}

@@ -9,15 +9,28 @@ from django.contrib.auth import login,logout,authenticate
 import urllib
 import time
 import datetime
-import urllib2
-try:
-    from xml.etree import cElementTree as ElementTree
-except ImportError,e:
-    from xml.etree import ElementTree
 from django.conf import settings
+from django_pesapal.views import PaymentRequestMixin
 
 
 # Create your views here.
+
+class PaymentView(PaymentRequestMixin):
+    def get_pesapal_payment_iframe(self):
+        '''
+        Authenticates with pesapal to get the payment iframe src
+        '''
+        order_info = {
+            'first_name':'Some',
+            'last_name':'Other',
+            'amount':100,
+            'description': 'Payment',
+            'reference':2,
+            'email': 'wanyaland@gmail.com',
+        }
+        iframe_src_url = self.get_payment_url(**order_info)
+        return iframe_src_url
+
 def login_customer(request):
     email = password = next_url = state = ''
     if request.GET:
@@ -76,34 +89,8 @@ def cart(request):
 def update_cart(request):
     pass
 
-def api_call(cart):
-    url = "https://www.pesapal.com/API/PostPesapalDirectOrderV4"
-    root = ElementTree.Element('PesapalDirectOrderInfo')
-    root.set('xmlns:xsi',"http://www.w3.org/2001/XMLSchema-instance")
-    root.set('xmlns:xsd',"http://www.w3.org/2001/XMLSchema")
-    root.set('amount',str(cart.summary))
-    root.set('currency',str('UGX'))
-    root.set('description','order payment for')
-    root.set('type','MERCHANT')
-    root.set('reference',str(1))
-    root.set('firstname',str(cart.billing_details.first_name))
-    root.set('lastname',str(cart.billing_details.last_name))
-    root.set('email',str(cart.billing_details.email))
-    root.set('xmlns',"http://www.pesapal.com")
-    data = {
-        'oauth_callback':'',
-        'oauth_consumer_key':settings.PESAPAL_KEY,
-        'oauth_nonce':str(datetime.datetime.now()),
-        'oauth_signature':settings.PEASPAL_SECRET,
-        'ouath_signature_method':'HMAC-SHA1',
-        'oauth_timestamp':str(time.time()),
-        'oauth_version':'1.0',
-        'pesapal_request_data':ElementTree.dump(root)
-    }
-    request = urllib2.Request(url,urllib.urlencode(data),headers={'Content-Type': 'application/xml'})
-    return urllib2.urlopen(request)
-
 def process_checkout(request):
+    '''
     if request.method=='POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
@@ -133,7 +120,7 @@ def process_checkout(request):
          return render(request,'core/checkout.html',{
         'cart':Cart(request),
     })
-
+    '''
 
 def payment(request):
     return render(request,'core/payment.html')
