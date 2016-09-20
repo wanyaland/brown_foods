@@ -1162,6 +1162,15 @@ aside:last-child { margin-bottom: 0 }
     overflow: hidden;
     padding: 36px 29px;
 }
+
+.side-dish {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 36px 29px;
+    width:250px;
+}
 .single-widget ul li { padding: 8px 0 }
 .single-widget ul li + li { border-top: 1px dotted #dddddd }
 .single-widget ul li a,

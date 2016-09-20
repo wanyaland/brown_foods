@@ -1,26 +1,92 @@
  {% extends 'core/base.html' %}
  {% block content %}
     <!-- Checkout are start-->
-    <div class="cart-area pt60 pb60 ">
+    <div class="cart-area ">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3 ">
                     <div class="billing-details">
                         <div class="contact-text right-side">
                             <h2>Delivery Details</h2>
-                            <form method="post" action="{% url 'core:payment' %}"> {%csrf_token%}
-                                <label>First Name</label>
-                                <input type="text" name="name" placeholder="First Name"/>
-                                <label>Last Name</label>
-                                <input type="text" name="name" placeholder="First Name"/>
-                                <div class="payment-section mt20 clearfix">
-                                    <div class="input-box pt20 mt20">
-                                    <input type="submit" value="Buy"/>
-                                    </div>
+                            <form method="post" action="{% url 'core:process-checkout' %}"> {%csrf_token%}
+                                <div class="input-box">
+                                    <label>Delivery Date</label>
+                                    <input type="text" name="delivery_date" class="info" placeholder="Select Date" id="datepicker">
                                 </div>
+                                <div class="first-last-name">
+                                    <div class="input-box name1">
+                                        <label>First Name</label>
+                                        <input type="text" name="first_name" class="info" placeholder="First Name">
+                                    </div>
+                                    <div class="input-box name2">
+                                        <label>Last Name</label>
+                                        <input type="text" name="last_name" class="info" placeholder="Last Name">
+                                    </div>
+                               </div>
+                                <div class="input-box">
+                                    <label>Company Name</label>
+                                    <input type="text" name="company" class="info" placeholder="Company Name">
+                                </div>
+                                <div class="input-box">
+                                    <label>Email</label>
+                                    <input type="email" name="email" class="info" placeholder="Email">
+                                </div>
+                                <div class="first-last-name">
+                                    <div class="input-box name1">
+                                        <label>Phone Number 1</label>
+                                        <input type="text" name="phone1" class="info" placeholder="Phone Number 1">
+                                    </div>
+                                    <div class="input-box name2">
+                                        <label>Phone Number 2</label>
+                                        <input type="text" name="phone2" class="info" placeholder="Phone Number 2">
+                                    </div>
+                               </div>
+                                <div class="input-box">
+                                    <label>Address <em>*</em></label>
+                                    <input type="text" name="add1" class="info" placeholder="Street Address">
+                                    <textarea placeholder="Specific directions , Landmarks etc" class="area-tex"></textarea>
+                                </div>
+                                <div class="input-box">
+                                    <label>Town/City <em>*</em></label>
+                                    <input type="text" name="add1" class="info" placeholder="Town/City">
+                                </div>
+                                <div class="checkout-total mt20">
+                       <h3>Cost</h3>
+
+                   <div class="table-responsive">
+                        <table class="checkout-area table">
+                       <thead>
+                        <tr class="cart_item check-heading">
+                            <td class="ctg-type"> Item </td>
+                            <td class="cgt-des"> Total</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="cart_item">
+                                <td class="ctg-type"> Subtotal</td>
+                                <td class="cgt-des">UGX {{cart.summary}}</td>
+                            </tr>
+                            <tr class="cart_item">
+                                <td class="ctg-type"> Total</td>
+                                <td class="cgt-des"> UGX {{cart.summary}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                   </div>
+                                    <div class="input-box">
+                                        <input type="radio" name="gender" value="pickup" checked> Pickup from our offices<br>
+  <input type="radio" name="gender" value="delivery"> Delivery to your address<br>
+                                    </div>
+                </div>
+                                  <div class="payment-section mt20 clearfix">
+                                   <div class="pay-toggle">
+                                      <div class="input-box pt20 mt20">
+                                         <input type="submit" class="in-btn" name="processed-checkout" value="Place order">
+                                      </div>
+                                   </div>
+                                   </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
                 </div>

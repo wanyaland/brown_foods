@@ -2,11 +2,10 @@
 {% block title %}Order {% endblock %}
 {% block content %}
 {% load core_extras %}
-<div class="product-details-area pt60 pb60">
-    <div class="container">
         <!--<pre> {% filter force_escape %} {% debug %} {% endfilter %} </pre>-->
         <div class="col-md-8 col-sm-8 col-xs-12">
             <div class="total-product">
+                <h3>Main Dish</h3>
             {% for object in menu_items %}
             <div class="row">
                 <div class="single-our-menu">
@@ -29,6 +28,26 @@
                 </div>
             </div>
             {% endfor %}
+                <h3>Side Dishes</h3>
+                {% for side_dish in side_dishes %}
+            <div class="row">
+                <div class="single-our-menu">
+                <div class="col-md-3 col-sm-3 shop-title">
+                    {{side_dish}}
+                </div>
+                <div class="col-md-2 col-sm-2 shop-price ">
+                    UGX {{side_dish.unit_price}}
+                </div>
+                <div class="col-md-2 col-sm-2 shop-quantity">
+                    <input type="number" min="1" value="0"  id="qty_{{side_dish.id}}" name="quantity"/>
+                </div>
+                <div class="col-md-2 col-sm-2 add-cart">
+                    <a class="btn btn-default"onclick="cartAction('{{side_dish.id}}')" >Add to Cart</a>
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+
                 </div>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-12">
@@ -41,30 +60,17 @@
                                 <div class="total-top-rated">
                                     <ul>
                                         {% for item in cart %}
-                                         <li>
+                                         <li >
                                              <div class="single-rate">
-                                                 <div class="rate-img">
-                                                     <a href="#"><img src="{{item.menu_item.image.url}}" alt=""></a>
-                                                 </div>
-                                                 <div class="rate-content">
-                                                     <div class="tate-title">
-                                                         <a href="#">{{item.menu_item}}</a>
-                                                     </div>
-
-                                                        <div class="cart-price">
-                                                           {{item.quantity}} x {{item.unit_price}}
-                                                        </div>
-                                                 </div>
+                                                 <div class="tate-title">{{item.menu_item}}</div>
+                                                 <div class="cart-price">{{item.quantity}} x {{item.unit_price}}</div>
                                              </div>
                                             </li>
                                         {% endfor %}
                                      </ul>
                                      <div class="sub-total">
-                                         <strong>Subtotal:</strong> <span>{{cart.summary}}</span>
+                                         <strong>Subtotal:</strong> <span id="sub-total">{{cart.summary}}</span>
                                      </div>
-                                    <div id="cart-item">
-
-                                    </div>
 
                                      <div class="view-check-btn">
                                          <a href="{% url 'core:cart' %}" class="com-btn">View Cart</a>
@@ -75,6 +81,5 @@
                          </aside>
                         </div>
                      </div>
-</div>
-    </div>
+
 {% endblock %}

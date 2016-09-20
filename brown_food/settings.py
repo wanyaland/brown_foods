@@ -37,7 +37,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    'django_pesapal',
 )
 
 
@@ -84,7 +83,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 PESAPAL_CONSUMER_KEY = 'Au93fiwr5A/NhPZqesxbjVNDqzFBdMI+'
 PESAPAL_CONSUMER_SECRET = 'd00fVQICYG8f/3kxueNRKQkfXnk='
-PESAPAL_IFRAME_LINK = 'http://demo.pesapal.com/api/PostPesapalDirectOrderV4'
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static/')
 MEDIA_URL = '/media/'

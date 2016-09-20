@@ -10,26 +10,10 @@ import urllib
 import time
 import datetime
 from django.conf import settings
-from django_pesapal.views import PaymentRequestMixin
+import pesapal
 
 
 # Create your views here.
-
-class PaymentView(PaymentRequestMixin):
-    def get_pesapal_payment_iframe(self):
-        '''
-        Authenticates with pesapal to get the payment iframe src
-        '''
-        order_info = {
-            'first_name':'Some',
-            'last_name':'Other',
-            'amount':100,
-            'description': 'Payment',
-            'reference':2,
-            'email': 'wanyaland@gmail.com',
-        }
-        iframe_src_url = self.get_payment_url(**order_info)
-        return iframe_src_url
 
 def login_customer(request):
     email = password = next_url = state = ''
@@ -90,37 +74,34 @@ def update_cart(request):
     pass
 
 def process_checkout(request):
-    '''
     if request.method=='POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
-        company = request.POST.get('company')
         email = request.POST.get('email')
-        phone = request.POST.get('phone')
-        add1 = request.POST.get('add1')
-        add2 = request.POST.get('add2')
-        order_notes = request.POST.get('order')
         billing_details = BillingDetails()
         billing_details.first_name = first_name
-        billing_details.last_name =last_name
-        billing_details.company = company
-        billing_details.phone_number = phone
+        billing_details.last_name = last_name
         billing_details.email = email
-        billing_details.address_line1 = add1
-        billing_details.address_line2 = add2
-        billing_details.order_notes = order_notes
-        billing_details.save()
-        cart = Cart(request)
-        api_call(cart)
-        cart.billing_details = billing_details
+        client = pesapal.PesaPal("Au93fiwr5A/NhPZqesxbjVNDqzFBdMI+","d00fVQICYG8f/3kxueNRKQkfXnk=",False)
+        total_cost = 500
+        request_data = {
+            'FirstName':first_name,
+            'LastName':last_name,
+            'Email':email,
+            'Amount':str(total_cost),
+            'Description':'Buying food from Brown foods',
+            'Email':'wanyaland@gmail.com',
+            'Type':'MERCHANT',
+            'Reference': str(datetime.datetime.now()),
+            'Currency':'UGX',
+        }
+        post_params = {
+            'oauth_callback': 'http://brown.co.ug/'
+        }
+        pesapal_request = client.postDirectOrder(post_params, request_data)
         return render(request,'core/payment.html',{
-            'cart':cart,
+            'iframe_url':pesapal_request.to_url(),
         })
-    else:
-         return render(request,'core/checkout.html',{
-        'cart':Cart(request),
-    })
-    '''
 
 def payment(request):
     return render(request,'core/payment.html')
@@ -136,7 +117,8 @@ def add_to_cart(request):
     menu_item= MenuItem.objects.get(id=menu_id)
     cart = Cart(request)
     cart.add(menu_item,menu_item.unit_price,quantity)
-    data={'success':'true','menu_name':menu_item.name,'quantity':quantity,'menu_price':str(menu_item.unit_price),'menu_image':menu_item.image.url}
+    total = cart.summary()
+    data={'success':'true','menu_name':menu_item.name,'quantity':quantity,'menu_price':str(menu_item.unit_price),'total':str(total)}
     return HttpResponse(json.dumps(data))
 
 def remove_from_cart(request):

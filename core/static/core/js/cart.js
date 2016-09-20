@@ -7,16 +7,13 @@ function cartAction(product_code) {
 	type:'post',
 	dataType:'json',
 	success:function(data){
-	    var cartWrapper = $('.my-cart');
-	    var cartList = cartWrapper.find('ul').eq(0);
-        var productAdded = $('<li><div class="single-rate"><div class="rate-img"><a href="#"><img src="/static/core/img/menu/01.JPG" alt=""></a></div></div></li>');
-        cartList.prepend(productAdded);
-        $("#add_"+product_code).hide()
-        $('#added_'+product_code).show()
+	    cartHandler(data);
 	},
 	error:function (){}
 	});
 }
+
+
 
 function remove(product_code) {
 	jQuery.ajax({
@@ -31,6 +28,18 @@ function remove(product_code) {
 	});
 }
 
+var cartHandler = function(data){
+   var wrapper = $('.my-cart');
+   var list = wrapper.find('ul');
+   var added = wrapper.find('div.single-rate')
+   var item = $('<li><div class="single-rate"></div></li>');
+   if(added.length==1) item = added;
+   else item.prependTo(list);
+   $('<div class="tate-title">'+data.menu_name+'</div>').appendTo(item);
+   $('<div class="cart-price">'+data.quantity+' x '+data.menu_price+'</div>').appendTo(item);
+   $('#sub-total').html(data.total);
+
+}
 
 
 function getCookie(name) {

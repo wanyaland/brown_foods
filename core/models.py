@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import (
    BaseUserManager,AbstractBaseUser
 )
+import datetime
 
 # Create your models here.
 
@@ -64,7 +65,9 @@ class BillingDetails(models.Model):
     latitude = models.FloatField(null=True)
     longitude = models.FloatField(null=True)
     phone_number = models.CharField(max_length=20,null=True)
+    phone_number2 = models.CharField(max_length=20,null=True)
     order_notes = models.TextField(null=True)
+    delivery_date = models.DateField(default=datetime.datetime.now())
 
     def __unicode__(self):
         return self.user.username
@@ -93,6 +96,7 @@ class MenuItem(models.Model):
     unit_price = models.DecimalField(max_digits=10,decimal_places=2)
     description = models.TextField(blank=True)
     menu_type = models.CharField(null=True,choices=CATEGORY,max_length=100)
+    content = models.TextField(blank=True,null=True)
 
     def __unicode__(self):
         return self.name
