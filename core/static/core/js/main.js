@@ -133,7 +133,6 @@
 		'autoclose': true
 	});	
 	
-    
 
     
 $('.acc-toggle').click(function() {

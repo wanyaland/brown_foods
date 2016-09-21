@@ -7,7 +7,7 @@ function cartAction(product_code) {
 	type:'post',
 	dataType:'json',
 	success:function(data){
-	    cartHandler(data);
+	    alert("Added");
 	},
 	error:function (){}
 	});
@@ -32,7 +32,7 @@ var cartHandler = function(data){
    //clear item from cart
    $('#itm_'+data.menu_id).val('');
    // add item to cart
-   $('#cart-list').prepend('<li class="row" id="itm_'+data.menu_id+'><span class="quantity">'+data.quantity+'</span><span class="itemName">'+data.menu_name+'</span><span class="price">'+data.menu_price+'</span>');
+   $('#cart-list').prepend('<li class="row" id="itm_'+data.menu_id+'><span class="quantity">'+data.quantity+'</span><span class="itemName">'+data.menu_name+'</span><span class="price">'+data.menu_price+'</span></li>');
    $('#sub-total').html(data.total);
 }
 
