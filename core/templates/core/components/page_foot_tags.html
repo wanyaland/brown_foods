@@ -25,6 +25,9 @@
 		<!-- google map  js -->
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuU_0_uLMnFM-2oWod_fzC0atPZj7dHlU"></script>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+       <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script>
             function initialize() {
                 var mapOptions = {
@@ -37,7 +40,7 @@
                 var marker = new google.maps.Marker({
                     position: map.getCenter(),
                     animation: google.maps.Animation.BOUNCE,
-                    icon: 'img/map-marker.png',
+                    icon: '/static/core/img/map-marker.png',
                     map: map
                 });
             }
@@ -48,3 +51,15 @@
 		<!-- main js -->
         <script src="/static/core/js/main.js"></script>
        <script src="/static/core/js/cart.js"></script>
+       <script>
+            var min = 1;
+            var currentTime = new Date();
+            if (currentTime.getHours() >= 19 ) {
+              min = 2;
+            }
+            $("#datepicker").datepicker({
+                 minDate : min,
+                 maxDate : min+12,
+                 beforeShowDay: $.datepicker.noWeekends
+              });
+       </script>

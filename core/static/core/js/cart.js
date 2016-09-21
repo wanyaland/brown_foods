@@ -1,16 +1,41 @@
-function cartAction(action,product_code) {
 
+function cartAction(product_code) {
+    quantity = $("#qty_"+product_code).val();
 	jQuery.ajax({
 	url: "/add_to_cart/",
-	data:{'menu_id':product_code,'quantity':1},
-	method:'post',
+	data:{'menu_id':product_code,'quantity':quantity},
+	type:'post',
 	dataType:'json',
 	success:function(data){
-        console.log(data.sucess)
+	    cartHandler(data);
 	},
 	error:function (){}
 	});
 }
+
+
+
+function remove(product_code) {
+	jQuery.ajax({
+	url: "/remove_from_cart/",
+	data:{'menu_id':product_code},
+	type:'post',
+	dataType:'json',
+	success:function(data){
+        alert("Removed from cart!");
+	},
+	error:function (){}
+	});
+}
+
+var cartHandler = function(data){
+   //clear item from cart
+   $('#itm_'+data.menu_id).val('');
+   // add item to cart
+   $('#cart-list').prepend('<li class="row" id="itm_'+data.menu_id+'><span class="quantity">'+data.quantity+'</span><span class="itemName">'+data.menu_name+'</span><span class="price">'+data.menu_price+'</span>');
+   $('#sub-total').html(data.total);
+}
+
 
 function getCookie(name) {
     var cookieValue = null;

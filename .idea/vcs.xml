@@ -4,5 +4,6 @@
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../africa_one" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../django-paypal-cart" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../django-pesapal" vcs="Git" />
   </component>
 </project>

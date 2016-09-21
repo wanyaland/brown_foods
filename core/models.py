@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import (
    BaseUserManager,AbstractBaseUser
 )
+import datetime
 
 # Create your models here.
 
@@ -46,7 +47,7 @@ class Customer(AbstractBaseUser):
     def has_perm(self,perm,obj=None):
         return True
 
-    def has_module_perm(self,app_label):
+    def has_module_perms(self,app_label):
         return True
 
     @property
@@ -64,7 +65,9 @@ class BillingDetails(models.Model):
     latitude = models.FloatField(null=True)
     longitude = models.FloatField(null=True)
     phone_number = models.CharField(max_length=20,null=True)
+    phone_number2 = models.CharField(max_length=20,null=True)
     order_notes = models.TextField(null=True)
+    delivery_date = models.DateField(default=datetime.datetime.now())
 
     def __unicode__(self):
         return self.user.username
@@ -84,10 +87,16 @@ class Cart(models.Model):
 
 
 class MenuItem(models.Model):
+    CATEGORY = (
+        ('M','MAIN'),
+        ('S','SIDE DISH'),
+    )
     name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='brown_food/%Y/%m/%d',null=True)
+    image = models.ImageField(upload_to='brown_food/%Y/%m/%d',null=True,blank=True)
     unit_price = models.DecimalField(max_digits=10,decimal_places=2)
-    description = models.TextField()
+    description = models.TextField(blank=True)
+    menu_type = models.CharField(null=True,choices=CATEGORY,max_length=100)
+    content = models.TextField(blank=True,null=True)
 
     def __unicode__(self):
         return self.name

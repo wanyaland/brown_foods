@@ -1,59 +1,19 @@
  {% extends 'core/base.html' %}
  {% block content %}
     <!-- Checkout are start-->
-    <div class="cart-area pt60 pb60 ">
+    <div class="cart-area ">
         <div class="container">
             <div class="row">
-                <div class="col-md-9 col-sm-8 col-xs-12">
-                    <div class="coupne-customer-area mb50">
-                      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                      <div class="panel">
-                        <div class="panel-heading" role="tab" id="headingTwo">
-                          <h4 class="panel-title">
-                          <img src="/static/core/img/icon/acc.jpg" alt="">
-                           Returning customer?
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                               Click here to login
-                            </a>
-                          </h4>
-                        </div>
-                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                          <div class="panel-body">
-                            <div class="sm-des pb20">
-                    If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.
-                            </div>
-
-                            <div class="first-last-name">
-                                <div class="input-box name1">
-                                    <label>User Name Or Email</label>
-                                    <input type="email" placeholder="Your Email" class="info" name="email">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3 ">
+                    <div class="billing-details">
+                        <div class="contact-text right-side">
+                            <h2>Delivery Details</h2>
+                            <form method="post" action="{% url 'core:process-checkout' %}"> {%csrf_token%}
+                                <div class="input-box">
+                                    <label>Delivery Date</label>
+                                    <input type="text" name="delivery_date" class="info" placeholder="Select Date" id="datepicker">
                                 </div>
-                                <div class="input-box name2">
-                                    <label>Password</label>
-                                    <input type="password" placeholder="Password" class="info" name="padd">
-                                </div>
-                                <div class="frm-action cc-area">
-                                    <div class="input-box tci-box">
-                                        <input type="submit" class="in-btn" name="processed-checkout" value="Login">
-                                    </div>
-                                    <span>
-                                <input type="checkbox" class="remr"> Remember me
-                                </span>
-                                    <a class="forgotten forg" href="#">Forgotten Password</a>
-                                </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 col-sm-12 col-xs-12">c
-                            <div class="billing-details">
-                                <div class="contact-text right-side">
-                                      <h2>Billing Details</h2>
-                            <form action="{% url 'core:signup' %}">
-                               <div class="first-last-name">
+                                <div class="first-last-name">
                                     <div class="input-box name1">
                                         <label>First Name</label>
                                         <input type="text" name="first_name" class="info" placeholder="First Name">
@@ -67,164 +27,70 @@
                                     <label>Company Name</label>
                                     <input type="text" name="company" class="info" placeholder="Company Name">
                                 </div>
-                               <div class="first-last-name">
+                                <div class="input-box">
+                                    <label>Email</label>
+                                    <input type="email" name="email" class="info" placeholder="Email">
+                                </div>
+                                <div class="first-last-name">
                                     <div class="input-box name1">
-                                        <label>Email Address</label>
-                                        <input type="email" name="email" class="info" placeholder="Your Email">
+                                        <label>Phone Number 1</label>
+                                        <input type="text" name="phone1" class="info" placeholder="Phone Number 1">
                                     </div>
                                     <div class="input-box name2">
-                                        <label>Phone Number</label>
-                                        <input type="text" name="phone" class="info" placeholder="Phone Number">
+                                        <label>Phone Number 2</label>
+                                        <input type="text" name="phone2" class="info" placeholder="Phone Number 2">
                                     </div>
                                </div>
-
-                                <div class="input-box">
-                            </div>
-
                                 <div class="input-box">
                                     <label>Address <em>*</em></label>
                                     <input type="text" name="add1" class="info" placeholder="Street Address">
-                                    <input type="text" name="add2" class="info mt10" placeholder="Apartment, suite, unit etc. (optional)">
+                                    <textarea placeholder="Specific directions , Landmarks etc" class="area-tex"></textarea>
                                 </div>
-
                                 <div class="input-box">
                                     <label>Town/City <em>*</em></label>
                                     <input type="text" name="add1" class="info" placeholder="Town/City">
                                 </div>
+                                <div class="checkout-total mt20">
+                       <h3>Cost</h3>
 
-
-                                <div class="create-acc clearfix">
-                                    <div class="acc-toggle">
-                                        <input type="checkbox" id="acc-toggle">
-                                        <label for="acc-toggle">Create an Account</label>
-                                    </div>
-                                    <div class="create-acc-body">
-                                       <div class="sm-des">
-                                           Create an account by entering the information below.If you are a returning customer please login at the top of the page.
-                                       </div>
-                                        <div class="input-box">
-                                            <label>Account password <em>*</em></label>
-                                            <input type="password" name="pass" class="info" placeholder="Password">
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </form>
-                            </div>
-                        </div>
-                    </div>
-                        <div class="col-md-6 col-sm-12 col-xs-12">
-                            <div class="billing-details">
-                                <div class="right-side">
-
-
-                                    <div class="ship-acc clearfix">
-                                        <!--
-                                    <div class="ship-toggle pb20">
-                                        <input type="checkbox" id="ship-toggle">
-                                        <label for="ship-toggle">Ship to a different address?</label>
-                                    </div> -->
-                                    <div class="ship-acc-body">
-                                        <form action="#">
-                                            <div class="first-last-name">
-                                                <div class="input-box name1">
-                                                    <label>First Name</label>
-                                                    <input type="text" name="first_name" class="info" placeholder="First Name">
-                                                </div>
-                                                <div class="input-box name2">
-                                                    <label>Last Name</label>
-                                                    <input type="text" name="last_name" class="info" placeholder="Last Name">
-                                                </div>
-                                            </div>
-                                            <div class="input-box">
-                                                <label>Company Name</label>
-                                                <input type="text" name="company" class="info" placeholder="Company Name">
-                                            </div>
-
-                                            <div class="input-box">
-                                                <label>Address <em>*</em></label>
-                                                <input type="text" name="add1" class="info" placeholder="Street Address">
-                                                <input type="text" name="add2" class="info mt10" placeholder="Apartment, suite, unit etc. (optional)">
-                                            </div>
-
-                                            <div class="input-box">
-                                                <label>Town/City <em>*</em></label>
-                                                <input type="text" name="add1" class="info" placeholder="Town/City">
-                                            </div>
-
-                                            <div class="first-last-name clearfix">
-                                                <div class="input-box name1">
-                                                    <label>State/Division <em>*</em></label>
-                                                    <input type="email" name="email" class="info" placeholder="Your Email">
-                                                </div>
-                                                <div class="input-box name2">
-                                                    <label>Post Code/Zip Code<em>*</em></label>
-                                                    <input type="text" name="phone" class="info" placeholder="Phone Number">
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    </div>
-                            <div class="form">
-                                <div class="input-box">
-                                    <label>Order Notes</label>
-                                    <textarea name="order" placeholder="Notes about your order, e.g. special notes for delivery." class="area-tex"></textarea>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                    </div>
-                   <div class="checkout-total mt20">
-                       <h3>Your order</h3>
-                   <form action="#" method="post">
                    <div class="table-responsive">
                         <table class="checkout-area table">
                        <thead>
                         <tr class="cart_item check-heading">
-                            <td class="ctg-type"> Product</td>
+                            <td class="ctg-type"> Item </td>
                             <td class="cgt-des"> Total</td>
                         </tr>
                         </thead>
                         <tbody>
-                        {% for item in cart %}
-                           <tr class="cart_item check-item">
-                                <td class="ctg-type"> {{item.menu_item}}  × <span>{{item.quantity}}</span></td>
-                                <td class="cgt-des"> {{item.total_price}}</td>
-                            </tr>
-                        {% endfor %}
                             <tr class="cart_item">
                                 <td class="ctg-type"> Subtotal</td>
-                                <td class="cgt-des">{{cart.summary}}</td>
+                                <td class="cgt-des">UGX {{cart.summary}}</td>
                             </tr>
-                        <!--
-                            <tr class="cart_item">
-                                <td class="ctg-type">Shipping</td>
-                                <td class="cgt-des">Free Shiping</td>
-                            </tr> -->
                             <tr class="cart_item">
                                 <td class="ctg-type"> Total</td>
-                                <td class="cgt-des"> {{cart.summary}} </td>
+                                <td class="cgt-des"> UGX {{cart.summary}} </td>
                             </tr>
                         </tbody>
                     </table>
                    </div>
-                </form>
+                                    <div class="input-box">
+                                        <input type="radio" name="gender" value="pickup" checked> Pickup from our offices<br>
+  <input type="radio" name="gender" value="delivery"> Delivery to your address<br>
+                                    </div>
                 </div>
-
-                    <div class="payment-section mt20 clearfix">
-                        <div class="pay-toggle">
-                            <form action="{%url 'core:process-checkout'%}" method="post">{%csrf_token%}
-                                <div class="input-box pt20 mt20">
-                                    <input type="submit" class="in-btn" name="processed-checkout" value="Place order">
-                                </div>
+                                  <div class="payment-section mt20 clearfix">
+                                   <div class="pay-toggle">
+                                      <div class="input-box pt20 mt20">
+                                         <input type="submit" class="in-btn" name="processed-checkout" value="Place order">
+                                      </div>
+                                   </div>
+                                   </div>
                             </form>
                         </div>
                     </div>
                 </div>
+                </div>
+            </div>
         </div>
-    </div>
-    </div>
 
 {% endblock %}

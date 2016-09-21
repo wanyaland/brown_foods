@@ -10,5 +10,6 @@
     <orderEntry type="module" module-name="ajax-shopping-cart-files-master" />
     <orderEntry type="module" module-name="php-shopping-cart-with-jquery-ajax" />
     <orderEntry type="module" module-name="lavie_resturant" />
+    <orderEntry type="module" module-name="django-pesapal" />
   </component>
 </module>

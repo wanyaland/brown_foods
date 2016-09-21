@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import CartItem,MenuItem,BillingDetails
+from .models import CartItem,MenuItem,BillingDetails, Customer
 from django.views.generic import *
 from django.core.exceptions import ObjectDoesNotExist
 from cart import Cart
@@ -9,15 +9,12 @@ from django.contrib.auth import login,logout,authenticate
 import urllib
 import time
 import datetime
-import urllib2
-try:
-    from xml.etree import cElementTree as ElementTree
-except ImportError,e:
-    from xml.etree import ElementTree
 from django.conf import settings
+import pesapal
 
 
 # Create your views here.
+
 def login_customer(request):
     email = password = next_url = state = ''
     if request.GET:
@@ -40,7 +37,19 @@ def login_customer(request):
             state = "Your email and password do not match"
     return render(request, 'core/login.html', {'state': state, 'email': email, 'password': password, 'next': next_url, })
 
+def logout_customer(request):
+    logout(request)
+    return redirect('core:home')
+
 def register(request):
+    if request.POST:
+        email = request.POST.get('email')
+        password = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        customer = Customer()
+        customer.email = email
+        customer.password = password
+        customer.save()
     return render(request,'core/login.html')
 
 def home(request):
@@ -64,64 +73,36 @@ def cart(request):
 def update_cart(request):
     pass
 
-def api_call(cart):
-    url = "https://www.pesapal.com/API/PostPesapalDirectOrderV4"
-    root = ElementTree.Element('PesapalDirectOrderInfo')
-    root.set('xmlns:xsi',"http://www.w3.org/2001/XMLSchema-instance")
-    root.set('xmlns:xsd',"http://www.w3.org/2001/XMLSchema")
-    root.set('amount',str(cart.summary))
-    root.set('currency',str('UGX'))
-    root.set('description','order payment for')
-    root.set('type','MERCHANT')
-    root.set('reference',str(1))
-    root.set('firstname',str(cart.billing_details.first_name))
-    root.set('lastname',str(cart.billing_details.last_name))
-    root.set('email',str(cart.billing_details.email))
-    root.set('xmlns',"http://www.pesapal.com")
-    data = {
-        'oauth_callback':'',
-        'oauth_consumer_key':settings.PESAPAL_KEY,
-        'oauth_nonce':str(datetime.datetime.now()),
-        'oauth_signature':settings.PEASPAL_SECRET,
-        'ouath_signature_method':'HMAC-SHA1',
-        'oauth_timestamp':str(time.time()),
-        'oauth_version':'1.0',
-        'pesapal_request_data':ElementTree.dump(root)
-    }
-    request = urllib2.Request(url,urllib.urlencode(data),headers={'Content-Type': 'application/xml'})
-    return urllib2.urlopen(request)
-
 def process_checkout(request):
     if request.method=='POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
-        company = request.POST.get('company')
         email = request.POST.get('email')
-        phone = request.POST.get('phone')
-        add1 = request.POST.get('add1')
-        add2 = request.POST.get('add2')
-        order_notes = request.POST.get('order')
+        address = request.POST.get('add1')
         billing_details = BillingDetails()
         billing_details.first_name = first_name
-        billing_details.last_name =last_name
-        billing_details.company = company
-        billing_details.phone_number = phone
+        billing_details.last_name = last_name
         billing_details.email = email
-        billing_details.address_line1 = add1
-        billing_details.address_line2 = add2
-        billing_details.order_notes = order_notes
-        billing_details.save()
+        client = pesapal.PesaPal("Au93fiwr5A/NhPZqesxbjVNDqzFBdMI+","d00fVQICYG8f/3kxueNRKQkfXnk=",False)
         cart = Cart(request)
-        api_call(cart)
-        cart.billing_details = billing_details
+        total_cost = cart.summary()
+        request_data = {
+            'FirstName':first_name,
+            'LastName':last_name,
+            'Email':email,
+            'Amount':str(total_cost),
+            'Description':'Buying food from Brown foods',
+            'Type':'MERCHANT',
+            'Reference': str(datetime.datetime.now()),
+            'Currency':'UGX',
+        }
+        post_params = {
+            'oauth_callback': 'http://brown.co.ug/'
+        }
+        pesapal_request = client.postDirectOrder(post_params, request_data)
         return render(request,'core/payment.html',{
-            'cart':cart,
+            'iframe_url':pesapal_request.to_url(),
         })
-    else:
-         return render(request,'core/checkout.html',{
-        'cart':Cart(request),
-    })
-
 
 def payment(request):
     return render(request,'core/payment.html')
@@ -132,16 +113,18 @@ def checkout(request):
     })
 
 def add_to_cart(request):
-    menu_id = request.POST['menu_id']
-    menu_item= MenuItem.objects.get(id=menu_id)
     quantity = request.POST.get('quantity')
+    menu_id = request.POST.get('menu_id')
+    menu_item= MenuItem.objects.get(id=menu_id)
     cart = Cart(request)
     cart.add(menu_item,menu_item.unit_price,quantity)
-    data={'success':'true'}
+    cart_item = CartItem.objects.get(cart=cart,menu_item=menu_item)
+    total = cart.summary()
+    data={'item_id':cart_item.id,'menu_name':cart_item.menu_item,'quantity':cart_item.quantity,'menu_price':str(cart_item.unit_price),'total':str(total)}
     return HttpResponse(json.dumps(data))
 
 def remove_from_cart(request):
-    menu_id = request.GET.get('id')
+    menu_id = request.POST.get('menu_id')
     menu_item = MenuItem.objects.get(id=menu_id)
     cart = Cart(request)
     cart.remove(menu_item)
@@ -162,10 +145,21 @@ class MenuDetail(DetailView):
 def how_it_works(request):
     return render(request,'core/how-it-works.html')
 
+def complete(request):
+    return render(request,'core/complete.html')
+
 def menu(request):
-    menu_items = MenuItem.objects.all()
-    context = {'menu_items':menu_items}
+    menu_items = MenuItem.objects.filter(menu_type='M')
+    side_dishes = MenuItem.objects.filter(menu_type='S')
+    context = {'menu_items':menu_items,'side_dishes':side_dishes,}
     return render(request,'core/menu.html',context)
+
+def order(request):
+    cart = Cart(request)
+    menu_items = MenuItem.objects.filter(menu_type='M')
+    side_dishes = MenuItem.objects.filter(menu_type='S')
+    context = {'menu_items':menu_items,'side_dishes':side_dishes,'cart':cart,}
+    return render(request,'core/menu_list.html',context)
 
 
 

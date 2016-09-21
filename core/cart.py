@@ -33,6 +33,7 @@ class Cart:
         request.session[CART_ID] = cart.id
         return cart
 
+
     def add(self, menu_item, unit_price, quantity=1):
         try:
             cart_item = models.CartItem.objects.get(

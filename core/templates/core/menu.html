@@ -1,54 +1,76 @@
 {% extends 'core/base.html' %}
 {% block title %} Menu {% endblock %}
 {% block content %}
-<!-- our-special-menu-area are start-->
-    <div class="our-special-menu-area pt60 pb60 ">
-            <div class="container">
-                <div class="row">
-                      <div class="col-md-12">
-                           <div class="section-title text-center pb40">
-                               <h1>Bento</h1>
-                               <h2>Menu</h2>
-                                <div class="sec-img">
-                                    <img src="/static/core/img/icon/product2.png" alt="">
-                                </div>
-                           </div>
-                      </div>
-                </div>
-                <div class="row">
-                   <div class="col-md-2 hidden-sm hidden-xs"></div>
-                    <div class="col-md-8 col-sm-12 col-xs-12">
-                        <div class="special-menu text-center">
-                        <div class="total-menu-item carsoule-btn smp-carsoule">
-
-                            <div class="total-menu-single">
-                                {% for menu_item in menu_items %}
-                               <div class="single-menu-item">
-                                   <div class="sma-img">
-                                    <img src="/static/core/img/menu/405/01.JPG"  alt="">
-                                    <div class="sma-heading">
-                                        <h3></h3>
-                                   </div>
-                                </div>
-                                   <div class="smi-heading">
-                                       <a href="#">{{menu_item}}</a>
-                                   </div>
-                                    <div class="smi-des">
-                                        <span>{{menu_item.description}}</span>
-                                    </div>
-                                    <div class="smi-price">
-                                       <span>{{menu_item.unit_price}}</span>
-                                    </div>
-                               </div>
-                                 {% endfor %}
-                            </div>
-
-                        </div>
-                        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title text-center pb40">
+                    <div class="sec-img">
+                        <img src="/static/core/img/icon/product2.png" alt="">
                     </div>
                 </div>
-
             </div>
         </div>
-    <!-- our-special-menu-area are end-->
+        <div class="row">
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <div class="total-product">
+
+                    <div class="row">
+                        {% for item in menu_items %}
+                        <div class="col-md-6 col-sm-6">
+                           <div class="single-our-menu">
+                               <div>
+                                   <div class="sm-image">
+                                       <a href="#"><img src="{{item.image.url}}" alt=""></a>
+                                   </div>
+                                   <div class="menu-heading">
+                                       {{item}}
+                                   </div>
+                                   <div class="sm-des">
+                                       {{item.content}}
+                                   </div>
+                                   <div class="sm-des">
+                                       <strong>{{item.description}}</strong>
+                                   </div>
+                                   <div class="sm-price">
+                                       UGX {{item.unit_price}}
+                                   </div>
+                               </div>
+                           </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+            <aside>
+                             <div class="side-dish top-rated">
+                                 <div class="whdget-title" align="center">
+                                     <h2>Side Dishes</h2>
+                                 </div>
+                                <div class="total-top-rated">
+                                    <ul>
+                                        {% for side_dish in side_dishes %}
+                                         <li>
+                                             <div class="single-rate">
+                                                 <div class="rate-img">
+                                                     <a href="#"><img src="img/product/01.jpg" alt=""></a>
+                                                 </div>
+                                                 <div class="rate-content">
+                                                     <div class="tate-title">
+                                                         <a href="#">{{side_dish}}</a>
+                                                     </div>
+                                                        <div >
+                                                            UGX {{side_dish.unit_price}}
+                                                        </div>
+                                                 </div>
+                                             </div>
+                                         </li>
+                                        {% endfor %}
+                                     </ul>
+                                </div>
+                             </div>
+                         </aside>
+        </div>
+
+
 {% endblock %}

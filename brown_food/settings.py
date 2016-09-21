@@ -81,11 +81,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-
+PESAPAL_CONSUMER_KEY = 'Au93fiwr5A/NhPZqesxbjVNDqzFBdMI+'
+PESAPAL_CONSUMER_SECRET = 'd00fVQICYG8f/3kxueNRKQkfXnk='
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static/')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
-PESAPAL_KEY = "Au93fiwr5A/NhPZqesxbjVNDqzFBdMI+"
-PESAPAL_SECRET = "d00fVQICYG8f/3kxueNRKQkfXnk="
-AUTH_USER_MODEL = 'core.Customer'

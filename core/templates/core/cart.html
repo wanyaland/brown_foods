@@ -21,9 +21,9 @@
                         <tbody>
                             {% for item in cart %}
                             <tr class="cart_item">
-                                <td class="remove"><a href="#">X</a></td>
-                                <td class="rate-img">
-                                    <a href="#"><img src="/static/core/menu/01.JPG" alt=""> </a>
+                                <td class="remove"><a onclick="remove('item.id')">X</a></td>
+                                <td>
+                                    <a href="#"><img class="order-img" src="{{item.image.url}}" alt=""> </a>
                                 </td>
                                 <td class="item-title"> <a href="#">{{item.menu_item.name}} </a></td>
                                 <td class="item-price"> {{item.unit_price}} </td>
