@@ -37,6 +37,12 @@
 /*----------------------------------------*/
 /*  1.  Theme default CSS
 /*----------------------------------------*/
+@media (min-width: 1200px) {
+    .brown-food-container{
+        width:960px;
+        margin:0 auto;
+    }
+}
 html,
 body {
     height: 100%;

@@ -117,8 +117,16 @@ def add_to_cart(request):
     menu_item= MenuItem.objects.get(id=menu_id)
     cart = Cart(request)
     cart.add(menu_item,menu_item.unit_price,quantity)
+    items = []
+    for cart_item in cart:
+        item = {}
+        item['id']= cart_item.id
+        item['name'] = cart_item.menu_item.name
+        item['quantity']= cart_item.quantity
+        item['price']= cart_item.unit_price
+        items.append(item)
     total = cart.summary()
-    data={'success':'true','menu_name':menu_item.name,'quantity':quantity,'menu_price':str(menu_item.unit_price),'total':str(total)}
+    data={"items":items,"total":str(total),}
     return HttpResponse(json.dumps(data))
 
 def remove_from_cart(request):
