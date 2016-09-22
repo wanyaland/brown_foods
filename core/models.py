@@ -113,8 +113,18 @@ class CartItem(models.Model):
 class Basket(models.Model):
     product_id = models.IntegerField()
 
+class PesaPal(models.Model):
 
+    PESAPAL_STATUS_CHOICES = (
+                ('PENDING', 'Pending'),
+                ('COMPLETED', 'Completed'),
+                ('FAILED', 'Failed'),
+                ('INVALID', 'Invalid'),
+            )
 
+    tracking_id = models.CharField(max_length=50,verbose_name="Pesapal Tracking id")
+    reference = models.CharField(max_length=50,verbose_name="Pesapal reference number")
+    status = models.CharField(max_length=10,choices=PESAPAL_STATUS_CHOICES,default='PENDING')
 
 
 

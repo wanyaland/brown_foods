@@ -23,8 +23,9 @@ urlpatterns = patterns('',
                        url(r'^login/$',login_customer,name='login'),
                        url(r'^logout/$',logout_customer,name='logout'),
                        url(r'^complete/$',complete,name='complete'),
-
-
+                       url(r'^process-order/$',process_order,name='process-order'),
+                       url(r'^order-summary/$',order_summary,name='order-summary'),
+                       url(r'^my-account/$',my_account,name='my-account'),
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import CartItem,MenuItem,BillingDetails, Customer
+from .models import CartItem,MenuItem,BillingDetails, Customer,PesaPal
 from django.views.generic import *
 from django.core.exceptions import ObjectDoesNotExist
 from cart import Cart
@@ -11,6 +11,7 @@ import time
 import datetime
 from django.conf import settings
 import pesapal
+import requests
 
 
 # Create your views here.
@@ -90,13 +91,12 @@ def process_checkout(request):
             'Email':email,
             'Amount':str(total_cost),
             'Description':'Buying food from Brown foods',
-            'Email':'wanyaland@gmail.com',
             'Type':'MERCHANT',
             'Reference': str(datetime.datetime.now()),
             'Currency':'UGX',
         }
         post_params = {
-            'oauth_callback': 'http://brown.co.ug/'
+            'oauth_callback': 'http://brown.co.ug/process-order'
         }
         pesapal_request = client.postDirectOrder(post_params, request_data)
         return render(request,'core/payment.html',{
@@ -137,8 +137,45 @@ def remove_from_cart(request):
     data = {'success':'true'}
     return HttpResponse(json.dumps(data),content_type="application/json")
 
-def process_payment(request):
-    pass
+def my_account(request):
+    return render(request,'core/my_account.html')
+
+def order_summary(request):
+    return render(request,'core/order_summary.html')
+
+def process_order(request):
+    '''
+    Handle the callback from PesaPal
+    '''
+    tracking_id = request.GET.get('pesapal_transaction_tracking_id', '')
+    reference = request.GET.get('pesapal_merchant_reference', '')
+    errors = ''
+    msg = ''
+    if tracking_id and reference:
+        params = {
+            'pesapal_merchant_reference': reference,
+            'pesapal_transaction_tracking_id': tracking_id
+        }
+        client = pesapal.PesaPal("Au93fiwr5A/NhPZqesxbjVNDqzFBdMI+","d00fVQICYG8f/3kxueNRKQkfXnk=",False)
+        pesapal_request = client.queryPaymentStatus(params)
+        url = pesapal_request.to_url()
+        print url
+        pesapal_response = requests.get(url)
+        pesapal_response_data = pesapal_response.text
+        pesapal_status = pesapal_response_data.split("=")[1]
+        if pesapal_status == 'COMPLETED':
+            msg="Transaction was successful"
+        else:
+            msg = "Transaction is %s" % pesapal_status
+        p_ref = PesaPal(tracking_id=tracking_id,reference=reference,status=pesapal_status)
+        p_ref.save()
+
+    else :
+        errors = 'Transaction Failed'
+
+    return render(request,'core/process-order.html',{
+        'msg':msg,'errors':errors,
+    })
 
 class MenuList(ListView):
     model = MenuItem
