@@ -1630,6 +1630,10 @@ width:100%;
     width: 50px;
 }
 .qty-add .com-btn { background: #3b3330 none repeat scroll 0 0;
+
+.btn-add{
+   margin-top:35px;
+}
                     }
 .cata_gories ul li a { color: #3a332f }
 .cata_gories ul li { display: inline-block }
@@ -1640,7 +1644,7 @@ width:100%;
     filter: alpha(opacity=60);
 }
 .cata_gories { margin-top: 35px }
-.qty-add { margin-top: 35px }
+.qty-add { }
 .pd-content .sm-price {
     position: static;
     text-align: left;
@@ -2064,7 +2068,7 @@ h4.panel-title a:hover {
  }
 
  .brown-food-footer{
-   background-color:#8B4513;
+
  }
 
 .navbar-custom .navbar-nav > li > a {

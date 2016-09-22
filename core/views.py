@@ -199,9 +199,6 @@ class MenuDetail(DetailView):
 def how_it_works(request):
     return render(request,'core/how-it-works.html')
 
-def complete(request):
-    return render(request,'core/complete.html')
-
 def menu(request):
     menu_items = MenuItem.objects.filter(menu_type='M')
     side_dishes = MenuItem.objects.filter(menu_type='S')
