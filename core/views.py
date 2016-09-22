@@ -74,17 +74,28 @@ def cart(request):
 def update_cart(request):
     pass
 
-def process_checkout(request):
+def checkout(request):
     if request.method=='POST':
+        cart = Cart(request)
+        delivery_fee = request.GET.get('delivery_fee')
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         email = request.POST.get('email')
-        billing_details = BillingDetails()
-        billing_details.first_name = first_name
-        billing_details.last_name = last_name
-        billing_details.email = email
+        address1 = request.POST.get('add1')
+        address2= request.POST.get('add2')
+        phone1 = request.POST.get('phone1')
+        phone2 = request.POST.get('phone2')
+        billing_details = BillingDetails(first_name=first_name,last_name=last_name,email=email,phone_number=phone1,
+                                         phone_number2=phone2,address_line1=address1,address_line2=address2)
+        billing_details.save()
+        cart.billing_details = billing_details
+        cart.save()
         client = pesapal.PesaPal("Au93fiwr5A/NhPZqesxbjVNDqzFBdMI+","d00fVQICYG8f/3kxueNRKQkfXnk=",False)
-        total_cost = 500
+        if delivery_fee:
+            total_cost = cart.summary()+ 5000
+        else :
+            total_cost = cart.summary()
+
         request_data = {
             'FirstName':first_name,
             'LastName':last_name,
@@ -147,10 +158,9 @@ def process_order(request):
     '''
     Handle the callback from PesaPal
     '''
+    cart = Cart(request)
     tracking_id = request.GET.get('pesapal_transaction_tracking_id', '')
     reference = request.GET.get('pesapal_merchant_reference', '')
-    errors = ''
-    msg = ''
     if tracking_id and reference:
         params = {
             'pesapal_merchant_reference': reference,
@@ -163,18 +173,19 @@ def process_order(request):
         pesapal_response = requests.get(url)
         pesapal_response_data = pesapal_response.text
         pesapal_status = pesapal_response_data.split("=")[1]
+
         if pesapal_status == 'COMPLETED':
-            msg="Transaction was successful"
+            state="Transaction was successful"
+            cart.checked_out = True
+            cart.save()
         else:
-            msg = "Transaction is %s" % pesapal_status
-        p_ref = PesaPal(tracking_id=tracking_id,reference=reference,status=pesapal_status)
+            state = "Transaction is %s" % pesapal_status
+
+        p_ref = PesaPal(tracking_id=tracking_id,reference=reference,status=pesapal_status,cart=cart)
         p_ref.save()
 
-    else :
-        errors = 'Transaction Failed'
-
     return render(request,'core/process-order.html',{
-        'msg':msg,'errors':errors,
+        'state':state,
     })
 
 class MenuList(ListView):

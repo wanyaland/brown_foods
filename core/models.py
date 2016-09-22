@@ -125,8 +125,7 @@ class PesaPal(models.Model):
     tracking_id = models.CharField(max_length=50,verbose_name="Pesapal Tracking id")
     reference = models.CharField(max_length=50,verbose_name="Pesapal reference number")
     status = models.CharField(max_length=10,choices=PESAPAL_STATUS_CHOICES,default='PENDING')
-
-
+    cart = models.OneToOneField(Cart,null=True)
 
 
 
