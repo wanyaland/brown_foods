@@ -57,40 +57,22 @@
    </div>
 
     <!--footer area are start-->
-    <footer>
-        <div class="navbar navbar-custom" role="navigation">
-         <div class="container">
-             <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-12 aligncenter">
-                    <div class="single-footer text-center">
-                        <!--<div class="sosa-icon">
-                            <img src="/static/core/img/icon/icon-service.png" alt="">
-                        </div> -->
-                             <img src="/static/core/img/brown_logo.png">
-                             <span>
-                                Sales agent for Takumi Foods Ltd <br>
-                            </span>
-                             <span>Copyright &copy; 2016-All rights reserved.</span>
-                           <!-- <div class="phone-no">
-                                <span>+84 866 725 048</span>
-                            </div> -->
-
-                     </div>
-                </div>
-             </div>
-
-             </div>
-     </div>
-    <!--footer area are end-->
+    <footer class="footer">
+        <div class="navbar-custom brown-food-container">
+            <a class="logo" href="{% url 'core:home' %}"><img src="/static/core/img/brown_logo.png"> </a><br>
+            <p>Sales Agent for Takumi Foods Ltd</p>
+            <p>Copyright &copy;2016-All rights reserved</p>
+        </div>
     </footer>
+    <!-- footer area stop -->
 
 
 
 </div>
-
+</div>
 {% include 'core/components/page_foot_tags.html' %}
 
-</div>
+
 </body>
 
 </html>

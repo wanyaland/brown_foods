@@ -2061,7 +2061,11 @@ h4.panel-title a:hover {
     background-color:#8B4513;
     color:#ffffff;
     border-radius:0;
-}
+ }
+
+ .brown-food-footer{
+   background-color:#8B4513;
+ }
 
 .navbar-custom .navbar-nav > li > a {
     color:#fff;
