@@ -25,39 +25,80 @@
                           </div>
                               <div class="btn-add">
                           <div class="col-md-2 col-sm-2">
-                               <input type="number" class="qty-btn" min="1" value="0"/>
+                               <input type="number" class="qty-btn" min="1" value="0" name="quantity" id="qty_{{item.id}}"/>
                           </div>
                           <div class="col-md-2 col-sm-2 ">
-                              <a class="btn btn-default " href="#">Add to Cart</a>
+                              <a class="btn btn-default" onclick="cartAction('{{item.id}}')">Add to Cart</a>
                           </div>
                               </div>
                       </div>
                           </div>
+                      {% endfor %}
+
+                      {% for side_dish in side_dishes %}
+                      <div class="panel">
+                          <div class="panel-body">
+                              <div class="col-md-8 col-sm-8">
+                                <div class="pd-content">
+                                  <div class="section-title">
+                                        <h3>{{side_dish}}</h3>
+                                   </div>
+                                    <div class="sm-price">
+                                        UGX {{side_dish.unit_price}}
+                                    </div>
+                                </div>
+                          </div>
+                              <div class="btn-add">
+                          <div class="col-md-2 col-sm-2">
+                               <input type="number" class="qty-btn" min="1" value="0" name="quantity" id="qty_{{side_dish.id}}"/>
+                          </div>
+                          <div class="col-md-2 col-sm-2 ">
+                              <a class="btn btn-default" onclick="cartAction('{{side_dish.id}}')">Add to Cart</a>
+                          </div>
+                              </div>
+                          </div>
+                      </div>
                       {% endfor %}
                   </div>
         <div class="col-md-4 col-sm-4 col-xs-12">
                        <div class="total-aside">
                         <aside>
                              <div class="single-widget my-cart">
-                                 <div class="whdget-title">
+                                 <div class="whdget-title text-centered">
                                      <h2>Your Cart</h2>
                                  </div>
                                 <div class="total-top-rated">
+                                    <!-- Add Delivery Date -->
+                                    <div>
+                                        <label>Delivery Date:</label>
+                                        <input id="datepicker" placeholder="Select Date" name="delivery-date"/>
+                                    </div>
                                     <ul>
+                                        <li class="row">
+                                            <span class="quantity">Qty</span>
+                                            <span class="itemName">Item</span>
+                                            <span class="price">Price</span>
+                                        </li>
+
                                         {% for item in cart %}
-                                         <li >
-                                             <div class="single-rate">
-                                                 <div class="tate-title">{{item.menu_item}}</div>
-                                                 <div class="cart-price">{{item.quantity}} x {{item.unit_price}}</div>
-                                             </div>
-                                            </li>
+                                        <li class="row">
+                                            <span class="quantity">{{item.quantity}}</span>
+                                            <span class="itemName">{{item.menu_item}}</span>
+                                            <span class="price">{{item.unit_price}}</span>
+
+                                        </li>
                                         {% endfor %}
+                                        <li class="row">
+                                            <span id="sub-total" class="total">SubTotal: UGX {{cart.summary}}</span>
+                                        </li>
+                                        <li class="row">
+                                            <label for="id-delivery" class="itemName">Delivery Charge:-</label>
+                                            <input type="checkbox" id="id-delivery" class="price"></span>
+                                        </li>
                                      </ul>
-                                     <div class="sub-total">
-                                         <strong>Subtotal:</strong> <span id="sub-total">{{cart.summary}}</span>
-                                     </div>
+
                                      <div class="view-check-btn">
-                                         <a href="{% url 'core:cart' %}" class="com-btn">View Cart</a>
+                                         <!--<a href="{% url 'core:cart' %}" class="com-btn">View Cart</a>-->
                                          <a href="{% url 'core:checkout' %}" class="com-btn">Checkout</a>
                                      </div>
                                 </div>
