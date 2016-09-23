@@ -23,7 +23,10 @@ urlpatterns = patterns('',
                        url(r'^logout/$',logout_customer,name='logout'),
                        url(r'^process-order/$',process_order,name='process-order'),
                        url(r'^order-summary/$',order_summary,name='order-summary'),
-                       url(r'^my-account/$',my_account,name='my-account'),
+                       url(r'^view-account/(?P<pk>\d+)/$',ViewAccount.as_view(),name='my-account'),
+                       url(r'^edit-account/(?P<pk>\d+)/$',EditAccount.as_view(),name='edit-account'),
+                       url(r'^delivery_charged/$',delivery_charged,name='delivery_charged'),
+
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

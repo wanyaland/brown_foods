@@ -1,7 +1,33 @@
 {% extends 'core/base.html' %}
 {% block content %}
-<div class="row">
+
     <!-- customer order details -->
     <!-- total summary -->
-</div>
+
+                <table class="table">
+                     <thead>
+                          <tr>
+                                <th>Order #</th>
+                                <th>Delivery Date</th>
+                                <th>Customer</th>
+                                <th>Delivery Address</th>
+                                <th>Payment Status</th>
+                                <th >Delivery Status</th>
+                                <th >Amount</th>
+                            </tr>
+                      </thead>
+                      <tbody>
+                           {% for order in orderList %}
+                                <tr>
+                                 <td>{{order.id}}</td>
+                                 <td>{{order.billing_details.delivery_date}}</td>
+                                 <td>{{order.billing_details.customer.email}}</td>
+                                 <td>{{order.billing_details.address_line1}}</td>
+                                 <td>{{order.pesapal.status}}</td>
+                                 <td>{{order.pesapal.status}}</td>
+                                 <td>{{order.summary}}</td> </tr>
+                           {% endfor %}
+                      </tbody>
+                </table>
+
 {% endblock %}

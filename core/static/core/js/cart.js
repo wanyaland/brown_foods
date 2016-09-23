@@ -18,7 +18,6 @@ function cartAction(product_code) {
 }
 
 
-
 function remove(product_code) {
 	jQuery.ajax({
 	url: "/remove_from_cart/",
@@ -36,13 +35,11 @@ var cartHandler = function(data){
    var wrapper = $('.my-cart');
    var list = wrapper.find('ul');
    var added = wrapper.find('div.single-rate')
-   var item = $('<li><div class="single-rate"></div></li>');
-   if(added.length==1) item = added;
-   else item.prependTo(list);
-   $('<div class="tate-title">'+data.menu_name+'</div>').appendTo(item);
-   $('<div class="cart-price">'+data.quantity+' x '+data.menu_price+'</div>').appendTo(item);
+   var item = $('<li class="row"></li>');
+   $('<span class="quantity">'+data.quantity+'</span>').appendTo(item);
+   $('<span class="itemName">'+data.name+'</span>').appendTo(item);
+   $('<span class="price">'+data.price+'</span>').appendTo(item);
    $('#sub-total').html(data.total);
-
 }
 
 

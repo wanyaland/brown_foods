@@ -30,8 +30,13 @@ class Customer(AbstractBaseUser):
         max_length=255,
         unique=True
     )
+
+    first_name = models.CharField(null=True,blank=True,max_length=20)
+    last_name = models.CharField(null=True,blank=True,max_length=20)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=True)
+    is_postpaid = models.BooleanField(default=True)
+    balance = models.DecimalField(max_digits=10,null=True,decimal_places=2,default=0)
     objects = CoreUserManager()
     USERNAME_FIELD = 'email'
 
@@ -66,12 +71,11 @@ class BillingDetails(models.Model):
     longitude = models.FloatField(null=True)
     phone_number = models.CharField(max_length=20,null=True)
     phone_number2 = models.CharField(max_length=20,null=True)
-    order_notes = models.TextField(null=True)
     delivery_date = models.DateField(default=datetime.datetime.now())
+    customer = models.ForeignKey(Customer,blank=True,null=True)
 
     def __unicode__(self):
-        return self.user.username
-
+        return "Billing Details : %s " %(self.email)
 
 class Cart(models.Model):
     PAYMENT_TYPE=(
@@ -84,6 +88,7 @@ class Cart(models.Model):
     checked_out = models.BooleanField(default=False)
     payment_type = models.CharField(max_length=100,null=True,choices=PAYMENT_TYPE)
     payment_id = models.CharField(max_length=20,null=True)
+    delivery = models.IntegerField(null=True,blank=True)
 
 
 class MenuItem(models.Model):

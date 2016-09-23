@@ -74,26 +74,24 @@
                                         <input id="datepicker" placeholder="Select Date" name="delivery-date"/>
                                     </div>
                                     <ul>
-                                        <li class="row">
-                                            <span class="quantity">Qty</span>
-                                            <span class="itemName">Item</span>
-                                            <span class="price">Price</span>
-                                        </li>
 
                                         {% for item in cart %}
                                         <li class="row">
                                             <span class="quantity">{{item.quantity}}</span>
                                             <span class="itemName">{{item.menu_item}}</span>
                                             <span class="price">{{item.unit_price}}</span>
-
                                         </li>
                                         {% endfor %}
                                         <li class="row">
                                             <span id="sub-total" class="total">SubTotal: UGX {{cart.summary}}</span>
                                         </li>
                                         <li class="row">
-                                            <label for="id-delivery" class="itemName">Delivery Charge:-</label>
-                                            <input type="checkbox" id="id-delivery" class="price"></span>
+                                            <form id="myform">
+                                            <label for="box1"><input type="checkbox" name="delivery" id="box1" style="{height:3px;}">Delivery Charge</label>
+                                             </form>
+                                        </li>
+                                        <li class="row">
+                                            <span id="grand-total" class="total">GrandTotal: UGX {{cart.summary}}</span>
                                         </li>
                                      </ul>
 
@@ -101,8 +99,18 @@
                                          <!--<a href="{% url 'core:cart' %}" class="com-btn">View Cart</a>-->
                                          <a href="{% url 'core:checkout' %}" class="com-btn">Checkout</a>
                                      </div>
+
                                 </div>
                              </div>
+                            <div class="row">
+                                <div class="col-md-2 offset-md-3">
+
+                                </div>
+                                <div class="col-md-8">
+                                    <p>We may decline orders that exceed our capacity.</p>
+                                </div>
+
+                                    </div>
                          </aside>
                         </div>
                      </div>

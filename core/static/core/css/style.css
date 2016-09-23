@@ -647,14 +647,24 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
 .section-title h1 {
     color: #fff;
     font-family: great vibes;
-    font-size: 40px;
+    font-size: 70px;
     margin: 0;
 }
 .section-title > h2 {
     color: #fff;
-    font-size: 46px;
+    font-size: 40px;
     font-weight: 700;
 }
+
+.bento-title {
+   font-family: great vibes;
+}
+
+.bento-title h1 {
+   font-size:50px;
+}
+
+
 .sec-img { position: relative }
 .sec-img:before,
 .sec-img:after {
@@ -994,7 +1004,7 @@ input.newslatter {
 -----------------------------*/
 .shape-holder .section-title h1,
 .shape-holder .section-title h2 { color: #222 }
-.service-holder-area.shape-holder { background: rgba(0, 0, 0, 0) url("/static/core/img/bgmen.jpg") no-repeat scroll 0 0 / 100% 100% ;
+.service-holder-area.shape-holder { background: rgba(0, 0, 0, 0) url("/static/core/img/bgmenu.jpg") no-repeat scroll 0 0 / 100% 100% ;
                                     padding-bottom:30px;}
 .shape-team-img { margin-top: 35px }
 .shape-holder .sm-des { padding: 0 90px }

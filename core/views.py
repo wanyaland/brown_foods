@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import CartItem,MenuItem,BillingDetails, Customer,PesaPal
+from .models import CartItem,MenuItem,BillingDetails, Customer,PesaPal,Cart as CartModel
 from django.views.generic import *
 from django.core.exceptions import ObjectDoesNotExist
 from cart import Cart
@@ -12,6 +12,7 @@ import datetime
 from django.conf import settings
 import pesapal
 import requests
+from forms import CustomerChangeForm
 
 
 # Create your views here.
@@ -74,7 +75,7 @@ def cart(request):
 def update_cart(request):
     pass
 
-def checkout(request):
+def process_checkout(request):
     if request.method=='POST':
         cart = Cart(request)
         delivery_fee = request.GET.get('delivery_fee')
@@ -128,16 +129,8 @@ def add_to_cart(request):
     menu_item= MenuItem.objects.get(id=menu_id)
     cart = Cart(request)
     cart.add(menu_item,menu_item.unit_price,quantity)
-    items = []
-    for cart_item in cart:
-        item = {}
-        item['id']= cart_item.id
-        item['name'] = cart_item.menu_item.name
-        item['quantity']= cart_item.quantity
-        item['price']= cart_item.unit_price
-        items.append(item)
     total = cart.summary()
-    data={"items":items,"total":str(total),}
+    data={"quantity":quantity,"total":str(total),"name":menu_item,"price":str(menu_item.unit_price),}
     return HttpResponse(json.dumps(data))
 
 def remove_from_cart(request):
@@ -148,11 +141,23 @@ def remove_from_cart(request):
     data = {'success':'true'}
     return HttpResponse(json.dumps(data),content_type="application/json")
 
+def delivery_charged(request):
+    cart = Cart(request)
+    cart.add_delivery_charge(5000)
+    return HttpResponse(json.dumps({'success':'true'}),content_type="application/json")
+
+
 def my_account(request):
     return render(request,'core/my_account.html')
 
 def order_summary(request):
-    return render(request,'core/order_summary.html')
+    orderList = CartModel.objects.all()
+    context = {
+        'orderList':orderList,
+    }
+    return render(request,'core/order_summary.html',context)
+
+
 
 def process_order(request):
     '''
@@ -190,7 +195,7 @@ def process_order(request):
 
 class MenuList(ListView):
     model = MenuItem
-    template_name = 'core/menu_list.html'
+    template_name = 'core/order.html'
 
 class MenuDetail(DetailView):
     model = MenuItem
@@ -210,7 +215,16 @@ def order(request):
     menu_items = MenuItem.objects.filter(menu_type='M')
     side_dishes = MenuItem.objects.filter(menu_type='S')
     context = {'menu_items':menu_items,'side_dishes':side_dishes,'cart':cart,}
-    return render(request,'core/menu_list.html',context)
+    return render(request,'core/order.html',context)
+
+class EditAccount(UpdateView):
+    model = Customer
+    form_class = CustomerChangeForm
+    template_name = 'core/edit-account.html'
+
+class ViewAccount(DetailView):
+    model = Customer
+    template_name = 'core/my_account.html'
 
 
 

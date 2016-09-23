@@ -70,7 +70,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Kampala'
 
 USE_I18N = True
 
@@ -78,7 +78,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-AUTH_USER = 'core.Customer'
+AUTH_USER_MODEL = 'core.Customer'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
