@@ -82,9 +82,8 @@ class BillingDetails(models.Model):
 
 class Cart(models.Model):
     PAYMENT_TYPE=(
-        ('C','CASH'),
-        ('V','VISA CARD'),
-        ('M','MOBILE MONEY'),
+        ('Pre','PREPAID'),
+        ('Post','POSTPAID'),
     )
     billing_details = models.OneToOneField(BillingDetails,null=True)
     creation_date = models.DateTimeField(null=True)
