@@ -12,7 +12,7 @@
                     <div class="billing-details">
                         <div class="contact-text right-side">
                             <h2>Delivery Details</h2>
-                            <form method="post" action="{% url 'core:checkout' %}"> {%csrf_token%}
+                            <form method="post" action="{% url 'core:process_checkout' %}"> {%csrf_token%}
                                 <div class="first-last-name">
                                     <div class="input-box name1">
                                         <label>First Name</label>

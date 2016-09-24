@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
+    #'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -82,9 +82,16 @@ AUTH_USER_MODEL = 'core.Customer'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-PESAPAL_CONSUMER_KEY = 'Au93fiwr5A/NhPZqesxbjVNDqzFBdMI+'
-PESAPAL_CONSUMER_SECRET = 'd00fVQICYG8f/3kxueNRKQkfXnk='
+
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static/')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'wanyaland@gmail.com'
+SERVER_EMAIL = 'wanyaland@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'wanyaland@gmail.com'
+EMAIL_HOST_PASSWORD = 'knightf6'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

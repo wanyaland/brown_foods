@@ -12,7 +12,9 @@ import datetime
 from django.conf import settings
 import pesapal
 import requests
-from forms import CustomerChangeForm
+from forms import CustomerChangeForm,PasswordResetRequestForm
+from django.core.urlresolvers import reverse
+
 
 
 # Create your views here.
@@ -66,7 +68,6 @@ def signup(request):
 
     return render(request,'core/checkout.html')
 
-
 def cart(request):
     return render(request,'core/cart.html',{
         'cart':Cart(request)
@@ -76,7 +77,7 @@ def update_cart(request):
     pass
 
 def process_checkout(request):
-    if request.method=='POST':
+    if request.method=="POST":
         cart = Cart(request)
         delivery_fee = request.GET.get('delivery_fee')
         first_name = request.POST.get('first_name')
@@ -90,7 +91,6 @@ def process_checkout(request):
                                          phone_number2=phone2,address_line1=address1,address_line2=address2)
         billing_details.save()
         cart.billing_details = billing_details
-        cart.save()
         client = pesapal.PesaPal("Au93fiwr5A/NhPZqesxbjVNDqzFBdMI+","d00fVQICYG8f/3kxueNRKQkfXnk=",False)
         if delivery_fee:
             total_cost = cart.summary()+ 5000
@@ -222,9 +222,16 @@ class EditAccount(UpdateView):
     form_class = CustomerChangeForm
     template_name = 'core/edit-account.html'
 
+    def get_success_url(self):
+        return reverse('core:my-account',args=(self.object.id,))
+
 class ViewAccount(DetailView):
     model = Customer
     template_name = 'core/my_account.html'
+
+
+
+    
 
 
 

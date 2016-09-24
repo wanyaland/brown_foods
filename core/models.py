@@ -33,12 +33,15 @@ class Customer(AbstractBaseUser):
 
     first_name = models.CharField(null=True,blank=True,max_length=20)
     last_name = models.CharField(null=True,blank=True,max_length=20)
+    address_line1 = models.TextField(null=True,blank=True)
+    address_line2 = models.TextField(null=True,blank=True)
     is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
     is_postpaid = models.BooleanField(default=True)
     balance = models.DecimalField(max_digits=10,null=True,decimal_places=2,default=0)
     objects = CoreUserManager()
     USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
     def get_full_name(self):
         return self.email
