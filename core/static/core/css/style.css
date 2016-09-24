@@ -1031,6 +1031,11 @@ input.newslatter {
     background: none;
     padding: 0;
 }
+
+.order-title{
+   font-weight: bold;
+   font-size:14px;
+}
 .resa-3 .slider-reserve .col-md-offset-1 { margin-left: 10.75% }
 .resa-3 .slider-reserve .col-md-9 { width: 78.5% }
 .reservation-area.resa-3 .smi-des { padding-bottom: 20px }

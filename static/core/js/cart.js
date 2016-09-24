@@ -2,6 +2,13 @@
 
 
 
+$(document).ready(function() {
+    $('#datepicker').Zebra_DatePicker();
+ });
+
+
+
+
 
 function cartAction(product_code) {
     quantity = $("#qty_"+product_code).val();

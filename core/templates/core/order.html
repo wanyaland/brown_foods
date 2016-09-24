@@ -6,16 +6,15 @@
    <div class="row">
         <div class="8 col-sm-8 col-xs-12">
                       {% for item in menu_items %}
-                      <div class="panel">
-                          <div class="panel-body">
-                          <div class="col-md-2 col-sm-2">
+                      <div class="row">
+                          <div class="col-md-3 col-sm-3">
                               <div class="pd-img">
                                   <a class="venobox" data-gall="myGallery" href=""><img src="{{item.image.url}}" alt=""></a>
                               </div>
                           </div>
-                          <div class="col-md-6 col-sm-6">
+                          <div class="col-md-5 col-sm-5">
                                 <div class="pd-content">
-                                  <div class="section-title">
+                                  <div class="order-title">
                                         <h3>{{item}}</h3>
                                    </div>
                                     <div class="sm-price">
@@ -31,16 +30,14 @@
                               <a class="btn btn-default" onclick="cartAction('{{item.id}}')">Add to Cart</a>
                           </div>
                               </div>
-                      </div>
                           </div>
                       {% endfor %}
 
                       {% for side_dish in side_dishes %}
-                      <div class="panel">
-                          <div class="panel-body">
-                              <div class="col-md-8 col-sm-8">
+                      <div class="row">
+                          <div class="col-md-8 col-sm-8">
                                 <div class="pd-content">
-                                  <div class="section-title">
+                                  <div class="order-title">
                                         <h3>{{side_dish}}</h3>
                                    </div>
                                     <div class="sm-price">
@@ -56,7 +53,6 @@
                               <a class="btn btn-default" onclick="cartAction('{{side_dish.id}}')">Add to Cart</a>
                           </div>
                               </div>
-                          </div>
                       </div>
                       {% endfor %}
                   </div>
@@ -71,12 +67,12 @@
                                     <!-- Add Delivery Date -->
                                     <div>
                                         <label>Delivery Date:</label>
-                                        <input id="datepicker" placeholder="Select Date" name="delivery-date"/>
+                                        <input id="datepicker" name="delivery-date" type="text"/>
                                     </div>
                                     <ul>
 
                                         {% for item in cart %}
-                                        <li class="row">
+                                        <li class="row ">
                                             <span class="quantity">{{item.quantity}}</span>
                                             <span class="itemName">{{item.menu_item}}</span>
                                             <span class="price">{{item.unit_price}}</span>
@@ -87,7 +83,7 @@
                                         </li>
                                         <li class="row">
                                             <form id="myform">
-                                            <label for="box1"><input type="checkbox" name="delivery" id="box1" style="{height:3px;}">Delivery Charge</label>
+                                            <label for="box1"><input type="checkbox" name="delivery" id="box1" style="{height:3px;}">Pick Up from Offices</label>
                                              </form>
                                         </li>
                                         <li class="row">
@@ -117,3 +113,6 @@
        </div>
 
 {% endblock %}
+<script>
+
+</script>
