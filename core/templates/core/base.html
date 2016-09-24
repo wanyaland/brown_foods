@@ -1,5 +1,5 @@
 {% include 'core/components/page_head_tags.html' %}
-<div class="container">
+<div class="brown-food-container">
 <nav class="navbar navbar-custom ">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -16,7 +16,6 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav ">
-        <!--<li class="active"><a href="{%url 'core:home'%}"><i class="fa fa-home" aria-hidden="true"></i> <span class="sr-only">(current)</span></a></li>-->
         <li><a href="{%url 'core:menu' %}">Menu</a></li>
         <!--<li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -30,21 +29,30 @@
             <li><a href="#">One more separated link</a></li>
           </ul>
         </li>-->
-          <li><a href="{%url 'core:menu_items' %}">Order</a> </li>
+          <li><a href="{%url 'core:order' %}">Order</a> </li>
           <li><a href="{%url 'core:how-it-works'%}">How it works</a> </li>
           <li><a href="{% url 'core:about_us'%}">About Us</a> </li>
           <!--<li><a href="{% url 'core:cart' %}">Cart</a> </li>-->
+          <li><a href="{% url 'core:order-summary' %}">Order Summary</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-          {% if user.is_authenticated %}
-           <li><a href="">{{user}}</a> </li>
-          <li><a href="{% url 'core:logout' %}">Logout</a> </li>
-          {% else %}
-          <li><a href="{% url 'core:login' %}">Login</a></li>
-          {% endif %}
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                  {% if user.is_authenticated %}
+                  <li><a href="{% url 'core:edit-account' user.id %}">Edit Details</a> </li>
+                  <li><a href="{% url 'core:my-account' user.id %}">View Account</a> </li>
+                  <li><a href="{% url 'core:logout-customer' %}">Logout</a> </li>
+                  {% else %}
+                  <li><a href="{% url 'core:login' %}">Login</a> </li>
+                  <li><a href="{% url 'core:register'%}">Register</a> </li>
+                  {% endif %}
+              </ul>
+          </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
+    {% block slider %} {% endblock %}
 </nav>
 
     {% if state %}
@@ -52,47 +60,32 @@
        {{state}}
      </div>
     {% endif %}
-   <div class="container" align="center">
+   <div class="brown-food-container pb40">
        {% block content %}
        {% endblock %}
    </div>
 
     <!--footer area are start-->
-    <footer>
-             <div class="navbar navbar-custom" role="navigation">
-         <div class="container">
-             <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-12 aligncenter">
-                    <div class="single-footer text-center">
-                        <!--<div class="sosa-icon">
-                            <img src="/static/core/img/icon/icon-service.png" alt="">
-                        </div> -->
-                         <div class="address">
-                             <img src="/static/core/img/brown_logo.png">
-                             <span>
-                                Sales agent for Takumi Foods Ltd <br>
-                            </span>
-                             <p>Copyright &copy; 2016-All rights reserved.</p>
-                           <!-- <div class="phone-no">
-                                <span>+84 866 725 048</span>
-                            </div> -->
-                         </div>
-                     </div>
+    <footer class="footer">
+        <div class="navbar-custom brown-food-container">
+            <div class="row">
+                <div class="col-md-10 col-sm-10">
+                Brown Foods Agency : <span>Sales Agent for Takumi Foods Ltd</span>
                 </div>
-             </div>
-
-             </div>
-     </div>
-    <!--footer area are end-->
+            </div>
+            <div class="row">
+                <div class="col-md-10 col-sm-10">
+                    Copyright &copy; 2016. All rights reserved
+                </div>
+            </div>
+        </div>
     </footer>
-
-
+    <!-- footer area stop -->
 
 </div>
-
+</div>
 {% include 'core/components/page_foot_tags.html' %}
 
-</div>
 </body>
 
 </html>

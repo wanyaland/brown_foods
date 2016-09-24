@@ -1,4 +1,5 @@
 
+
 function cartAction(product_code) {
     quantity = $("#qty_"+product_code).val();
 	jQuery.ajax({
@@ -12,7 +13,6 @@ function cartAction(product_code) {
 	error:function (){}
 	});
 }
-
 
 
 function remove(product_code) {
@@ -29,10 +29,14 @@ function remove(product_code) {
 }
 
 var cartHandler = function(data){
-   //clear item from cart
-   $('#itm_'+data.menu_id).val('');
-   // add item to cart
-   $('#cart-list').prepend('<li class="row" id="itm_'+data.menu_id+'><span class="quantity">'+data.quantity+'</span><span class="itemName">'+data.menu_name+'</span><span class="price">'+data.menu_price+'</span></li>');
+
+   var wrapper = $('.my-cart');
+   var list = wrapper.find('ul');
+   var added = wrapper.find('div.single-rate')
+   var item = $('<li class="row"></li>');
+   $('<span class="quantity">'+data.quantity+'</span>').appendTo(item);
+   $('<span class="itemName">'+data.name+'</span>').appendTo(item);
+   $('<span class="price">'+data.price+'</span>').appendTo(item);
    $('#sub-total').html(data.total);
 }
 

@@ -30,10 +30,18 @@ class Customer(AbstractBaseUser):
         max_length=255,
         unique=True
     )
+
+    first_name = models.CharField(null=True,blank=True,max_length=20)
+    last_name = models.CharField(null=True,blank=True,max_length=20)
+    address_line1 = models.TextField(null=True,blank=True)
+    address_line2 = models.TextField(null=True,blank=True)
     is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
+    is_postpaid = models.BooleanField(default=True)
+    balance = models.DecimalField(max_digits=10,null=True,decimal_places=2,default=0)
     objects = CoreUserManager()
     USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
     def get_full_name(self):
         return self.email
@@ -66,12 +74,11 @@ class BillingDetails(models.Model):
     longitude = models.FloatField(null=True)
     phone_number = models.CharField(max_length=20,null=True)
     phone_number2 = models.CharField(max_length=20,null=True)
-    order_notes = models.TextField(null=True)
     delivery_date = models.DateField(default=datetime.datetime.now())
+    customer = models.ForeignKey(Customer,blank=True,null=True)
 
     def __unicode__(self):
-        return self.user.username
-
+        return "Billing Details : %s " %(self.email)
 
 class Cart(models.Model):
     PAYMENT_TYPE=(
@@ -84,6 +91,7 @@ class Cart(models.Model):
     checked_out = models.BooleanField(default=False)
     payment_type = models.CharField(max_length=100,null=True,choices=PAYMENT_TYPE)
     payment_id = models.CharField(max_length=20,null=True)
+    delivery = models.IntegerField(null=True,blank=True)
 
 
 class MenuItem(models.Model):
@@ -113,10 +121,19 @@ class CartItem(models.Model):
 class Basket(models.Model):
     product_id = models.IntegerField()
 
+class PesaPal(models.Model):
 
+    PESAPAL_STATUS_CHOICES = (
+                ('PENDING', 'Pending'),
+                ('COMPLETED', 'Completed'),
+                ('FAILED', 'Failed'),
+                ('INVALID', 'Invalid'),
+            )
 
-
-
+    tracking_id = models.CharField(max_length=50,verbose_name="Pesapal Tracking id")
+    reference = models.CharField(max_length=50,verbose_name="Pesapal reference number")
+    status = models.CharField(max_length=10,choices=PESAPAL_STATUS_CHOICES,default='PENDING')
+    cart = models.OneToOneField(Cart,null=True)
 
 
 

@@ -1,0 +1,43 @@
+{% extends 'core/base.html' %}
+{% block content %}
+        <div class="row">
+                          <div class="col-md-4 col-sm-4">
+                             <!--Address -->
+                              <h3>Address Detail</h3>
+                              <div class="section-title">
+                                  <label>Address 1:</label>
+                                  {{object.address_line2}}
+                              </div>
+                              <div class="section-title">
+                                  <label>Address 2:</label>
+                                  {{object.address_line1}}
+                              </div>
+                              {% if object.is_postpaid %}
+                              <div class="section-title">
+                                  <label>Balance: </label>
+                                  {{object.balance}}
+                              </div>
+                              {% else %}
+                              <div class="section-title">
+                                  <label>Postpaid Customer</label>
+                                  <input type="checkbox" value="{{object.is_postpaid}}" disabled="true">
+                              </div>
+                              {% endif %}
+                          </div>
+                          <div class="col-md-8 col-sm-8">
+                              <h3>Bio Data</h3>
+                              <div class="section-title">
+                                  <label>Email: </label>
+                                  {{object.email}}
+                              </div>
+                              <div class="section-title">
+                                  <label>First Name: </label>
+                                  {{object.first_name}}
+                              </div>
+                              <div class="section-title">
+                                  <label>Last Name: </label>
+                                  {{object.last_name}}
+                              </div>
+                          </div>
+                      </div>
+{% endblock %}

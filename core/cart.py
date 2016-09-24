@@ -63,6 +63,9 @@ class Cart:
         else:
             item.delete()
 
+    def add_delivery_charge(self,amount):
+        self.cart.delivery = amount
+
     def update(self, product, quantity, unit_price=None):
         try:
             item = models.CartItem.objects.get(

@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import CartItem,MenuItem,BillingDetails, Customer
+from .models import CartItem,MenuItem,BillingDetails, Customer,PesaPal,Cart as CartModel
 from django.views.generic import *
 from django.core.exceptions import ObjectDoesNotExist
 from cart import Cart
@@ -11,6 +11,10 @@ import time
 import datetime
 from django.conf import settings
 import pesapal
+import requests
+from forms import CustomerChangeForm,PasswordResetRequestForm
+from django.core.urlresolvers import reverse
+
 
 
 # Create your views here.
@@ -64,7 +68,6 @@ def signup(request):
 
     return render(request,'core/checkout.html')
 
-
 def cart(request):
     return render(request,'core/cart.html',{
         'cart':Cart(request)
@@ -74,18 +77,26 @@ def update_cart(request):
     pass
 
 def process_checkout(request):
-    if request.method=='POST':
+    if request.method=="POST":
+        cart = Cart(request)
+        delivery_fee = request.GET.get('delivery_fee')
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         email = request.POST.get('email')
-        address = request.POST.get('add1')
-        billing_details = BillingDetails()
-        billing_details.first_name = first_name
-        billing_details.last_name = last_name
-        billing_details.email = email
+        address1 = request.POST.get('add1')
+        address2= request.POST.get('add2')
+        phone1 = request.POST.get('phone1')
+        phone2 = request.POST.get('phone2')
+        billing_details = BillingDetails(first_name=first_name,last_name=last_name,email=email,phone_number=phone1,
+                                         phone_number2=phone2,address_line1=address1,address_line2=address2)
+        billing_details.save()
+        cart.billing_details = billing_details
         client = pesapal.PesaPal("Au93fiwr5A/NhPZqesxbjVNDqzFBdMI+","d00fVQICYG8f/3kxueNRKQkfXnk=",False)
-        cart = Cart(request)
-        total_cost = cart.summary()
+        if delivery_fee:
+            total_cost = cart.summary()+ 5000
+        else :
+            total_cost = cart.summary()
+
         request_data = {
             'FirstName':first_name,
             'LastName':last_name,
@@ -97,7 +108,7 @@ def process_checkout(request):
             'Currency':'UGX',
         }
         post_params = {
-            'oauth_callback': 'http://brown.co.ug/'
+            'oauth_callback': 'http://brown.co.ug/process-order'
         }
         pesapal_request = client.postDirectOrder(post_params, request_data)
         return render(request,'core/payment.html',{
@@ -118,10 +129,8 @@ def add_to_cart(request):
     menu_item= MenuItem.objects.get(id=menu_id)
     cart = Cart(request)
     cart.add(menu_item,menu_item.unit_price,quantity)
-    cart_item = CartItem.objects.get(cart=cart,menu_item=menu_item)
     total = cart.summary()
-    #data={'item_id':cart_item.id,'menu_name':cart_item.menu_item,'quantity':cart_item.quantity,'menu_price':str(cart_item.unit_price),'total':str(total)}
-    data={'success':'true',}
+    data={"quantity":quantity,"total":str(total),"name":menu_item,"price":str(menu_item.unit_price),}
     return HttpResponse(json.dumps(data))
 
 def remove_from_cart(request):
@@ -132,12 +141,61 @@ def remove_from_cart(request):
     data = {'success':'true'}
     return HttpResponse(json.dumps(data),content_type="application/json")
 
-def process_payment(request):
-    pass
+def delivery_charged(request):
+    cart = Cart(request)
+    cart.add_delivery_charge(5000)
+    return HttpResponse(json.dumps({'success':'true'}),content_type="application/json")
+
+
+def my_account(request):
+    return render(request,'core/my_account.html')
+
+def order_summary(request):
+    orderList = CartModel.objects.all()
+    context = {
+        'orderList':orderList,
+    }
+    return render(request,'core/order_summary.html',context)
+
+
+
+def process_order(request):
+    '''
+    Handle the callback from PesaPal
+    '''
+    cart = Cart(request)
+    tracking_id = request.GET.get('pesapal_transaction_tracking_id', '')
+    reference = request.GET.get('pesapal_merchant_reference', '')
+    if tracking_id and reference:
+        params = {
+            'pesapal_merchant_reference': reference,
+            'pesapal_transaction_tracking_id': tracking_id
+        }
+        client = pesapal.PesaPal("Au93fiwr5A/NhPZqesxbjVNDqzFBdMI+","d00fVQICYG8f/3kxueNRKQkfXnk=",False)
+        pesapal_request = client.queryPaymentStatus(params)
+        url = pesapal_request.to_url()
+        print url
+        pesapal_response = requests.get(url)
+        pesapal_response_data = pesapal_response.text
+        pesapal_status = pesapal_response_data.split("=")[1]
+
+        if pesapal_status == 'COMPLETED':
+            state="Transaction was successful"
+            cart.checked_out = True
+            cart.save()
+        else:
+            state = "Transaction is %s" % pesapal_status
+
+        p_ref = PesaPal(tracking_id=tracking_id,reference=reference,status=pesapal_status,cart=cart)
+        p_ref.save()
+
+    return render(request,'core/process-order.html',{
+        'state':state,
+    })
 
 class MenuList(ListView):
     model = MenuItem
-    template_name = 'core/menu_list.html'
+    template_name = 'core/order.html'
 
 class MenuDetail(DetailView):
     model = MenuItem
@@ -145,9 +203,6 @@ class MenuDetail(DetailView):
 
 def how_it_works(request):
     return render(request,'core/how-it-works.html')
-
-def complete(request):
-    return render(request,'core/complete.html')
 
 def menu(request):
     menu_items = MenuItem.objects.filter(menu_type='M')
@@ -160,7 +215,23 @@ def order(request):
     menu_items = MenuItem.objects.filter(menu_type='M')
     side_dishes = MenuItem.objects.filter(menu_type='S')
     context = {'menu_items':menu_items,'side_dishes':side_dishes,'cart':cart,}
-    return render(request,'core/menu_list.html',context)
+    return render(request,'core/order.html',context)
+
+class EditAccount(UpdateView):
+    model = Customer
+    form_class = CustomerChangeForm
+    template_name = 'core/edit-account.html'
+
+    def get_success_url(self):
+        return reverse('core:my-account',args=(self.object.id,))
+
+class ViewAccount(DetailView):
+    model = Customer
+    template_name = 'core/my_account.html'
+
+
+
+    
 
 
 

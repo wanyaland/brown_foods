@@ -1,83 +1,63 @@
  {% extends 'core/base.html' %}
+ {% block headers %}
+ <link rel="stylesheet" type="text/css" href="css/jquery-gmaps-latlon-picker.css"/>
+ <script src="/static/core/js/jquery-gmaps-latlon-picker.js"></script>
+ {% endblock %}
  {% block content %}
     <!-- Checkout are start-->
     <div class="cart-area ">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3 ">
+                <div class="col-md-6 col-sm-6 col-xs-12 ">
                     <div class="billing-details">
                         <div class="contact-text right-side">
                             <h2>Delivery Details</h2>
-                            <form method="post" action="{% url 'core:process-checkout' %}"> {%csrf_token%}
-                                <div class="input-box">
-                                    <label>Delivery Date</label>
-                                    <input type="text" name="delivery_date" class="info" placeholder="Select Date" id="datepicker">
-                                </div>
+                            <form method="post" action="{% url 'core:process_checkout' %}"> {%csrf_token%}
                                 <div class="first-last-name">
                                     <div class="input-box name1">
                                         <label>First Name</label>
-                                        <input type="text" name="first_name" class="info" placeholder="First Name">
+                                        <input type="text" name="first_name" class="info" placeholder="First Name" value="{{user.first_name}}">
                                     </div>
                                     <div class="input-box name2">
                                         <label>Last Name</label>
-                                        <input type="text" name="last_name" class="info" placeholder="Last Name">
+                                        <input type="text" name="last_name" class="info" placeholder="Last Name" value="{{user.last_name}}">
                                     </div>
                                </div>
                                 <div class="input-box">
                                     <label>Company Name</label>
-                                    <input type="text" name="company" class="info" placeholder="Company Name">
+                                    <input type="text" name="company" class="info" placeholder="Company Name" value="{{user.company}}">
                                 </div>
                                 <div class="input-box">
                                     <label>Email</label>
-                                    <input type="email" name="email" class="info" placeholder="Email">
+                                    <input type="email" name="email" class="info" placeholder="Email" value="{{user.email}}">
                                 </div>
                                 <div class="first-last-name">
                                     <div class="input-box name1">
                                         <label>Phone Number 1</label>
-                                        <input type="text" name="phone1" class="info" placeholder="Phone Number 1">
+                                        <input type="text" name="phone1" class="info" placeholder="Phone Number 1" value="{{user.phone1}}">
                                     </div>
                                     <div class="input-box name2">
                                         <label>Phone Number 2</label>
-                                        <input type="text" name="phone2" class="info" placeholder="Phone Number 2">
+                                        <input type="text" name="phone2" class="info" placeholder="Phone Number 2" value="{{user.phone2}}">
                                     </div>
                                </div>
                                 <div class="input-box">
                                     <label>Address <em>*</em></label>
-                                    <input type="text" name="add1" class="info" placeholder="Street Address">
-                                    <textarea placeholder="Specific directions , Landmarks etc" class="area-tex"></textarea>
+                                    <input type="text" name="add1" class="info" placeholder="Street Address" value="{{user.add1}}">
+                                    <input placeholder="Specific directions , Landmarks etc" class="info" name="add2" value="{{user.add2}}">
                                 </div>
-                                <div class="input-box">
-                                    <label>Town/City <em>*</em></label>
-                                    <input type="text" name="add1" class="info" placeholder="Town/City">
-                                </div>
-                                <div class="checkout-total mt20">
-                       <h3>Cost</h3>
 
-                   <div class="table-responsive">
-                        <table class="checkout-area table">
-                       <thead>
-                        <tr class="cart_item check-heading">
-                            <td class="ctg-type"> Item </td>
-                            <td class="cgt-des"> Total</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="cart_item">
-                                <td class="ctg-type"> Subtotal</td>
-                                <td class="cgt-des">UGX {{cart.summary}}</td>
-                            </tr>
-                            <tr class="cart_item">
-                                <td class="ctg-type"> Total</td>
-                                <td class="cgt-des"> UGX {{cart.summary}} </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                   </div>
-                                    <div class="input-box">
-                                        <input type="radio" name="gender" value="pickup" checked> Pickup from our offices<br>
-  <input type="radio" name="gender" value="delivery"> Delivery to your address<br>
-                                    </div>
-                </div>
+                                <!-- Map locater -->
+                                <div class="input-box">
+                                    <fieldset class="gllpLatlonPicker" id="custom_id">
+                                        <input type="text" class="gllpSearchField">
+                                        <input type="button" class="gllpSearchButton" value="search">
+                                 <div class="gllpMap">Google Maps</div>
+                                 <input type="hidden" class="gllpLatitude" />
+                                  <input type="hidden" class="gllpLongitude" />
+                                  <input type="hidden" class="gllpZoom" />
+                                   </fieldset>
+                                </div>
                                   <div class="payment-section mt20 clearfix">
                                    <div class="pay-toggle">
                                       <div class="input-box pt20 mt20">
@@ -92,5 +72,7 @@
                 </div>
             </div>
         </div>
-
+    <!--google Map Api-->
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="/static/core/js/jquery-gmaps-latlon-picker.js"></script>
 {% endblock %}

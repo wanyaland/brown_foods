@@ -37,6 +37,12 @@
 /*----------------------------------------*/
 /*  1.  Theme default CSS
 /*----------------------------------------*/
+@media (min-width: 1200px) {
+    .brown-food-container{
+        width:960px;
+        margin:0 auto;
+    }
+}
 html,
 body {
     height: 100%;
@@ -644,14 +650,24 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
 .section-title h1 {
     color: #fff;
     font-family: great vibes;
-    font-size: 40px;
+    font-size: 70px;
     margin: 0;
 }
 .section-title > h2 {
     color: #fff;
-    font-size: 46px;
+    font-size: 40px;
     font-weight: 700;
 }
+
+.bento-title {
+   font-family: great vibes;
+}
+
+.bento-title h1 {
+   font-size:50px;
+}
+
+
 .sec-img { position: relative }
 .sec-img:before,
 .sec-img:after {
@@ -991,7 +1007,7 @@ input.newslatter {
 -----------------------------*/
 .shape-holder .section-title h1,
 .shape-holder .section-title h2 { color: #222 }
-.service-holder-area.shape-holder { background: rgba(0, 0, 0, 0) url("/static/core/img/bgmen.jpg") no-repeat scroll 0 0 / 100% 100% ;
+.service-holder-area.shape-holder { background: rgba(0, 0, 0, 0) url("/static/core/img/bgmenu.jpg") no-repeat scroll 0 0 / 100% 100% ;
                                     padding-bottom:30px;}
 .shape-team-img { margin-top: 35px }
 .shape-holder .sm-des { padding: 0 90px }
@@ -1627,6 +1643,10 @@ width:100%;
     width: 50px;
 }
 .qty-add .com-btn { background: #3b3330 none repeat scroll 0 0;
+
+.btn-add{
+   margin-top:35px;
+}
                     }
 .cata_gories ul li a { color: #3a332f }
 .cata_gories ul li { display: inline-block }
@@ -1637,7 +1657,7 @@ width:100%;
     filter: alpha(opacity=60);
 }
 .cata_gories { margin-top: 35px }
-.qty-add { margin-top: 35px }
+.qty-add { }
 .pd-content .sm-price {
     position: static;
     text-align: left;
@@ -2058,7 +2078,11 @@ h4.panel-title a:hover {
     background-color:#8B4513;
     color:#ffffff;
     border-radius:0;
-}
+ }
+
+ .brown-food-footer{
+
+ }
 
 .navbar-custom .navbar-nav > li > a {
     color:#fff;
@@ -2090,6 +2114,7 @@ h4.panel-title a:hover {
    background-color:#ecf0f1;
 }
 
+<<<<<<< HEAD
 /*-----------------------------------
 	Cart items list
 -----------------------------------*/
@@ -2228,4 +2253,10 @@ h4.panel-title a:hover {
 .glyphicon-remove{
 	color: #f06953;
 	margin-right: 10px;
+
+/*---------------
+Bootstrap Slider
+----------------*/
+.carousel-inner img {
+  margin: auto;
 }
