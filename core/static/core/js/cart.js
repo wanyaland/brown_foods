@@ -3,7 +3,16 @@
 
 
 $(document).ready(function() {
-    $('#datepicker').Zebra_DatePicker();
+    var min = 1;
+    var currentTime = new Date();
+    if (currentTime.getHours() >= 19) {
+       min=2;
+    }
+    $('#datepicker').Zebra_DatePicker({
+      direction: [min,14],
+      disabled_dates:['* * * 0,6']
+    }
+    );
  });
 
 

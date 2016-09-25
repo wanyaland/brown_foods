@@ -17,6 +17,8 @@
 	background-color: #f2f6f9;
 }
 
+
+
 .columnCaptions span:first-child{
 	padding-left:8px;
 }
@@ -34,8 +36,7 @@
 /* Items */
 
 .itemName{
-	color: #727578;
-	font-size :16px;
+	font-size :14px;
 	font-weight: bold;
 	float: left;
 	padding-left:25px;
@@ -43,8 +44,7 @@
 
 
 .quantity{
-	color: #4ea6bc;
-	font-size :18px;
+	font-size :14px;
 	font-weight: bold;
 	float : left;
 	width: 42px;
@@ -71,11 +71,19 @@
 }
 
 .price{
-	color: #f06953;
-	font-size :18px;
+	font-size :14px;
 	font-weight: bold;
 	float: right;
 }
+
+.total{
+  float:right;
+  font-weight:bold;
+}
+.total span{
+  font-weight: bold;
+}
+
 
 
 /* Totals */
@@ -140,4 +148,12 @@
 .glyphicon-remove{
 	color: #f06953;
 	margin-right: 10px;
+}
+
+.date-wrapper{
+   position:relative;
+   top:auto;
+   right:auto;
+   bottom:auto;
+   left:auto;
 }

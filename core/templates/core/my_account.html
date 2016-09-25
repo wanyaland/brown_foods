@@ -6,16 +6,20 @@
                               <h3>Address Detail</h3>
                               <div class="section-title">
                                   <label>Address 1:</label>
-                                  {{object.address_line2}}
+                                  {{object.address_line1}}
                               </div>
                               <div class="section-title">
                                   <label>Address 2:</label>
-                                  {{object.address_line1}}
+                                  {{object.address_line2}}
                               </div>
                               {% if object.is_postpaid %}
                               <div class="section-title">
                                   <label>Balance: </label>
-                                  {{object.balance}}
+                                  {% if object.balance %}
+                                  UGX {{object.balance}}
+                                  {% else %}
+                                  UGX 0
+                                  {% endif %}
                               </div>
                               {% else %}
                               <div class="section-title">

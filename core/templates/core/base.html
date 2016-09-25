@@ -40,6 +40,8 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
               <ul class="dropdown-menu">
                   {% if user.is_authenticated %}
+                  {% if user.is_postpaid %}
+                  <li><a href="{% url 'core:deposit' %}">Deposit</a> </li> {% endif %}
                   <li><a href="{% url 'core:edit-account' user.id %}">Edit Details</a> </li>
                   <li><a href="{% url 'core:my-account' user.id %}">View Account</a> </li>
                   <li><a href="{% url 'core:logout-customer' %}">Logout</a> </li>

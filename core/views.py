@@ -229,6 +229,70 @@ class ViewAccount(DetailView):
     model = Customer
     template_name = 'core/my_account.html'
 
+def deposit(request):
+    if request.POST:
+        amount = request.POST.get('amount')
+        customer = request.user
+        client = pesapal.PesaPal("Au93fiwr5A/NhPZqesxbjVNDqzFBdMI+","d00fVQICYG8f/3kxueNRKQkfXnk=",False)
+        if customer.first_name:
+            first_name = customer.first_name
+        if customer.last_name :
+            last_name = customer.last_name
+
+        request_data = {
+            'FirstName':first_name,
+            'LastName':last_name,
+            'Email':customer.email,
+            'Amount':amount,
+            'Description':'Deposit for postpaid customer at Brown Foods',
+            'Type':'MERCHANT',
+            'Reference': str(datetime.datetime.now()),
+            'Currency':'UGX',
+        }
+        post_params = {
+            'oauth_callback': 'http://brown.co.ug/process-deposit/?amount=%s'%(str(amount))
+        }
+        pesapal_request = client.postDirectOrder(post_params, request_data)
+        return render(request,'core/payment.html',{
+            'iframe_url':pesapal_request.to_url(),
+        })
+    return render(request,'core/deposit.html')
+
+def process_deposit(request):
+    '''
+    Handle the callback from PesaPal
+    '''
+    amount = request.GET.get('amount')
+    tracking_id = request.GET.get('pesapal_transaction_tracking_id', '')
+    reference = request.GET.get('pesapal_merchant_reference', '')
+    if tracking_id and reference:
+        params = {
+            'pesapal_merchant_reference': reference,
+            'pesapal_transaction_tracking_id': tracking_id
+        }
+        client = pesapal.PesaPal("Au93fiwr5A/NhPZqesxbjVNDqzFBdMI+","d00fVQICYG8f/3kxueNRKQkfXnk=",False)
+        pesapal_request = client.queryPaymentStatus(params)
+        url = pesapal_request.to_url()
+        print url
+        pesapal_response = requests.get(url)
+        pesapal_response_data = pesapal_response.text
+        pesapal_status = pesapal_response_data.split("=")[1]
+
+        if pesapal_status == 'COMPLETED':
+            state="Transaction was successful"
+            customer = request.user
+            customer.amount = amount
+            customer.save()
+        else:
+            state = "Transaction is %s" % pesapal_status
+
+        p_ref = PesaPal(tracking_id=tracking_id,reference=reference,status=pesapal_status,cart=cart)
+        p_ref.save()
+
+    return render(request,'core/process-order.html',{
+        'state':state,
+    })
+
 
 
     

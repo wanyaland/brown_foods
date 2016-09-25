@@ -149,3 +149,11 @@
 	color: #f06953;
 	margin-right: 10px;
 }
+
+.date-wrapper{
+   position:relative;
+   top:auto;
+   right:auto;
+   bottom:auto;
+   left:auto;
+}

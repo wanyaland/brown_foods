@@ -26,7 +26,8 @@ urlpatterns = patterns('',
                        url(r'^view-account/(?P<pk>\d+)/$',ViewAccount.as_view(),name='my-account'),
                        url(r'^edit-account/(?P<pk>\d+)/$',EditAccount.as_view(),name='edit-account'),
                        url(r'^delivery_charged/$',delivery_charged,name='delivery_charged'),
-
+                       url(r'^deposit/$',deposit,name='deposit'),
+                       url(r'^process-deposit/$',process_deposit,name='process-deposit'),
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="account-area pb60 pt60">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <form action="{% url 'core:deposit' %}" class="login-side" method="post">{% csrf_token %}
+              <div class="login-reg">
+                <h3>Deposit to your account</h3>
+                <div class="form-group">
+                    <label class="control-label">Amount</label>
+                    <input type="text" class="form-control" placeholder="Amount" value="" name="amount">
+                </div>
+                </div>
+                <div class="frm-action">
+                    <div class="input-box tci-box">
+                        <input type="submit" value="Deposit" name="processed-checkout" class="in-btn">
+                    </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

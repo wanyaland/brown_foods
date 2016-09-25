@@ -65,9 +65,9 @@
                                  </div>
                                 <div class="total-top-rated">
                                     <!-- Add Delivery Date -->
-                                    <div>
+                                    <div class="Zebra_DatePicker_Icon_Wrapper">
                                         <label>Delivery Date:</label>
-                                        <input id="datepicker" name="delivery-date" type="text"/>
+                                        <input id="datepicker" name="delivery-date" type="text" class="date-wrapper"/>
                                     </div>
                                     <ul>
 
@@ -79,15 +79,25 @@
                                         </li>
                                         {% endfor %}
                                         <li class="row">
-                                            <span id="sub-total" class="total">SubTotal: UGX {{cart.summary}}</span>
+                                              <div class="col-md-8 itemName">
+                                                Sub Total:
+                                            </div>
+                                            <div class="col-md-4 itemName">
+                                                {{cart.summary}}
+                                            </div>
                                         </li>
                                         <li class="row">
-                                            <form id="myform">
-                                            <label for="box1"><input type="checkbox" name="delivery" id="box1" style="{height:3px;}">Pick Up from Offices</label>
-                                             </form>
+                                            <div class="col-md-8">
+                                                <label for="box1"><input type="checkbox" name="delivery" id="box1" style="{height:3px;}">Pick Up from Offices</label>
+                                            </div>
                                         </li>
                                         <li class="row">
-                                            <span id="grand-total" class="total">GrandTotal: UGX {{cart.summary}}</span>
+                                            <div class="col-md-8 col-sm-8 itemName">
+                                                Grand Total:
+                                            </div>
+                                            <div class="col-md-4 col-sm-8 itemName">
+                                                {{cart.summary}}
+                                            </div>
                                         </li>
                                      </ul>
 
@@ -100,19 +110,14 @@
                              </div>
                             <div class="row">
                                 <div class="col-md-2 offset-md-3">
-
                                 </div>
                                 <div class="col-md-8">
                                     <p>We may decline orders that exceed our capacity.</p>
                                 </div>
-
-                                    </div>
+                            </div>
                          </aside>
                         </div>
                      </div>
        </div>
 
 {% endblock %}
-<script>
-
-</script>

@@ -37,7 +37,7 @@ class Customer(AbstractBaseUser):
     address_line2 = models.TextField(null=True,blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
-    is_postpaid = models.BooleanField(default=True)
+    is_postpaid = models.BooleanField(default=False)
     balance = models.DecimalField(max_digits=10,null=True,decimal_places=2,default=0)
     objects = CoreUserManager()
     USERNAME_FIELD = 'email'

@@ -551,7 +551,8 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
 .sm-ratting > a { color: #f9db57 }
 .sm-price {
     bottom: 50%;
-    font-size: 20px;
+    font-size: 18px;
+    font-weight:bold;
     width: 100%;
     text-align: center;
     left: 0;
@@ -1893,7 +1894,7 @@ span input.remr {
     font-size: 18px;
     margin: 0 0 15px;
     padding: 0 0 5px;
-    text-transform: uppercase;
+
 }
 .frm-action {
     background: #ededed none repeat scroll 0 0;
