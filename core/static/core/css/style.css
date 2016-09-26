@@ -648,13 +648,14 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
 .section-title h1 {
     color: #fff;
     font-family: great vibes;
-    font-size: 70px;
+    font-size: 60px;
     margin: 0;
 }
 .section-title > h2 {
     color: #fff;
-    font-size: 40px;
+    font-size: 60px;
     font-weight: 700;
+    margin-top:0;
 }
 
 .bento-title {
@@ -799,10 +800,10 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
 .sma-middle .carsoule-btn.smp-carsoule.owl-theme .owl-controls .owl-buttons div { bottom: -10% }
 .sma-middle .sma-small .carsoule-btn.smp-carsoule.owl-theme .owl-controls .owl-buttons div { bottom: -15% }
 .carsoule-btn.smp-carsoule.owl-theme .owl-controls .owl-buttons .owl-next {
-    background: rgba(0, 0, 0, 0) url("img/slider/next-menu.png") no-repeat scroll 10px 10px;
+    background: rgba(0, 0, 0, 0) url("/static/core/img/slider/next-menu.png") no-repeat scroll 10px 10px;
     margin-right: -25px;
 }
-.carsoule-btn.smp-carsoule.owl-theme .owl-controls .owl-buttons .owl-prev { background: rgba(0, 0, 0, 0) url("img/slider/pre-menu.png") no-repeat scroll 10px 10px }
+.carsoule-btn.smp-carsoule.owl-theme .owl-controls .owl-buttons .owl-prev { background: rgba(0, 0, 0, 0) url("/static/core/img/slider/pre-menu.png") no-repeat scroll 10px 10px }
 .sma-img { overflow: hidden }
 .sma-img > img {
     -webkit-transition: all 0.3s ease 0s;
