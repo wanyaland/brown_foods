@@ -101,9 +101,9 @@ class Cart:
         else:
             if self.count() <= 5:
                 return 5000
-            elif self.count <= 10:
+            elif self.count() <= 10:
                 return 10000
-            elif self.count <= 15:
+            elif self.count() <= 15:
                 return 15000
             else:
                 return 15000

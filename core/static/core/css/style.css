@@ -457,13 +457,19 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
 .holder-content > p { margin-bottom: 25px }
 .sm-des {
     color: #7d7b6d;
-    font-size: 15px;
-    line-height: 1.8;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+input[type="checkbox"]{
+  margin: 4px 0 0;
+  line-height: normal;
+  height: 15px;
 }
 .sm-contents {
     color: #7d7b6d;
     font-size: 13px;
-    line-height:1.8;
+    line-height:1;
 }
 
 

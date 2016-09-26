@@ -116,6 +116,8 @@ def payment(request):
     return render(request,'core/payment.html')
 
 def checkout(request):
+    if request.method=='POST':
+        pass
     return render(request,'core/checkout.html',{
         'cart':Cart(request),
     })
