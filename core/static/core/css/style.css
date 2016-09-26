@@ -460,6 +460,13 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
     font-size: 15px;
     line-height: 1.8;
 }
+.sm-content {
+    color: #7d7b6d;
+    font-size: 15px;
+    line-height:1.8;
+}
+
+
 .deginaton { overflow: hidden }
 .deginaton > span {
     color: #b7a89a;
@@ -650,6 +657,7 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
     font-family: great vibes;
     font-size: 60px;
     margin: 0;
+    height: 50px;
 }
 .section-title > h2 {
     color: #fff;
@@ -1415,6 +1423,12 @@ aside:last-child { margin-bottom: 0 }
 .total-product .single-our-menu {
     border: 1px solid #dddddd;
     margin-bottom: 20px;
+    height:338px;
+}
+
+.total-product .single-side-dish {
+    border: 1px solid #dddddd;
+    margin-bottom:20px;
 }
 .result-count {
     float: left;
