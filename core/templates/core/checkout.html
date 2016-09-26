@@ -9,7 +9,51 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-xs-12 ">
-                     <div class="coupne-customer-area mb50">
+                    <div class="billing-details">
+                        <div class="contact-text right-side">
+                            <h2>Delivery Details</h2>
+                            <form method="post" action="{% url 'core:process_checkout' %}"> {%csrf_token%}
+                                <div class="first-last-name">
+                                    <div class="input-box name1">
+                                        <label>First Name</label>
+                                        <input type="text" name="first_name" class="info" placeholder="First Name" value="{{user.first_name}}">
+                                    </div>
+                                    <div class="input-box name2">
+                                        <label>Last Name</label>
+                                        <input type="text" name="last_name" class="info" placeholder="Last Name" value="{{user.last_name}}">
+                                    </div>
+                               </div>
+                                <div class="input-box">
+                                    <label>Company Name</label>
+                                    <input type="text" name="company" class="info" placeholder="Company Name" value="{{user.company}}">
+                                </div>
+                                <div class="input-box">
+                                    <label>Email</label>
+                                    <input type="email" name="email" class="info" placeholder="Email" value="{{user.email}}">
+                                </div>
+                                <div class="first-last-name">
+                                    <div class="input-box name1">
+                                        <label>Phone Number 1</label>
+                                        <input type="text" name="phone1" class="info" placeholder="Phone Number 1" value="{{user.phone1}}">
+                                    </div>
+                                    <div class="input-box name2">
+                                        <label>Phone Number 2</label>
+                                        <input type="text" name="phone2" class="info" placeholder="Phone Number 2" value="{{user.phone2}}">
+                                    </div>
+                               </div>
+                                <div class="input-box">
+                                    <label>Address:Street Name </label>
+                                    <input type="text" name="add1" class="info" value="{{user.address_line1}}">
+                                </div>
+                                 <div class="input-box">
+                                    <label>Address 2:Name of Building,floor,room number etc </label>
+                                    <input class="info" name="add2" value="{{user.address_line2}}">
+                                </div>
+                                 <div class="input-box">
+                                    <label>Address 3:Nearest landmark,direction from landmark etc </label>
+                                    <input  class="info" name="add3" value="{{user.address_line3}}">
+                                </div>
+                                            <div class="coupne-customer-area mb50">
                       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                       <div class="panel">
                         <div class="panel-heading" role="tab" id="headingTwo">
@@ -50,76 +94,9 @@
                           </div>
                         </div> <!-- End of Postpaid --></form>
                       </div>
-                          <!-- start of request postpaid -->
-                          <form method="post">
-                      <div class="panel">
-                        <div class="panel-heading" role="tab" id="headingThree">
-                          <h4 class="panel-title">
-                          <img src="/static/core/img/icon/acc.jpg" alt="">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                               Request for post paid account
-                            </a>
-                          </h4>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                          <div class="panel-body coupon-body">
-                            <div class="first-last-name">
-                                <div class="input-box name1">
-                                    <input type="text" placeholder="Email" class="info" name="email">
-                                </div>
-                                <div class="input-box name2">
-                                    <input type="submit" value="Send Request" name="processed-checkout" class="in-btn">
-                                </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div> <!-- end of request postpaid --></form>
+
                     </div>
                     </div>
-                    <div class="billing-details">
-                        <div class="contact-text right-side">
-                            <h2>Delivery Details</h2>
-                            <form method="post" action="{% url 'core:process_checkout' %}"> {%csrf_token%}
-                                <div class="first-last-name">
-                                    <div class="input-box name1">
-                                        <label>First Name</label>
-                                        <input type="text" name="first_name" class="info" placeholder="First Name" value="{{user.first_name}}">
-                                    </div>
-                                    <div class="input-box name2">
-                                        <label>Last Name</label>
-                                        <input type="text" name="last_name" class="info" placeholder="Last Name" value="{{user.last_name}}">
-                                    </div>
-                               </div>
-                                <div class="input-box">
-                                    <label>Company Name</label>
-                                    <input type="text" name="company" class="info" placeholder="Company Name" value="{{user.company}}">
-                                </div>
-                                <div class="input-box">
-                                    <label>Email</label>
-                                    <input type="email" name="email" class="info" placeholder="Email" value="{{user.email}}">
-                                </div>
-                                <div class="first-last-name">
-                                    <div class="input-box name1">
-                                        <label>Phone Number 1</label>
-                                        <input type="text" name="phone1" class="info" placeholder="Phone Number 1" value="{{user.phone1}}">
-                                    </div>
-                                    <div class="input-box name2">
-                                        <label>Phone Number 2</label>
-                                        <input type="text" name="phone2" class="info" placeholder="Phone Number 2" value="{{user.phone2}}">
-                                    </div>
-                               </div>
-                                <div class="input-box">
-                                    <label>Address </label>
-                                    <input type="text" name="add1" class="info" placeholder="Street Name" value="{{user.address_line1}}">
-                                </div>
-                                 <div class="input-box">
-                                    <label>Address 2 </label>
-                                    <input placeholder="Name of Building,floor,room number etc" class="info" name="add2" value="{{user.address_line2}}">
-                                </div>
-                                 <div class="input-box">
-                                    <label>Address 3 </label>
-                                    <input placeholder="Nearest landmark,direction from landmark etc" class="info" name="add3" value="{{user.address_line3}}">
-                                </div>
 
                                 <!-- Map locater -->
                                 <div class="input-box">

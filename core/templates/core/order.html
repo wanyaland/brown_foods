@@ -79,16 +79,14 @@
                                         </li>
                                         {% endfor %}
                                         <li class="row">
-                                              <div class="col-md-8 itemName">
-                                                Sub Total:
+                                            <div class="crt-price">
+                                                Sub Total : {{cart.summary}}
                                             </div>
-                                            <div class="col-md-4 itemName">
-                                                {{cart.summary}}
+                                            <div class="crt-price">
+                                                Delivery Fee: {{cart.delivery_fee}}
                                             </div>
-                                        </li>
-                                        <li class="row">
-                                            <div class="col-md-8">
-                                                <label for="box1"><input type="checkbox" name="delivery" id="box1" style="{height:3px;}">Self Collection</label>
+                                            <div class="crt-price">
+                                                <label for="box1"><input type="checkbox" name="delivery" id="box1" >Self Collection</label>
                                             </div>
                                         </li>
                                         <li class="row">
@@ -96,7 +94,7 @@
                                                 Grand Total:
                                             </div>
                                             <div class="col-md-4 col-sm-8 itemName">
-                                                {{cart.summary}}
+                                                {{cart.grand_total}}
                                             </div>
                                         </li>
                                      </ul>

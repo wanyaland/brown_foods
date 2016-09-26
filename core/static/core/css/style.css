@@ -564,6 +564,14 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
     text-align: center;
     left: 0;
 }
+.crt-price{
+    bottom: 50%;
+    font-size: 14px;
+    font-weight:bold;
+    width: 100%;
+    text-align: center;
+    left: 0;
+}
 .sm-image .com-btn {
     left: 50%;
     margin-left: -92px;

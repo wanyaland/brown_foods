@@ -94,5 +94,20 @@ class Cart:
     def clear(self):
         for item in self.cart.cartitem_set.all():
             item.delete()
+
     def delivery_fee(self):
-        pass
+        if self.cart.self_collect:
+            return 0
+        else:
+            if self.count() <= 5:
+                return 5000
+            elif self.count <= 10:
+                return 10000
+            elif self.count <= 15:
+                return 15000
+            else:
+                return 15000
+
+    def grand_total(self):
+        total= self.summary()+self.delivery_fee()
+        return total

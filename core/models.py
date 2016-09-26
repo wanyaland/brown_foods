@@ -91,7 +91,7 @@ class Cart(models.Model):
     checked_out = models.BooleanField(default=False)
     payment_type = models.CharField(max_length=100,null=True,choices=PAYMENT_TYPE)
     payment_id = models.CharField(max_length=20,null=True)
-    self_collect = models.BooleanField(default=False,null=True)
+    self_collect = models.BooleanField(default=False)
 
 
 class MenuItem(models.Model):
