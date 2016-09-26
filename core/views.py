@@ -92,10 +92,7 @@ def process_checkout(request):
         billing_details.save()
         cart.billing_details = billing_details
         client = pesapal.PesaPal("Au93fiwr5A/NhPZqesxbjVNDqzFBdMI+","d00fVQICYG8f/3kxueNRKQkfXnk=",False)
-        if delivery_fee:
-            total_cost = cart.summary()+ 5000
-        else :
-            total_cost = cart.summary()
+        total_cost = cart.grand_total()
 
         request_data = {
             'FirstName':first_name,
