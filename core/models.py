@@ -70,6 +70,7 @@ class BillingDetails(models.Model):
     email = models.EmailField(null=True)
     address_line1 = models.TextField(null=True)
     address_line2 = models.TextField(null=True)
+    address_line3 = models.TextField(null=True)
     latitude = models.FloatField(null=True)
     longitude = models.FloatField(null=True)
     phone_number = models.CharField(max_length=20,null=True)

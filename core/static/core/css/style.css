@@ -460,9 +460,9 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
     font-size: 15px;
     line-height: 1.8;
 }
-.sm-content {
+.sm-contents {
     color: #7d7b6d;
-    font-size: 15px;
+    font-size: 14px;
     line-height:1.8;
 }
 
@@ -572,8 +572,7 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
     filter: alpha(opacity=0);
     position: absolute;
     top: 50%;
-    -webkit-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
+
 }
 .sm-image .com-btn {
     left: 50%;
@@ -636,17 +635,9 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
     position: relative;
     overflow: hidden;
 }
-.sm-image:hover img {
-    -webkit-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    transform: scale(1.1);
-    opacity: .9;
-    filter: alpha(opacity=90);
-}
+
 .sm-image img {
-    -webkit-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
-    height:50%;
+    margin:auto 0;
 }
 .sm-image:hover .com-btn {
     opacity: 1;

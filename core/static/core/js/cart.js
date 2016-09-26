@@ -8,7 +8,7 @@ $(document).ready(function() {
     if (currentTime.getHours() >= 19) {
        min=2;
     }
-    $('#datepicker').Zebra_DatePicker({
+    $('#datepickers').Zebra_DatePicker({
       direction: [min,14],
       disabled_dates:['* * * 0,6']
     }

@@ -460,6 +460,13 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
     font-size: 15px;
     line-height: 1.8;
 }
+.sm-contents {
+    color: #7d7b6d;
+    font-size: 14px;
+    line-height:1.8;
+}
+
+
 .deginaton { overflow: hidden }
 .deginaton > span {
     color: #b7a89a;
@@ -565,8 +572,7 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
     filter: alpha(opacity=0);
     position: absolute;
     top: 50%;
-    -webkit-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
+
 }
 .sm-image .com-btn {
     left: 50%;
@@ -629,16 +635,8 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
     position: relative;
     overflow: hidden;
 }
-.sm-image:hover img {
-    -webkit-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    transform: scale(1.1);
-    opacity: .9;
-    filter: alpha(opacity=90);
-}
+
 .sm-image img {
-    -webkit-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
     height:50%;
 }
 .sm-image:hover .com-btn {
@@ -648,13 +646,15 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
 .section-title h1 {
     color: #fff;
     font-family: great vibes;
-    font-size: 70px;
+    font-size: 60px;
     margin: 0;
+    height: 50px;
 }
 .section-title > h2 {
     color: #fff;
-    font-size: 40px;
+    font-size: 60px;
     font-weight: 700;
+    margin-top:0;
 }
 
 .bento-title {
@@ -799,10 +799,10 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
 .sma-middle .carsoule-btn.smp-carsoule.owl-theme .owl-controls .owl-buttons div { bottom: -10% }
 .sma-middle .sma-small .carsoule-btn.smp-carsoule.owl-theme .owl-controls .owl-buttons div { bottom: -15% }
 .carsoule-btn.smp-carsoule.owl-theme .owl-controls .owl-buttons .owl-next {
-    background: rgba(0, 0, 0, 0) url("img/slider/next-menu.png") no-repeat scroll 10px 10px;
+    background: rgba(0, 0, 0, 0) url("/static/core/img/slider/next-menu.png") no-repeat scroll 10px 10px;
     margin-right: -25px;
 }
-.carsoule-btn.smp-carsoule.owl-theme .owl-controls .owl-buttons .owl-prev { background: rgba(0, 0, 0, 0) url("img/slider/pre-menu.png") no-repeat scroll 10px 10px }
+.carsoule-btn.smp-carsoule.owl-theme .owl-controls .owl-buttons .owl-prev { background: rgba(0, 0, 0, 0) url("/static/core/img/slider/pre-menu.png") no-repeat scroll 10px 10px }
 .sma-img { overflow: hidden }
 .sma-img > img {
     -webkit-transition: all 0.3s ease 0s;
@@ -1414,6 +1414,12 @@ aside:last-child { margin-bottom: 0 }
 .total-product .single-our-menu {
     border: 1px solid #dddddd;
     margin-bottom: 20px;
+    height:338px;
+}
+
+.total-product .single-side-dish {
+    border: 1px solid #dddddd;
+    margin-bottom:20px;
 }
 .result-count {
     float: left;

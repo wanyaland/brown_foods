@@ -67,7 +67,7 @@
                                     <!-- Add Delivery Date -->
                                     <div class="Zebra_DatePicker_Icon_Wrapper">
                                         <label>Delivery Date:</label>
-                                        <input id="datepicker" name="delivery-date" type="text" class="date-wrapper"/>
+                                        <input id="datepickers" name="delivery-date" type="text" class="date-wrapper"/>
                                     </div>
                                     <ul>
 
@@ -88,7 +88,7 @@
                                         </li>
                                         <li class="row">
                                             <div class="col-md-8">
-                                                <label for="box1"><input type="checkbox" name="delivery" id="box1" style="{height:3px;}">Pick Up from Offices</label>
+                                                <label for="box1"><input type="checkbox" name="delivery" id="box1" style="{height:3px;}">Self Collection</label>
                                             </div>
                                         </li>
                                         <li class="row">
@@ -119,5 +119,10 @@
                         </div>
                      </div>
        </div>
+<script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
 
 {% endblock %}

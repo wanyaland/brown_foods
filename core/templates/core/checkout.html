@@ -109,9 +109,16 @@
                                     </div>
                                </div>
                                 <div class="input-box">
-                                    <label>Address <em>*</em></label>
-                                    <input type="text" name="add1" class="info" placeholder="Street Address" value="{{user.address_line1}}">
-                                    <input placeholder="Specific directions , Landmarks etc" class="info" name="add2" value="{{user.address_line2}}">
+                                    <label>Address </label>
+                                    <input type="text" name="add1" class="info" placeholder="Street Name" value="{{user.address_line1}}">
+                                </div>
+                                 <div class="input-box">
+                                    <label>Address 2 </label>
+                                    <input placeholder="Name of Building,floor,room number etc" class="info" name="add2" value="{{user.address_line2}}">
+                                </div>
+                                 <div class="input-box">
+                                    <label>Address 3 </label>
+                                    <input placeholder="Nearest landmark,direction from landmark etc" class="info" name="add3" value="{{user.address_line3}}">
                                 </div>
 
                                 <!-- Map locater -->
@@ -142,4 +149,5 @@
     <!--google Map Api-->
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="/static/core/js/jquery-gmaps-latlon-picker.js"></script>
+
 {% endblock %}

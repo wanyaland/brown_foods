@@ -13,8 +13,8 @@
                         {% for item in menu_items %}
                         <div class="col-md-6 col-sm-6">
                            <div class="single-our-menu">
-                                   <div class="sm-image">
-                                       <a href="#"><img src="{{item.image.url}}" alt=""></a>
+                                   <div class="sm-image text-center">
+                                       <img src="{{item.image.url}}" alt="">
                                    </div>
                                    <div class="menu-heading">
                                        {{item}}
@@ -22,7 +22,7 @@
                                    <div class="sm-des">
                                        {{item.description}}
                                    </div>
-                                   <div class="sm-des">
+                                   <div class="sm-contents">
                                        {{item.content}}
                                    </div>
                                    <div class="sm-price">
