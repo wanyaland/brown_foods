@@ -12,3 +12,8 @@ def in_cart_session(code,cart):
             insession = True
             break
     return insession
+
+@register.filter
+def split(price):
+    str_price = str(price)
+    return str_price[:-3]

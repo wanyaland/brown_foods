@@ -62,8 +62,6 @@ class Cart:
         else:
             item.delete()
 
-    def add_delivery_charge(self,amount):
-        self.cart.delivery = amount
 
     def update(self, product, quantity, unit_price=None):
         try:
@@ -96,3 +94,5 @@ class Cart:
     def clear(self):
         for item in self.cart.cartitem_set.all():
             item.delete()
+    def delivery_fee(self):
+        pass

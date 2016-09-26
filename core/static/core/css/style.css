@@ -462,7 +462,7 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
 }
 .sm-contents {
     color: #7d7b6d;
-    font-size: 14px;
+    font-size: 13px;
     line-height:1.8;
 }
 
@@ -1420,6 +1420,8 @@ aside:last-child { margin-bottom: 0 }
 .total-product .single-side-dish {
     border: 1px solid #dddddd;
     margin-bottom:20px;
+    border-radius: 20px;
+    overflow: hidden;
 }
 .result-count {
     float: left;
@@ -2128,4 +2130,13 @@ Bootstrap Slider
 ----------------*/
 .carousel-inner img {
   margin: auto;
+}
+
+/*------------
+Menu Area
+-------------*/
+
+.sm-price span{
+  font-size:13px;
+  font-weight:bold;
 }
