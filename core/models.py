@@ -94,6 +94,7 @@ class Cart(models.Model):
     self_collect = models.BooleanField(default=False)
 
 
+
 class MenuItem(models.Model):
     CATEGORY = (
         ('M','MAIN'),

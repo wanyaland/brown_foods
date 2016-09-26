@@ -117,7 +117,13 @@ def payment(request):
 
 def checkout(request):
     if request.method=='POST':
-        pass
+        delivery_date = request.POST.get('delivery-date')
+        billing_details = BillingDetails()
+        billing_details.delivery_date= delivery_date
+        billing_details.save()
+        session_cart = Cart(request)
+        session_cart.cart.billing_details = billing_details
+        session_cart.cart.save()
     return render(request,'core/checkout.html',{
         'cart':Cart(request),
     })
@@ -162,7 +168,7 @@ def process_order(request):
     '''
     Handle the callback from PesaPal
     '''
-    cart = Cart(request)
+    sess_cart = Cart(request)
     tracking_id = request.GET.get('pesapal_transaction_tracking_id', '')
     reference = request.GET.get('pesapal_merchant_reference', '')
     if tracking_id and reference:
@@ -180,8 +186,8 @@ def process_order(request):
 
         if pesapal_status == 'COMPLETED':
             state="Transaction was successful"
-            cart.checked_out = True
-            cart.save()
+            sess_cart.cart.checked_out = True
+            sess_cart.cart.save()
         else:
             state = "Transaction is %s" % pesapal_status
 

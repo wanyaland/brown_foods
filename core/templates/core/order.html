@@ -65,7 +65,8 @@
                                  </div>
                                 <div class="total-top-rated">
                                     <!-- Add Delivery Date -->
-                                    <div class="Zebra_DatePicker_Icon_Wrapper">
+                                    <form method="post" action="{% url 'core:checkout' %}">{%csrf_token%}
+                                        <div class="Zebra_DatePicker_Icon_Wrapper">
                                         <label>Delivery Date:</label>
                                         <input id="datepickers" name="delivery-date" type="text" class="date-wrapper"/>
                                     </div>
@@ -98,12 +99,10 @@
                                             </div>
                                         </li>
                                      </ul>
-
-                                     <div class="view-check-btn">
-                                         <!--<a href="{% url 'core:cart' %}" class="com-btn">View Cart</a>-->
-                                         <a href="{% url 'core:checkout' %}" class="com-btn">Checkout</a>
-                                     </div>
-
+                                    <div class="input-box">
+                                        <input type="submit" class="in-btn" value="Checkout"/>
+                                    </div>
+                                    </form>
                                 </div>
                              </div>
                             <div class="row">
