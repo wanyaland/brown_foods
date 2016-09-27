@@ -16,9 +16,6 @@ $(document).ready(function() {
  });
 
 
-
-
-
 function cartAction(product_code) {
     quantity = $("#qty_"+product_code).val();
 	jQuery.ajax({
@@ -48,14 +45,7 @@ function remove(product_code) {
 }
 
 var cartHandler = function(data){
-   var wrapper = $('.my-cart');
-   var list = wrapper.find('ul');
-   var added = wrapper.find('div.single-rate')
-   var item = $('<li class="row"></li>');
-   $('<span class="quantity">'+data.quantity+'</span>').appendTo(item);
-   $('<span class="itemName">'+data.name+'</span>').appendTo(item);
-   $('<span class="price">'+data.price+'</span>').appendTo(item);
-   $('#sub-total').html(data.total);
+  alert('added');
 }
 
 
