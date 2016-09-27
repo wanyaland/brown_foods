@@ -461,11 +461,7 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
     line-height: 1.2;
 }
 
-input[type="checkbox"]{
-  margin: 4px 0 0;
-  line-height: normal;
-  height: 15px;
-}
+
 .sm-contents {
     color: #7d7b6d;
     font-size: 13px;
@@ -563,6 +559,17 @@ input[type="checkbox"]{
 -----------------------------*/
 .sm-ratting > a { color: #f9db57 }
 .sm-price {
+    margin-top:0px;
+    bottom: 50%;
+    font-size: 18px;
+    font-weight:bold;
+    width: 100%;
+    text-align: center;
+    left: 0;
+}
+
+.mn-price {
+    margin-top:20px;
     bottom: 50%;
     font-size: 18px;
     font-weight:bold;
@@ -643,6 +650,7 @@ input[type="checkbox"]{
     background: #fff none repeat scroll 0 0;
     border-radius: 20px;
     overflow: hidden;
+    height: 338px;
 }
 .sm-ratting { padding-top: 5px }
 .sm-image {
@@ -1428,7 +1436,7 @@ aside:last-child { margin-bottom: 0 }
 .total-product .single-our-menu {
     border: 1px solid #dddddd;
     margin-bottom: 20px;
-    height:338px;
+
 }
 
 .total-product .single-side-dish {
@@ -1723,7 +1731,7 @@ input[type='number']{
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-.des-content { padding: 30px }
+.des-content { padding: 20px }
 .des-content .sm-des span { display: block }
 .des-img { text-align: center }
 .des-review ul li {

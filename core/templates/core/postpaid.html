@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+{% block content %}
+       <!-- start of postpaid -->
+
+                          <form method="post" action="{% url 'core:postpaid-payment' %}">
+
+                                <div class="frm-action cc-area">
+                                    <div class="input-box tci-box">
+                                        <input type="submit" class="in-btn" name="processed-checkout" value="Buy">
+                                    </div>
+                            </div>
+                          </div>
+                        </div> <!-- End of Postpaid --></form>
+{% endblock %}

@@ -78,6 +78,7 @@ def update_cart(request):
 
 def process_checkout(request):
     if request.method=="POST":
+      if 'processed-checkout' in request.POST:
         cart = Cart(request)
         delivery_fee = request.GET.get('delivery_fee')
         first_name = request.POST.get('first_name')
@@ -111,6 +112,8 @@ def process_checkout(request):
         return render(request,'core/payment.html',{
             'iframe_url':pesapal_request.to_url(),
         })
+      if 'postpaid' in request.POST:
+          return render(request,'core/postpaid.html')
 
 def payment(request):
     return render(request,'core/payment.html')
@@ -118,12 +121,17 @@ def payment(request):
 def checkout(request):
     if request.method=='POST':
         delivery_date = request.POST.get('delivery-date')
-        billing_details = BillingDetails()
-        billing_details.delivery_date= delivery_date
-        billing_details.save()
-        session_cart = Cart(request)
-        session_cart.cart.billing_details = billing_details
-        session_cart.cart.save()
+        if delivery_date:
+             billing_details = BillingDetails()
+             billing_details.delivery_date= delivery_date
+             billing_details.save()
+             session_cart = Cart(request)
+             session_cart.cart.billing_details = billing_details
+             session_cart.cart.save()
+        if request.POST.get('self_collects',False):
+           sess_cart = Cart(request)
+           sess_cart.cart.self_collect = True
+
     return render(request,'core/checkout.html',{
         'cart':Cart(request),
     })
@@ -263,6 +271,23 @@ def deposit(request):
         })
     return render(request,'core/deposit.html')
 
+def self_collect(request):
+    return render(request,'core/order.html')
+
+def postpiad_payment(request):
+    if request.method=='POST':
+        sess_cart = Cart(request)
+        state='You need to login in your account'
+        if request.user:
+            customer = request.user
+        if customer:
+            if customer.balance-sess_cart.grand_total()<0:
+                state="You have insufficient balance to complete this transaction"
+            elif customer.balance-sess_cart.grand_total()>=0:
+                state= "Your payment is successful"
+        context = {'state':state}
+    return render(request,'core/postpaid.html',context)
+
 def process_deposit(request):
     '''
     Handle the callback from PesaPal
@@ -297,6 +322,9 @@ def process_deposit(request):
     return render(request,'core/process-order.html',{
         'state':state,
     })
+
+
+
 
 
 

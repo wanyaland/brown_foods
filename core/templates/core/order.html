@@ -1,9 +1,28 @@
 {% extends 'core/base.html' %}
 {% block title %}Order {% endblock %}
 {% block content %}
+{% block headers %}
+<style>
+    label {
+  display: block;
+  padding-left: 15px;
+  text-indent: -15px;
+}
+input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+  padding-left: 5px;
+  margin:0;
+  vertical-align: bottom;
+  position: relative;
+  top: -1px;
+  *overflow: hidden;
+}
+</style>
+{% endblock %}
 {% load core_extras %}
         <!--<pre> {% filter force_escape %} {% debug %} {% endfilter %} </pre>-->
-   <div class="row">
+   <div class="row ">
         <div class="8 col-sm-8 col-xs-12">
                       {% for item in menu_items %}
                       <div class="row">
@@ -18,7 +37,7 @@
                                         <h3>{{item}}</h3>
                                    </div>
                                     <div class="sm-price">
-                                        UGX {{item.unit_price|split}}<span>000</span>
+                                        UGX {{item.unit_price|split}}<sup>000</sup>
                                     </div>
                                 </div>
                           </div>
@@ -32,7 +51,7 @@
                               </div>
                           </div>
                       {% endfor %}
-
+                         <br><br>
                       {% for side_dish in side_dishes %}
                       <div class="row">
                           <div class="col-md-8 col-sm-8">
@@ -41,7 +60,7 @@
                                         <h3>{{side_dish}}</h3>
                                    </div>
                                     <div class="sm-price">
-                                        UGX {{side_dish.unit_price|split}}<span>000</span>
+                                        UGX {{side_dish.unit_price|split}}<sup>000</sup>
                                     </div>
                                 </div>
                           </div>
@@ -53,7 +72,7 @@
                               <a class="btn btn-default" onclick="cartAction('{{side_dish.id}}')">Add to Cart</a>
                           </div>
                               </div>
-                      </div>
+                      </div> <br><br>
                       {% endfor %}
                   </div>
         <div class="col-md-4 col-sm-4 col-xs-12">
@@ -80,23 +99,20 @@
                                         </li>
                                         {% endfor %}
                                         <li class="row">
-                                            <div class="crt-price">
-                                                Sub Total : {{cart.summary}}
-                                            </div>
-                                            <div class="crt-price">
-                                                Delivery Fee: {{cart.delivery_fee}}
-                                            </div>
-                                            <div class="crt-price">
-                                                <label for="box1"><input type="checkbox" name="delivery" id="box1" >Self Collection</label>
-                                            </div>
+                                            <span class="itemName">Sub Total :</span>
+                                            <span class="price">{{cart.summary}}</span>
                                         </li>
                                         <li class="row">
-                                            <div class="col-md-8 col-sm-8 itemName">
-                                                Grand Total:
-                                            </div>
-                                            <div class="col-md-4 col-sm-8 itemName">
-                                                {{cart.grand_total}}
-                                            </div>
+                                            <span class="itemName">Delivery Fee:</span>
+                                            <span class="price">{{cart.delivery_fee}}</span>
+                                        </li>
+                                        <li class="row">
+                                               <label>Self Collection  <input type="checkbox" name="self_collects"></label>
+                                        </li>
+
+                                        <li class="row">
+                                            <span class="itemName">Grand Total:</span>
+                                            <span class="price">{{cart.grand_total}}</span>
                                         </li>
                                      </ul>
                                     <div class="input-box">

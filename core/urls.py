@@ -28,6 +28,8 @@ urlpatterns = patterns('',
                        url(r'^delivery_charged/$',delivery_charged,name='delivery_charged'),
                        url(r'^deposit/$',deposit,name='deposit'),
                        url(r'^process-deposit/$',process_deposit,name='process-deposit'),
+                       url(r'^self-collect/$',self_collect,name='self-collect'),
+                       url(r'^postpaid-payment/$',postpiad_payment,name='postpaid-payment'),
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
