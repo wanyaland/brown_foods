@@ -458,7 +458,21 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
 .sm-des {
     color: #7d7b6d;
     font-size: 16px;
-    line-height: 1.2;
+    line-height: 1;
+}
+
+.sm-home{
+   color: #7d7b6d;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.sm-home-font{
+   color: #7d7b6d;
+    font-size: 14px;
+    line-height: 1.5;
+    font-family:Tahoma;
+    #font-style: italic;
 }
 
 
@@ -566,7 +580,14 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
     width: 100%;
     text-align: center;
     left: 0;
+
 }
+
+.zeros{
+   font-size:13px;
+}
+
+
 
 .mn-price {
     margin-top:20px;
@@ -651,6 +672,7 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
     border-radius: 20px;
     overflow: hidden;
     height: 338px;
+    width:385.5px;
 }
 .sm-ratting { padding-top: 5px }
 .sm-image {
@@ -2161,4 +2183,5 @@ Menu Area
 .sm-price span{
   font-size:13px;
   font-weight:bold;
+  vertical-align:top;
 }

@@ -20,16 +20,15 @@
                                    <div class="menu-heading">
                                        {{item}}
                                    </div>
-                                   <div class="sm-des">
+                                   <div class="sm-des text-center">
                                        {{item.description}}
-                                   </div>
-                                   <div class="sm-contents">
+                                   </div> <p></p>
+                                   <div class="sm-contents text-center">
                                        {{item.content}}
                                    </div>
                                    <div class="sm-price">
-                                       UGX {{item.unit_price|split}}<sup>000</sup>
+                                       UGX {{item.unit_price|split}}<span>000</span>
                                    </div>
-
                                </div>
                         </div>
                         {% endfor %}
@@ -39,25 +38,104 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8 col-sm-8 col-xs-12 col-md-offset-2" align="center">
+            <div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1" align="center">
                 <div class="whdget-title" align="center">
                                      <h2>Side Dish</h2>
                 </div>
                 <div class="total-product">
                     <div class="row">
-                        {% for side_dish in side_dishes %}
-                        <div class="col-md-6 col-sm-6">
-                           <div class="single-side-dish">
-
-                                   <div class="menu-heading">
-                                       {{side_dish}}
-                                   </div>
-                                   <div class="sm-price">
-                                       UGX {{side_dish.unit_price|split}}<sup>000</sup>
-                                   </div>
+                        <div class="col-md-12 col-sm-12">
+                           <div class="single-side-dish"> <!--side dish start -->
+                                <div class="row">
+                                     <div class="col-md-6 menu-heading">
+                                       Chirasi Sushi
+                                      </div>
+                                  <div class="col-md-6 sm-des">
+                                      Vinegard rice with cooked mushroom and sliced fried eggs
+                                  </div>
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                        <div class="col-md-6 sm-price">
+                                            S 100g UGX 4<span>000</span> / L 200g UGX 6<span>000</span>
+                                        </div>
+                                    </div>
+                                </div>
                                </div>
-                        </div>
-                        {% endfor %}
+                            </div> <!-- End of side-dish element -->
+                            <div class="single-side-dish"> <!--side dish start -->
+                                <div class="row">
+                                     <div class="col-md-6 menu-heading">
+                                       Takikoma Gohan
+                                      </div>
+                                  <div class="col-md-6 sm-des">
+                                      Seasoned steam rice with carrot,mushroom and special sweet soy sauce
+                                  </div>
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                        <div class="col-md-6 sm-price">
+                                            S 100g UGX 3<span>000</span> / L 200g UGX 5<span>000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                               </div>
+                            </div> <!-- End of side-dish element -->
+                            <div class="single-side-dish"> <!--side dish start -->
+                                <div class="row">
+                                     <div class="col-md-6 menu-heading">
+                                       Potato Salad
+                                      </div>
+                                  <div class="col-md-6 sm-des">
+                                      Mashed potatos seasoned mayonanaise with stir fried carrot and onion
+                                  </div>
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                        <div class="col-md-6 sm-price">
+                                            S 100g UGX 3<span>000</span> / L 200g UGX 5<span>000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                               </div>
+                            </div> <!-- End of side-dish element -->
+                            <div class="single-side-dish"> <!--side dish start -->
+                                <div class="row">
+                                     <div class="col-md-6 menu-heading">
+                                       Naporitan Spaghetti
+                                      </div>
+                                  <div class="col-md-6 sm-des">
+                                      Spaghetti flavored butter mixed sauce of fresh tomato and carrot
+                                  </div>
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                        <div class="col-md-6 sm-price">
+                                            S 100g UGX 4<span>000</span> / L 200g UGX 7<span>500</span>
+                                        </div>
+                                    </div>
+                                </div>
+                               </div>
+                            </div> <!-- End of side-dish element -->
+
+                            <div class="single-side-dish"> <!--side dish start -->
+                                <div class="row">
+                                     <div class="col-md-6 menu-heading">
+                                       Paperoncino Spaghetti
+                                      </div>
+                                  <div class="col-md-6 sm-des">
+                                      Spaghetti seasoned salt with plenty of garlic and olive oil of 100%
+                                  </div>
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                        <div class="col-md-6 sm-price">
+                                            S 100g UGX 5<span>000</span> / L 200g UGX 8<span>000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                               </div>
+                            </div> <!-- End of side-dish element -->
+
+
+
+
+                    </div>
                     </div>
 
                 </div>
