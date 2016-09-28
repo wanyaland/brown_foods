@@ -580,7 +580,6 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
     width: 100%;
     text-align: center;
     left: 0;
-
 }
 
 .zeros{
@@ -640,6 +639,12 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
    font-size:20px;
    text-align:center;
 }
+
+.side-heading {
+    background: #fff none repeat scroll 0 0;
+   font-size:20px;
+   text-align:left;
+}
 .sm-heading > a {
     color: #222;
     font-size: 18px;
@@ -672,6 +677,14 @@ a.com-btn:hover,.submt .com-btn.blg-btn:hover {
     border-radius: 20px;
     overflow: hidden;
     height: 338px;
+    width:390.5px;
+}
+
+.single-one-menu {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 10px;
+    overflow: hidden;
+    height:363px;
     width:385.5px;
 }
 .sm-ratting { padding-top: 5px }
@@ -2180,8 +2193,23 @@ Bootstrap Slider
 Menu Area
 -------------*/
 
-.sm-price span{
-  font-size:13px;
+.side-price {
+    font-size: 12px;
+    margin-left:25px;
+    font-weight:bold;
+}
+
+.side-price span{
+  font-size:10px;
   font-weight:bold;
   vertical-align:top;
+}
+
+.side-description{
+  font-size:14px;
+  text-align:left;
+}
+
+.side-mn-name {
+ margin-top:0px;
 }

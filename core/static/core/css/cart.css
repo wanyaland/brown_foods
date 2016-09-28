@@ -18,7 +18,6 @@
 }
 
 
-
 .columnCaptions span:first-child{
 	padding-left:8px;
 }
@@ -42,6 +41,29 @@
 	padding-left:25px;
 }
 
+.sideName{
+	font-size :12px;
+	font-weight: bold;
+	float: left;
+	padding-left:25px;
+}
+
+
+.side-title{
+   font-size :14px;
+	font-weight: bold;
+	float: left;
+	padding-left:25px;
+}
+.side-description{
+  font-size : 12px;
+  float:left;
+  padding-left:25px;
+}
+
+.side-title span {
+   float:right;
+}
 
 .quantity{
 	font-size :14px;

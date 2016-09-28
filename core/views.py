@@ -219,8 +219,10 @@ def how_it_works(request):
 
 def menu(request):
     menu_items = MenuItem.objects.filter(menu_type='M')
+    sliced_menu = menu_items[:9]
+    last_item = menu_items[9:]
     side_dishes = MenuItem.objects.filter(menu_type='S')
-    context = {'menu_items':menu_items,'side_dishes':side_dishes,}
+    context = {'menu_items':sliced_menu,'side_dishes':side_dishes,'last_item':last_item}
     return render(request,'core/menu.html',context)
 
 def order(request):
