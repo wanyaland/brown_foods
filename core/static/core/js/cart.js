@@ -11,7 +11,9 @@ $(document).ready(function() {
       disabled_dates:['* * * 0,6']
     }
     );
+    $('')
  });
+
 
 
 

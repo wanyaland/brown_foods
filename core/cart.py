@@ -99,7 +99,9 @@ class Cart:
         if self.cart.self_collect:
             return 0
         else:
-            if self.count() <= 5:
+            if self.count() == 0:
+                return 0;
+            elif self.count() <= 5 :
                 return 5000
             elif self.count() <= 10:
                 return 10000

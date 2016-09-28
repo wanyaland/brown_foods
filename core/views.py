@@ -15,8 +15,6 @@ import requests
 from forms import CustomerChangeForm,PasswordResetRequestForm
 from django.core.urlresolvers import reverse
 
-
-
 # Create your views here.
 
 def login_customer(request):
@@ -80,7 +78,6 @@ def process_checkout(request):
     if request.method=="POST":
       if 'processed-checkout' in request.POST:
         cart = Cart(request)
-        delivery_fee = request.GET.get('delivery_fee')
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         email = request.POST.get('email')
@@ -88,13 +85,16 @@ def process_checkout(request):
         address2= request.POST.get('add2')
         phone1 = request.POST.get('phone1')
         phone2 = request.POST.get('phone2')
-        billing_details = BillingDetails(first_name=first_name,last_name=last_name,email=email,phone_number=phone1,
-                                         phone_number2=phone2,address_line1=address1,address_line2=address2)
+        billing_details = cart.cart.billing_details
+        if not billing_details:
+            billing_details = BillingDetails()
+        billing_details.address1 = address1
+        billing_details.address2 = address2
+        billing_details.phone1 = phone1
+        billing_details.phone2 = phone2
         billing_details.save()
-        cart.billing_details = billing_details
         client = pesapal.PesaPal("Au93fiwr5A/NhPZqesxbjVNDqzFBdMI+","d00fVQICYG8f/3kxueNRKQkfXnk=",False)
         total_cost = cart.grand_total()
-
         request_data = {
             'FirstName':first_name,
             'LastName':last_name,
@@ -144,6 +144,7 @@ def add_to_cart(request):
         cart = Cart(request)
         cart.add(menu_item,menu_item.unit_price,quantity)
         state=" %s has been added to cart" % menu_item
+        request.session['state']=state
         return redirect('core:order')
 
 def remove_from_cart(request):
@@ -220,6 +221,7 @@ def menu(request):
     return render(request,'core/menu.html',context)
 
 def order(request):
+
     cart = Cart(request)
     menu_items = MenuItem.objects.filter(menu_type='M')
     side_dishes = MenuItem.objects.filter(menu_type='S')
