@@ -85,6 +85,7 @@ class Cart(models.Model):
     PAYMENT_TYPE=(
         ('Pre','PREPAID'),
         ('Post','POSTPAID'),
+        ('Self','SELF_COLLECTS'),
     )
     billing_details = models.OneToOneField(BillingDetails,null=True)
     creation_date = models.DateTimeField(null=True)
@@ -92,8 +93,6 @@ class Cart(models.Model):
     payment_type = models.CharField(max_length=100,null=True,choices=PAYMENT_TYPE)
     payment_id = models.CharField(max_length=20,null=True)
     self_collect = models.BooleanField(default=False)
-
-
 
 class MenuItem(models.Model):
     CATEGORY = (

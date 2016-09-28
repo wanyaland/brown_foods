@@ -4,14 +4,15 @@
 {% block headers %}
 <style>
     label {
-  display: block;
-  padding-left: 15px;
-  text-indent: -15px;
+    font-size :14px;
+	font-weight: bold;
+	float: left;
+	padding-left:25px;
 }
 input[type="checkbox"] {
   width: 13px;
   height: 13px;
-  padding-left: 5px;
+  padding-left: 25px;
   margin:0;
   vertical-align: bottom;
   position: relative;
@@ -31,30 +32,35 @@ input[type="checkbox"] {
                                   <a class="venobox" data-gall="myGallery" href=""><img src="{{item.image.url}}" alt=""></a>
                               </div>
                           </div>
-                          <div class="col-md-5 col-sm-5">
+                          <form action="{% url 'core:add-to-cart' %}" method="post">{% csrf_token %}
+                             <div class="col-md-5 col-sm-5">
                                 <div class="pd-content">
                                   <div class="order-title">
                                         <h3>{{item}}</h3>
                                    </div>
                                     <div class="sm-price">
-                                        UGX {{item.unit_price|split}}<sup>000</sup>
+                                        UGX {{item.unit_price|split}}<span>000</span>
                                     </div>
                                 </div>
                           </div>
                               <div class="btn-add">
                           <div class="col-md-2 col-sm-2">
                                <input type="number" class="qty-btn" min="1" value="0" name="quantity" id="qty_{{item.id}}"/>
+                              <input hidden="true" value="{{item.id}}" name="menu_id"/>
                           </div>
-                          <div class="col-md-2 col-sm-2 ">
-                              <a class="btn btn-default" onclick="cartAction('{{item.id}}')">Add to Cart</a>
+                          <div class="col-md-2 col-sm-2">
+                              <input type="submit" class="btn btn-default" value="Add"/>
                           </div>
                               </div>
+                          </form>
+
                           </div>
                       {% endfor %}
                          <br><br>
                       {% for side_dish in side_dishes %}
                       <div class="row">
                           <div class="col-md-8 col-sm-8">
+                              <form action="{% url 'core:add-to-cart' %}" method="post">{% csrf_token %}
                                 <div class="pd-content">
                                   <div class="order-title">
                                         <h3>{{side_dish}}</h3>
@@ -68,10 +74,16 @@ input[type="checkbox"] {
                           <div class="col-md-2 col-sm-2">
                                <input type="number" class="qty-btn" min="1" value="0" name="quantity" id="qty_{{side_dish.id}}"/>
                           </div>
+                                  <!--
                           <div class="col-md-2 col-sm-2 ">
                               <a class="btn btn-default" onclick="cartAction('{{side_dish.id}}')">Add to Cart</a>
-                          </div>
-                              </div>
+                          </div> -->
+                                  <input hidden="true" name="menu_id" value="{{side_dish.id}}"/>
+                                  <div class="col-md-2 col-sm-2">
+                                      <input class="btn btn-default" type="submit" value="Add"/>
+                                  </div>
+
+                              </div></form>
                       </div> <br><br>
                       {% endfor %}
                   </div>
@@ -99,17 +111,12 @@ input[type="checkbox"] {
                                         </li>
                                         {% endfor %}
                                         <li class="row">
-                                            <span class="itemName">Sub Total :</span>
-                                            <span class="price">{{cart.summary}}</span>
+                                               <div class="itemName">Sub Total:</div>
+                                               <div class="price">{{cart.summary}}</div><br>
+                                               <div class="itemName">Delivery Fee:</div>
+                                               <div class="price">{{cart.delivery_fee}}</div><br>
+                                                <label>Self Collection <input type="checkbox" name="self_collects" onchange="()"></label>
                                         </li>
-                                        <li class="row">
-                                            <span class="itemName">Delivery Fee:</span>
-                                            <span class="price">{{cart.delivery_fee}}</span>
-                                        </li>
-                                        <li class="row">
-                                               <label>Self Collection  <input type="checkbox" name="self_collects"></label>
-                                        </li>
-
                                         <li class="row">
                                             <span class="itemName">Grand Total:</span>
                                             <span class="price">{{cart.grand_total}}</span>

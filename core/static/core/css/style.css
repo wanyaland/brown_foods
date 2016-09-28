@@ -1589,9 +1589,15 @@ width:100%;
     font-weight: 700;
     padding-top: 4px;
 }
-.cart-price {
+.cart-descr{
+  float:left;
+  color: #7d7b6d;
+  font-weight:bold;
+}
+.cart-descr span {
     color: #7d7b6d;
-    padding-top: 15px;
+    float:right;
+    font-weight:bold;
 }
 .my-cart .single-rate:hover {
     opacity: inherit;
@@ -2193,6 +2199,17 @@ Bootstrap Slider
 Menu Area
 -------------*/
 
+.menu-image img{
+ margin-left:25px;
+ margin-right:25px;
+}
+
+.sm-price span{
+  font-size:14px;
+  font-weight:bold;
+  vertical-align:top
+}
+
 .side-price {
     font-size: 12px;
     margin-left:25px;
@@ -2206,7 +2223,7 @@ Menu Area
 }
 
 .side-description{
-  font-size:14px;
+  font-size:10px;
   text-align:left;
 }
 

@@ -137,14 +137,14 @@ def checkout(request):
     })
 
 def add_to_cart(request):
-    quantity = request.POST.get('quantity')
-    menu_id = request.POST.get('menu_id')
-    menu_item= MenuItem.objects.get(id=menu_id)
-    cart = Cart(request)
-    cart.add(menu_item,menu_item.unit_price,quantity)
-    total = cart.summary()
-    data={"quantity":quantity,"total":str(total),"name":menu_item,"price":str(menu_item.unit_price),}
-    return HttpResponse(json.dumps(data))
+    if request.POST:
+        quantity = request.POST.get('quantity')
+        pk = request.POST.get('menu_id')
+        menu_item = MenuItem.objects.get(id=pk)
+        cart = Cart(request)
+        cart.add(menu_item,menu_item.unit_price,quantity)
+        state=" %s has been added to cart" % menu_item
+        return redirect('core:order')
 
 def remove_from_cart(request):
     menu_id = request.POST.get('menu_id')
@@ -153,12 +153,6 @@ def remove_from_cart(request):
     cart.remove(menu_item)
     data = {'success':'true'}
     return HttpResponse(json.dumps(data),content_type="application/json")
-
-def delivery_charged(request):
-    cart = Cart(request)
-    cart.add_delivery_charge(5000)
-    return HttpResponse(json.dumps({'success':'true'}),content_type="application/json")
-
 
 def my_account(request):
     return render(request,'core/my_account.html')

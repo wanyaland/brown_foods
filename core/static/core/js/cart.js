@@ -1,7 +1,5 @@
 
 
-
-
 $(document).ready(function() {
     var min = 1;
     var currentTime = new Date();
@@ -16,37 +14,6 @@ $(document).ready(function() {
  });
 
 
-function cartAction(product_code) {
-    quantity = $("#qty_"+product_code).val();
-	jQuery.ajax({
-	url: "/add_to_cart/",
-	data:{'menu_id':product_code,'quantity':quantity},
-	type:'post',
-	dataType:'json',
-	success:function(data){
-	    cartHandler(data);
-	},
-	error:function (){}
-	});
-}
-
-
-function remove(product_code) {
-	jQuery.ajax({
-	url: "/remove_from_cart/",
-	data:{'menu_id':product_code},
-	type:'post',
-	dataType:'json',
-	success:function(data){
-        alert("Removed from cart!");
-	},
-	error:function (){}
-	});
-}
-
-var cartHandler = function(data){
-  alert('added');
-}
 
 
 function getCookie(name) {
